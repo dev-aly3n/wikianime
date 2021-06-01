@@ -1,22 +1,37 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
-const counterInitialState = { counter: 0};
+const counterInitialState = { counter: {}};
 
 const counterSlice = createSlice({
     name:'counter',
     initialState: counterInitialState,
     reducers: {
       increment(state, action){
-          let type = action.type;
-          let payload = action.payload.xDirection;
-          state.counter = state.counter + payload;
-      },
-      decrement(state){
-        state.counter--;
+          state.counter = action.payload;
       }
     }
 });
+
+
+export const AnimeData = (data) => {
+  return async (dispatch) => {
+ 
+    const gettingData = async () =>{
+
+      const animData = await data;
+     
+      dispatch(
+       counterSlice.actions.increment({payload: animData})
+       )
+      }
+
+      gettingData();
+  }
+  
+}
+
+
 //
 export const counterActions = counterSlice.actions;
 export default counterSlice.reducer;

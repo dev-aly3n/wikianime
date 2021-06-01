@@ -1,8 +1,9 @@
 {
-  "name": "aly3n-portfolio",
+  "name": "aly3n-anime",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.3.19",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
@@ -12,6 +13,7 @@
     "@testing-library/user-event": "^12.8.3",
     "apollo-boost": "^0.4.9",
     "chokidar-cli": "^2.1.0",
+    "framer-motion": "^4.1.17",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.12.4",
     "npm-run-all": "^4.1.5",
@@ -20,6 +22,7 @@
     "react-apollo": "^3.1.5",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "tailwindcss": "^2.1.2",
     "web-vitals": "^1.1.2"

@@ -1,27 +1,57 @@
 import React from "react";
-import ApolloClient from 'apollo-boost';
-import {ApolloProvider} from 'react-apollo';
+import { gql, useQuery } from '@apollo/client';
+import {useDispatch, useSelector} from 'react-redux'
+import {AnimeData} from './store/counterSlice';
+import Kimi from './components/Kimi'
 
-import Anims from './components/Anims';
-import MyComponent from './components/MyComponent';
 
-const client = new ApolloClient({
-  uri: "https://graphql.anilist.co",
 
-})
 
 function App() {
+  const dispatch = useDispatch();
+
+  const EXCHANGE_RATES = gql`
+  query ($id: Int, $page: Int, $perPage: Int, $search: String) {
+      Page(page: $page, perPage: $perPage) {
+        pageInfo {
+          total
+          currentPage
+          lastPage
+          hasNextPage
+          perPage
+        }
+        media(id: $id, search: $search) {
+          id
+          coverImage {
+            medium
+            color
+          }
+          title {
+            romaji
+          }
+        }
+      }
+    }
+`;
+
+const { loading, error, data } = useQuery(EXCHANGE_RATES);
+dispatch(AnimeData(data))
+
+
+
+
+
+
 
   //// jsx
   return (
-    <ApolloProvider client={client}>
+
     <div className="app">
-    <MyComponent />
-    </div>
     <div>
-      <Anims />
+    <Kimi/>
     </div>
-    </ApolloProvider>
+    </div>
+
   );
 }
 //

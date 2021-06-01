@@ -1,14 +1,15 @@
 import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import Anime from "./Anime";
 
-const Anims = () => {
+const AnimeList = () => {
   return (
-    <Query variables={{id:25}}
+    <Query
       query={gql`
         query ($id: Int, $page: Int, $perPage: Int, $search: String) {
           Page(page: $page, perPage: $perPage) {
-            pageInfo  {
+            pageInfo {
               total
               currentPage
               lastPage
@@ -16,7 +17,11 @@ const Anims = () => {
               perPage
             }
             media(id: $id, search: $search) {
-              id 
+              id
+              coverImage {
+                medium
+                color
+              }
               title {
                 romaji
               }
@@ -27,14 +32,19 @@ const Anims = () => {
     >
       {({ loading, error, data }) => {
         if (loading) {
-          return <p>loading...</p>;}
+          return <p>loading...</p>;
+        }
         if (error) {
-          return <p>wtf is error {error.message}</p>;}
-        if (data) {
-          return <p>{data.Page.media[0].id}</p>;}
+          return <p>wtf is error {error.message}</p>;
+        }
+        if (data.Page.media) {
+          return data.Page.media.map((anim) => {
+            return <Anime anim={anim} key={anim.id} />;
+          });
+        }
       }}
     </Query>
   );
 };
 
-export default Anims;
+export default AnimeList;

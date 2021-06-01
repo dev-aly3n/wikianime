@@ -11,26 +11,12 @@ const MyComponent = () => {
   const decrease = () => {
     dispatch(counterActions.decrement());
   };
+  console.log(counter);
 //
 
   return (
     <div>
-      <h1>Hi redux</h1>
-      <div>num: {counter}</div>
-      <div>
-        <button className="bg-gray-400 m-auto border-2 p-5" onClick={increase}>
-          increase
-        </button>
-        <button className="bg-gray-400 m-auto border-2 p-5" onClick={decrease}>
-          decrease
-        </button>
-      </div>
-      <button
-        className="bg-gray-400 m-auto border-2 p-5"
-    
-      >
-        dude!
-      </button>
+ 
     </div>
   );
 };
