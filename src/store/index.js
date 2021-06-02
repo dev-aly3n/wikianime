@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './counterSlice';
+import animeListReducer from './animeListSlice';
 
 
 
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer
+    animelist: animeListReducer
   }
 })
 

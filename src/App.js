@@ -1,7 +1,7 @@
 import React from "react";
 import { gql, useQuery } from '@apollo/client';
-import {useDispatch, useSelector} from 'react-redux'
-import {AnimeData} from './store/counterSlice';
+import {useDispatch} from 'react-redux'
+import {AnimeData} from './store/animeListSlice';
 import Kimi from './components/Kimi'
 
 
@@ -10,6 +10,7 @@ import Kimi from './components/Kimi'
 function App() {
   const dispatch = useDispatch();
 
+  const Somthing = async ()=>{
   const EXCHANGE_RATES = gql`
   query ($id: Int, $page: Int, $perPage: Int, $search: String) {
       Page(page: $page, perPage: $perPage) {
@@ -34,9 +35,10 @@ function App() {
     }
 `;
 
-const { loading, error, data } = useQuery(EXCHANGE_RATES);
+const { loading, error, data } =  useQuery(EXCHANGE_RATES);
 dispatch(AnimeData(data))
-
+  }
+  Somthing();
 
 
 
