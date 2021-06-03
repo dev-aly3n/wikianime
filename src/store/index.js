@@ -6,7 +6,7 @@ import animeListReducer from './animeListSlice';
 
 const store = configureStore({
   reducer: {
-    animelist: animeListReducer
+    animeList: animeListReducer
   }
 })
 

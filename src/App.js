@@ -1,8 +1,8 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { gql, useQuery } from '@apollo/client';
 import {useDispatch} from 'react-redux'
 import {AnimeData} from './store/animeListSlice';
-import Kimi from './components/Kimi'
+import AnimeList from "./components/AnimeList";
 
 
 
@@ -10,7 +10,6 @@ import Kimi from './components/Kimi'
 function App() {
   const dispatch = useDispatch();
 
-  const Somthing = async ()=>{
   const EXCHANGE_RATES = gql`
   query ($id: Int, $page: Int, $perPage: Int, $search: String) {
       Page(page: $page, perPage: $perPage) {
@@ -36,11 +35,21 @@ function App() {
 `;
 
 const { loading, error, data } =  useQuery(EXCHANGE_RATES);
-dispatch(AnimeData(data))
-  }
-  Somthing();
 
+if(loading){
+console.log('loading');
+}
 
+if(error){
+console.log('error');
+}
+
+useEffect(() => {
+    if (data){
+      dispatch(AnimeData(data))
+    }
+  }, [data,dispatch]);
+  
 
 
 
@@ -50,7 +59,7 @@ dispatch(AnimeData(data))
 
     <div className="app">
     <div>
-    <Kimi/>
+    <AnimeList/>
     </div>
     </div>
 

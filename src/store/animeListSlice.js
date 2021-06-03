@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
-const AnimeListInitialState = { homeAnime: {}
+const AnimeListInitialState = { homeAnime: [],
+watch: [],
+search:[]
 };
 
 const animeListSlice = createSlice({
-    name:'animelist',
+    name:'animeList',
     initialState: AnimeListInitialState,
     reducers: {
       setDataAtFirst(state, action){
@@ -17,8 +19,10 @@ const animeListSlice = createSlice({
 
 export const AnimeData = (data) => async (dispatch) => {
     const gettingData = async () => {
-      const animData = await data;
+      if(data){
+      const animData = data;
       dispatch(animeListSlice.actions.setDataAtFirst(animData.Page.media));
+      }
       }
      gettingData();
 }

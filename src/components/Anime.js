@@ -1,16 +1,14 @@
 import React from 'react';
 
 
-const Anime = ({anim}) => {
-        
-    
-    return (
+const Anime = ({anime}) => {
+
+    return(
         <div>
-            <h1>id : {anim.id}</h1>
-            <h2 style={{backgroundColor:`${anim.coverImage.color}`}}>name : {anim.title.romaji}</h2>
-            <img src={anim.coverImage.medium}></img>
+            <h1>id: {anime.id}</h1>
+            <img src={anime.coverImage.medium} alt=''></img>
         </div>
-    )
+    );
 }
 
 export default Anime;
