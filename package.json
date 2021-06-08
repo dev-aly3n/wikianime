@@ -53,6 +53,7 @@
     ]
   },
   "devDependencies": {
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "tailwind-styled-components": "^2.0.2"
   }
 }
