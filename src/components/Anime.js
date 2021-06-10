@@ -1,13 +1,21 @@
 import React from 'react';
-import { S_Container } from '../styles/styles';
-import {motion} from 'framer-motion';
 
 const Anime = ({anime}) => {
+
+
+    const animeClickHandler = () => {
+        console.log(anime.id);
+    }
+
     return(
-        <S_Container animate={{opacity:1 , transition: {duration: 5}}} initial={{opacity:0}}>
-            <h1>id: {anime.id}</h1>
-            <img src={anime.coverImage.medium} alt=''></img>
-        </S_Container>
+        <div onClick={animeClickHandler} className="anime-card-container" style={{backgroundImage:`url(${anime.coverImage.large})`}}
+         animate={{opacity:1 , transition: {duration: 5}}} initial={{opacity:0}}>
+         <div className="card-inside">
+
+            <h3 className="text-lg font-normal mb-0 h-16 text-white">{anime.title.romaji}</h3>
+         </div>
+            
+        </div>
     );
 }
 

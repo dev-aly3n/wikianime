@@ -4,4 +4,45 @@
 
 @tailwind utilities;
 
-@layer components {}
+@layer components {
+  /* component: animeList */
+  .anime-lists-container {
+    @apply px-0 py-20 w-7/12 mx-auto;
+  }
+
+  .anime-lists-container h2 {
+    @apply px-20 py-5 text-3xl font-medium;
+  }
+
+  .anime-list {
+    min-height: 80vh;
+    @apply grid lg:grid-cols-3 grid-cols-1 sm:grid-cols-3 gap-x-12 gap-y-20;
+  }
+
+  .anime-card-container {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+      min-height: 45vh;
+      @apply shadow-3xl text-center rounded-2xl overflow-hidden;
+  }
+
+
+  .card-inside{
+    background-color: rgba(0, 0, 0, .15);
+      @apply h-full;
+  }
+
+  html::-webkit-scrollbar{
+      width:0.5rem;
+  }
+  html::-webkit-scrollbar-thumb{
+      background-color:darkgray;
+  }
+  body{
+      font-family: "Montserrat", sans-serif;
+  }
+  h2 {
+      font-family: 'Abril Fatface', cursive;
+  }
+}

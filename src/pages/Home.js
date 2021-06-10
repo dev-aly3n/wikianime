@@ -22,7 +22,7 @@ const Home = () => {
         media(id: $id, search: $search) {
           id
           coverImage {
-            medium
+            large
             color
           }
           title {
@@ -33,7 +33,11 @@ const Home = () => {
     }
 `;
 
-const { loading, error, data } =  useQuery(EXCHANGE_RATES);
+const { loading, error, data } =  useQuery(EXCHANGE_RATES,{
+  variables:{
+    perPage:15
+  }
+  });
 
 if(loading){
 console.log('loading');
