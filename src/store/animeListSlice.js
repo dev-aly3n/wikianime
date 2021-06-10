@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const AnimeListInitialState = { homeAnime: [],
 watch: [],
+selected:[],
 search:[]
 };
 
@@ -12,12 +13,15 @@ const animeListSlice = createSlice({
     reducers: {
       setDataAtFirst(state, action){
           state.homeAnime = action.payload;
+      },
+      selectedAnime(state,action){
+        state.selected = action.payload;
       }
     }
 });
 
 
-export const AnimeData = (data) => async (dispatch) => {
+export const homeAnimeData = (data) => async (dispatch) => {
     const gettingData = async () => {
       if(data){
       const animData = data;
@@ -25,6 +29,17 @@ export const AnimeData = (data) => async (dispatch) => {
       }
       }
      gettingData();
+}
+
+
+export const selectedAnimeData = (data) => async (dispatch) => {
+  const gettingData = async () => {
+    if(data){
+    const selectedData = data;
+    dispatch(animeListSlice.actions.selectedAnime(selectedData.Page.media));
+    }
+    }
+   gettingData();
 }
 
 

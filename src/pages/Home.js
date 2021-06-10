@@ -1,16 +1,14 @@
-import React,{useEffect} from 'react'
-
-import { gql, useQuery } from '@apollo/client';
-import {useDispatch} from 'react-redux'
-import {AnimeData} from '../store/animeListSlice';
+import React, { useEffect } from "react";
+import { gql, useQuery } from "@apollo/client";
+import { useDispatch } from "react-redux";
+import { homeAnimeData } from "../store/animeListSlice";
 import AnimeList from "../components/AnimeList";
 
 const Home = () => {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
-
-  const EXCHANGE_RATES = gql`
-  query ($id: Int, $page: Int, $perPage: Int, $search: String) {
+  const homeQuery = gql`
+    query ($id: Int, $page: Int, $perPage: Int, $search: String) {
       Page(page: $page, perPage: $perPage) {
         pageInfo {
           total
@@ -31,40 +29,32 @@ const Home = () => {
         }
       }
     }
-`;
-
-const { loading, error, data } =  useQuery(EXCHANGE_RATES,{
-  variables:{
-    perPage:15
-  }
+  `;
+  const { loading, error, data } = useQuery(homeQuery, {
+    variables: {
+      perPage: 9,
+    },
   });
 
-if(loading){
-console.log('loading');
-}
+  if (loading) {
+    console.log("loading");
+  }
 
-if(error){
-console.log(error.message);
-}
+  if (error) {
+    console.log(error.message);
+  }
 
-useEffect(() => {
-    if (data){
-      dispatch(AnimeData(data))
+  useEffect(() => {
+    if (data) {
+      dispatch(homeAnimeData(data));
     }
-  }, [data,dispatch]);
-  
-
+  }, [data, dispatch]);
 
   return (
-
     <div>
-        <AnimeList />
+      <AnimeList />
     </div>
-
-
   );
-
-}
-
+};
 
 export default Home;
