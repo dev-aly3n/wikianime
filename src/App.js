@@ -1,24 +1,22 @@
 import React from "react";
-import Home from './pages/Home'
+import Home from "./pages/Home";
+import AnimeDetail from './pages/AnimeDetail';
 
-
-
+import { Switch, Route } from "react-router-dom";
 
 function App() {
-  
-
-
-
-
   //// jsx
   return (
-
     <div className="app">
-    <div>
-    <Home/>
+      <Switch>
+        <Route path="/" exact>
+          <Home />
+        </Route>
+        <Route path="/anime/:animeID">
+          <AnimeDetail />
+        </Route>
+      </Switch>
     </div>
-    </div>
-
   );
 }
 //

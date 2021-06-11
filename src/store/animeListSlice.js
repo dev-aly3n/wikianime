@@ -15,7 +15,7 @@ const animeListSlice = createSlice({
           state.homeAnime = action.payload;
       },
       selectedAnime(state,action){
-        state.selected = action.payload;
+        state.selected = action.payload[0];
       }
     }
 });
