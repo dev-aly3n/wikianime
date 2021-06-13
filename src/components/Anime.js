@@ -14,6 +14,7 @@ const Anime = ({ anime }) => {
           title {
             english
           }
+          description
           duration
           startDate {
             year

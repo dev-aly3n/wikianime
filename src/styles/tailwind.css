@@ -45,4 +45,87 @@
   h2 {
       font-family: 'Abril Fatface', cursive;
   }
+
+
+
+
+  /*  Page: AnimeDetail */
+  .detail-grid-container {
+    height: 100vh;
+    display:grid;
+    grid-template-columns: 1.2fr 2fr 2fr 1.4fr 1.2fr;
+    grid-template-areas:
+    "header header header header header"
+    ".....  main  main  sidebar ....."
+    ".....  main  main  sidebar ....."
+    ".....  relate relate sidebar ....."
+    ".....  watch  watch  sidebar ....."
+    "footer footer  footer footer footer ";
+
+    @apply gap-5
+  
+  }
+  .d-header { 
+    grid-area: header;
+    @apply   bg-gray-400
+  }
+  .d-sidebar {
+    grid-area: sidebar;
+    @apply   bg-green-400
+  }
+  .d-main {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    grid-area: main;
+    @apply  bg-blue-400 text-base text-gray-700 p-10
+  }
+  .d-relate {
+    font-size: 10px;
+    grid-area: relate;
+    @apply  bg-red-500
+  }
+  .d-watch {
+    font-size: 10px;
+    grid-area: watch;
+    @apply  bg-pink-300
+  }
+  .d-footer {
+    font-size: 10px;
+    grid-area: footer;
+    @apply  bg-yellow-500
+  }
+
+  .d-header{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+      @apply text-center overflow-hidden h-32 sm:h-44 md:h-60 lg:h-72 xl:h-96 ;
+  }
+
+  .banner-inside{
+    background-color: rgba(0, 0, 0, .5);
+    @apply h-full flex flex-col content-center justify-center;
+  
+  }
+
+  .detail-title {
+  border-radius: 50% 20% / 10% 40%;
+    @apply text-red-100 text-xl font-semibold  m-auto bg-opacity-20 w-max py-3 px-6
+    sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+  }
+
+  .detail-cover-image{
+    @apply w-full
+  }
+
+
+  .d-sidebar{
+    @apply flex flex-col
+  }
+
+}
+
+.some {
+
+ 
 }
