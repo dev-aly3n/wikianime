@@ -3,6 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { Markup } from 'interweave';
 import {hexToRgbA} from '../chooks/simples';
+import AnimeList from '../components/AnimeList'
 
 const AnimeDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,6 +38,7 @@ const AnimeDetail = () => {
           episodes
           seasonYear
           rankings {
+            id
             context
             allTime
             rank
@@ -72,7 +74,7 @@ const AnimeDetail = () => {
                 }
                 id
                 coverImage {
-                  medium
+                  large
                   color
                 }
                 source
@@ -131,7 +133,8 @@ const AnimeDetail = () => {
        let banner = aData.bannerImage;
        let characters = aData.characters.edges;
        let coverImage = aData.coverImage;
-       let animeColor = hexToRgbA(coverImage.color);
+       let animeColor50 = hexToRgbA(coverImage.color,.5);
+       let animeColor30 = hexToRgbA(coverImage.color,.3);
        let externalLinks = aData.externalLinks;
        let geners = aData.geners;
        let rankings = aData.rankings;
@@ -140,19 +143,18 @@ const AnimeDetail = () => {
        let streamingEpisodes = aData.streamingEpisodes;
       
       
-console.log(aData);
   return (
     <div>
 
         <div className="detail-grid-container">
           <div className="d-header" style={{backgroundImage:`url(${banner})`}}>
           <div className="banner-inside" >
-            <h1 className="detail-title" style={{backgroundColor:`${animeColor}`}}>{title}</h1>
+            <h1 className="detail-title" style={{backgroundColor:`${animeColor50}`}}>{title}</h1>
           </div>
           </div>
           <div className="d-sidebar">
             <img className="detail-cover-image -mt-40 shadow-3xl border-4 rounded-sm
-            border-dashed" style={{borderColor:`${animeColor}`}} src={coverImage.large}></img>
+            border-dashed" style={{borderColor:`${animeColor30}`}} src={coverImage.large}></img>
 
             <div>{title}</div>
             <div>Episodes:{aData.episodes}</div>
@@ -164,7 +166,7 @@ console.log(aData);
 
             <div className="d-ranking">Ranking: 
             {rankings.map(rank=> {
-             return <div className="rank">#{rank.rank}-{rank.context}{rank.year?` at ${rank.year}` : ""}</div>
+             return <div key={rank.id} className="rank">#{rank.rank}-{rank.context}{rank.year?` at ${rank.year}` : ""}</div>
             })}
             </div>
             
@@ -174,7 +176,11 @@ console.log(aData);
             <Markup content={description} />
           </div>
       
-          <div className="d-relate">4</div>
+          <div className="d-relate">
+            
+           <AnimeList allAnimeData={relations} />
+
+          </div>
           <div className="d-watch">5</div>
           <div className="d-footer">6</div>
         </div>

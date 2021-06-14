@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 
 const Anime = ({ anime }) => {
   const history = useHistory();
-
   const selectAnimeQuery = gql`
     query SelectedAnImE($id: Int) {
       Page {
@@ -34,6 +33,7 @@ const Anime = ({ anime }) => {
           episodes
           seasonYear
           rankings {
+            id
             context
             allTime
             rank
@@ -119,6 +119,11 @@ const Anime = ({ anime }) => {
     getAnime({ variables: { id: anime.id } });
   };
 
+
+
+
+
+
   return (
     <motion.div
       onClick={animeCardClickHandler}
@@ -129,7 +134,7 @@ const Anime = ({ anime }) => {
     >
       <div className="card-inside">
         <h3 className="text-lg font-normal mb-0 h-16 text-white">
-          {anime.title.romaji}
+          {anime.title.english}
         </h3>
       </div>
     </motion.div>

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { useDispatch } from "react-redux";
-import { homeAnimeData } from "../store/animeListSlice";
+// import { useDispatch } from "react-redux";
+// import { homeAnimeData } from "../store/animeListSlice";
 import AnimeList from "../components/AnimeList";
 
 const Home = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const homeQuery = gql`
     query ($id: Int, $page: Int, $perPage: Int, $search: String) {
@@ -24,7 +24,7 @@ const Home = () => {
             color
           }
           title {
-            romaji
+            english
           }
         }
       }
@@ -38,21 +38,19 @@ const Home = () => {
 
   if (loading) {
     console.log("loading");
+    return null
+
   }
 
   if (error) {
     console.log(error.message);
+    return `Error! ${error}`
   }
 
-  useEffect(() => {
-    if (data) {
-      dispatch(homeAnimeData(data));
-    }
-  }, [data, dispatch]);
 
   return (
     <div>
-      <AnimeList />
+      <AnimeList allAnimeData={data.Page.media} />
     </div>
   );
 };
