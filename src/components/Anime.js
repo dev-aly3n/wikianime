@@ -12,6 +12,7 @@ const Anime = ({ anime }) => {
           id
           title {
             english
+            romaji
           }
           description
           duration
@@ -66,6 +67,7 @@ const Anime = ({ anime }) => {
               node {
                 title {
                   english
+                  romaji
                 }
                 id
                 coverImage {
@@ -128,15 +130,13 @@ const Anime = ({ anime }) => {
     <motion.div
       onClick={animeCardClickHandler}
       className="anime-card-container"
-      style={{ backgroundImage: `url(${anime.coverImage.large})` }}
       animate={{ opacity: 1, transition: { duration: 2 } }}
       initial={{ opacity: 0 }}
     >
-      <div className="card-inside">
-        <h3 className="text-lg font-normal mb-0 h-16 text-white">
-          {anime.title.english}
+    <img src={anime.coverImage.large} ></img>
+        <h3>
+          {anime.title.english!==null ? anime.title.english : anime.title.romaji}
         </h3>
-      </div>
     </motion.div>
   );
 };

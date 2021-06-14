@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { gql, useQuery } from "@apollo/client";
 // import { useDispatch } from "react-redux";
 // import { homeAnimeData } from "../store/animeListSlice";
@@ -25,6 +25,7 @@ const Home = () => {
           }
           title {
             english
+            romaji
           }
         }
       }

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Markup } from 'interweave';
 import {hexToRgbA} from '../chooks/simples';
 import AnimeList from '../components/AnimeList'
+import StreamList from '../components/StreamList'
 
 const AnimeDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,6 +18,7 @@ const AnimeDetail = () => {
           id
           title {
             english
+            romaji
           }
           description
           duration
@@ -71,6 +73,7 @@ const AnimeDetail = () => {
               node {
                 title {
                   english
+                  romaji
                 }
                 id
                 coverImage {
@@ -126,7 +129,8 @@ const AnimeDetail = () => {
   }
 
        let aData = data.Page.media[0];
-       let title = aData.title.english;
+       let title = aData.title.english ? aData.title.english : aData.title.romaji;
+       console.log(aData);
        let description = aData.description;
        let startDate = aData.startDate;
        let endDate = aData.endDate;
@@ -149,12 +153,11 @@ const AnimeDetail = () => {
         <div className="detail-grid-container">
           <div className="d-header" style={{backgroundImage:`url(${banner})`}}>
           <div className="banner-inside" >
-            <h1 className="detail-title" style={{backgroundColor:`${animeColor50}`}}>{title}</h1>
+            <h1 className="detail-title " style={{backgroundColor:`${animeColor50}`}}>{title}</h1>
           </div>
           </div>
           <div className="d-sidebar">
-            <img className="detail-cover-image -mt-40 shadow-3xl border-4 rounded-sm
-            border-dashed" style={{borderColor:`${animeColor30}`}} src={coverImage.large}></img>
+            <img className="detail-cover-image" style={{borderColor:`${animeColor30}`}} src={coverImage.large}></img>
 
             <div>{title}</div>
             <div>Episodes:{aData.episodes}</div>
@@ -181,7 +184,9 @@ const AnimeDetail = () => {
            <AnimeList allAnimeData={relations} />
 
           </div>
-          <div className="d-watch">5</div>
+          <div className="d-watch">
+            <StreamList allEpisode={streamingEpisodes} />
+          </div>
           <div className="d-footer">6</div>
         </div>
       
