@@ -156,20 +156,21 @@ const AnimeDetail = () => {
             <h1 className="detail-title " style={{backgroundColor:`${animeColor50}`}}>{title}</h1>
           </div>
           </div>
-          <div className="d-sidebar">
+          <div className="d-sidebar px-2">
             <img className="detail-cover-image" style={{borderColor:`${animeColor30}`}} src={coverImage.large}></img>
 
-            <div>{title}</div>
-            <div>Episodes:{aData.episodes}</div>
-            <div>Start date: {`${startDate.year}/${startDate.month}/${startDate.day}`}</div>
-            <div>End date: {`${endDate.year}/${endDate.month}/${endDate.day}`}</div>
-            <div>Episode Duration: {aData.duration}min</div>
-            <div>{title}</div>
-            <div>{title}</div>
+            <div>Title: <b>{title}</b></div>
+            <div className='bg-green-200 w-max px-3 py-1 rounded-2xl'>Episodes: <b>{aData.episodes}</b></div>
+            <div>Start date:<b> {`${startDate.year}/${startDate.month}/${startDate.day}`}</b></div>
+            <div>End date: <b>{`${endDate.year}/${endDate.month}/${endDate.day}`}</b></div>
+            <div>Episode Duration: <b>{aData.duration}</b>min</div>
+            {/* <div>{title}</div>
+            <div>{title}</div> */}
 
-            <div className="d-ranking">Ranking: 
+            <div className="d-ranking"><b>Ranking:</b> 
             {rankings.map(rank=> {
-             return <div key={rank.id} className="rank">#{rank.rank}-{rank.context}{rank.year?` at ${rank.year}` : ""}</div>
+             return <div key={rank.id} className="rank bg-green-200 w-max px-3 py-1 rounded-2xl my-1
+             "><span className="bg-yellow-400 p-1 rounded-full text-yellow-white">#{rank.rank}</span>-{rank.context}{rank.year?` at ${rank.year}` : ""}</div>
             })}
             </div>
             

@@ -1050,5 +1050,7 @@ module.exports = {
       textColor: ["active"],
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp')
+  ],
 };

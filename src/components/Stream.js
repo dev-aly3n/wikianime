@@ -24,7 +24,7 @@ const Stream = ({ episode }) => {
       initial={{ opacity: 0 }}
     >
     <img src={episode.thumbnail} ></img>
-        <h3>
+        <h3 className="text-sm line-clamp-2 px-2">
           {episode.title}
         </h3>
     </motion.div>

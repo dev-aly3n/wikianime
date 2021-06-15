@@ -134,7 +134,7 @@ const Anime = ({ anime }) => {
       initial={{ opacity: 0 }}
     >
     <img src={anime.coverImage.large} ></img>
-        <h3>
+        <h3 className="text-lg h-11 line-clamp-2 ">
           {anime.title.english!==null ? anime.title.english : anime.title.romaji}
         </h3>
     </motion.div>

@@ -7,7 +7,7 @@
 @layer components {
   /* component: animeList */
   .anime-list-container {
-    @apply px-0 py-20 w-11/12 mx-auto;
+    @apply px-0 pt-20 w-11/12 mx-auto;
   }
 
   .anime-list-container h2 {
@@ -22,13 +22,13 @@
 
   .anime-card-container {
     min-height: 30vh;
-      @apply shadow-3xl text-center relative cursor-pointer;
+      @apply shadow-3xl text-center relative cursor-pointer rounded-md overflow-hidden;
   }
   .anime-card-container img {
-      @apply w-full h-56 object-cover;
+      @apply w-full h-56 object-cover rounded-md;
   }
   .anime-card-container h3 {
-      @apply text-lg font-normal text-white absolute bottom-0 
+      @apply  text-white absolute bottom-0 leading-tight
       bg-gray-800 bg-opacity-50 w-full;
   }
 
@@ -152,6 +152,11 @@
 
   .d-sidebar{
     @apply flex flex-col
+  }
+
+  .stream-show-more-btn{
+    @apply text-2xl bg-gray-200 hover:bg-gray-400 active:bg-gray-600 active:text-white
+    rounded-2xl px-5 py-1 block mx-auto shadow-3xl border-collapse ring-2 ring-gray-400 focus:outline-none focus:ring-offset-gray-600 mt-5;
   }
 
 }
