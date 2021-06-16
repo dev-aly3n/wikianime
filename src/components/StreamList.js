@@ -31,7 +31,9 @@ const StreamList = ({ allEpisode }) => {
           })}
         </motion.div>
       </div>
+      {allEpisode.length>4 &&
       <button onClick={streamShowMoreHandler} className="stream-show-more-btn">Load More</button>
+      }
     </motion.div>
   );
 };

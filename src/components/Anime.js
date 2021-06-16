@@ -123,9 +123,6 @@ const Anime = ({ anime }) => {
 
 
 
-
-
-
   return (
     <motion.div
       onClick={animeCardClickHandler}
