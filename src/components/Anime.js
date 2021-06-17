@@ -32,6 +32,7 @@ const Anime = ({ anime }) => {
           }
           bannerImage
           episodes
+          season
           seasonYear
           rankings {
             id
@@ -100,6 +101,21 @@ const Anime = ({ anime }) => {
             site
             url
           }
+          studios {
+            edges {
+              node {
+                name
+                siteUrl
+                id
+              }
+            }
+          }
+          tags {
+            name
+            rank
+          }
+          popularity
+          meanScore
         }
       }
     }

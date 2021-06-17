@@ -22,8 +22,9 @@
 
   .anime-card-container {
     min-height: 30vh;
-      @apply shadow-3xl text-center relative cursor-pointer rounded-md overflow-hidden;
+      @apply  text-center relative cursor-pointer rounded-md overflow-hidden;
   }
+
   .anime-card-container img {
       @apply w-full h-56 object-cover rounded-md;
   }
@@ -107,7 +108,7 @@
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     grid-area: main;
-    @apply  bg-blue-400 text-base text-gray-700 p-3 md:p-10
+    @apply   text-base text-gray-700 p-3 md:p-10
   }
   .d-relate {
     font-size: 10px;
@@ -159,9 +160,29 @@
     rounded-2xl px-5 py-1 block mx-auto shadow-3xl border-collapse ring-2 ring-gray-400 focus:outline-none focus:ring-offset-gray-600 active:shadow-inner mt-5;
   }
 
+  /* .rank {
+    border-left: 10px solid;
+  } */
+
 }
 
 .some {
 
  
+}
+
+.pie1 {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+.pie2 {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+
+}
+
+.ten {
+  background-image: linear-gradient(126deg, transparent 50%, rgb(212, 212, 212) 50%), linear-gradient(90deg, rgb(212, 212, 212) 50%, transparent 50%);
 }
