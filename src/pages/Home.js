@@ -1,5 +1,7 @@
 import React from "react";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { homeQuery } from "../chooks/queries";
+
 // import { useDispatch } from "react-redux";
 // import { homeAnimeData } from "../store/animeListSlice";
 import AnimeList from "../components/AnimeList";
@@ -7,31 +9,8 @@ import AnimeList from "../components/AnimeList";
 const Home = () => {
   // const dispatch = useDispatch();
 
-  const homeQuery = gql`
-    query ($id: Int, $page: Int, $perPage: Int, $search: String) {
-      Page(page: $page, perPage: $perPage) {
-        pageInfo {
-          total
-          currentPage
-          lastPage
-          hasNextPage
-          perPage
-        }
-        media(id: $id, search: $search) {
-          id
-          coverImage {
-            large
-            color
-          }
-          title {
-            english
-            romaji
-          }
-        }
-      }
-    }
-  `;
-  const { loading, error, data } = useQuery(homeQuery, {
+  const hQuery = homeQuery;
+  const { loading, error, data } = useQuery(hQuery, {
     variables: {
       perPage: 9,
     },

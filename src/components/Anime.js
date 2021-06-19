@@ -2,133 +2,11 @@ import React from "react";
 import { gql, useLazyQuery } from "@apollo/client";
 import { motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
+import { detailQuery } from "../chooks/queries";
 
 const Anime = ({ anime }) => {
   const history = useHistory();
-  const selectAnimeQuery = gql`
-    query SelectedAnImE($id: Int) {
-      Page {
-        media(id: $id) {
-          id
-          title {
-            english
-            romaji
-          }
-          description
-          duration
-          startDate {
-            year
-            month
-            day
-          }
-          endDate {
-            year
-            month
-            day
-          }
-          coverImage {
-            large
-            color
-          }
-          bannerImage
-          episodes
-          season
-          seasonYear
-          rankings {
-            id
-            context
-            allTime
-            rank
-            year
-          }
-          format
-          genres
-          characters {
-            edges {
-              node {
-                age
-                gender
-                name {
-                  full
-                }
-                description
-                image {
-                  large
-                }
-              }
-            }
-          }
-          streamingEpisodes {
-            title
-            thumbnail
-            url
-          }
-          relations {
-            edges {
-              node {
-                title {
-                  english
-                  romaji
-                }
-                id
-                coverImage {
-                  medium
-                  color
-                }
-                source
-              }
-            }
-          }
-          reviews {
-            edges {
-              node {
-                id
-                user {
-                  id
-                  name
-                  avatar {
-                    medium
-                  }
-                }
-                score
-                summary
-                body
-              }
-            }
-          }
-          externalLinks {
-            id
-            site
-            url
-          }
-          studios {
-            edges {
-              isMain
-              node {
-                name
-                siteUrl
-                id
-              }
-            }
-          }
-          tags {
-            name
-            rank
-          }
-          popularity
-          meanScore
-          source
-          chapters
-          volumes
-          favourites
-          nextAiringEpisode {
-            timeUntilAiring
-            episode
-          }
-        }
-      }
-    }
-  `;
+  const selectAnimeQuery = detailQuery;
 
   const [getAnime, { error, data }] = useLazyQuery(selectAnimeQuery);
   if (error) {
@@ -146,8 +24,6 @@ const Anime = ({ anime }) => {
     getAnime({ variables: { id: anime.id } });
   };
 
-
-
   return (
     <motion.div
       onClick={animeCardClickHandler}
@@ -155,10 +31,12 @@ const Anime = ({ anime }) => {
       animate={{ opacity: 1, transition: { duration: 2 } }}
       initial={{ opacity: 0 }}
     >
-    <img src={anime.coverImage.large} ></img>
-        <h3 className="text-lg h-11 line-clamp-2 ">
-          {anime.title.english!==null ? anime.title.english : anime.title.romaji}
-        </h3>
+      <img src={anime.coverImage.large}></img>
+      <h3 className="text-lg h-11 line-clamp-2 ">
+        {anime.title.english !== null
+          ? anime.title.english
+          : anime.title.romaji}
+      </h3>
     </motion.div>
   );
 };

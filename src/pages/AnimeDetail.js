@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { Link, useParams } from "react-router-dom";
 import { Markup } from "interweave";
 import { hexToRgbA, secondsToDhms } from "../chooks/simples";
@@ -9,136 +9,16 @@ import CircleRate from "../components/CircleRate";
 import Popularity from "../components/Popularity";
 import { faHeart, faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ExternalLinks from "../components/ExternalLinks";
+import Rank from "../components/Rank";
+import { detailQuery } from "../chooks/queries";
 
 const AnimeDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
   const id = params.animeID;
 
-  const selectAnimeQuery = gql`
-    query SelectedAnImE($id: Int) {
-      Page {
-        media(id: $id) {
-          id
-          title {
-            english
-            romaji
-          }
-          description
-          duration
-          startDate {
-            year
-            month
-            day
-          }
-          endDate {
-            year
-            month
-            day
-          }
-          coverImage {
-            large
-            color
-          }
-          bannerImage
-          episodes
-          season
-          seasonYear
-          rankings {
-            id
-            context
-            allTime
-            rank
-            year
-          }
-          format
-          genres
-          characters {
-            edges {
-              node {
-                age
-                gender
-                name {
-                  full
-                }
-                description
-                image {
-                  large
-                }
-              }
-            }
-          }
-          streamingEpisodes {
-            title
-            thumbnail
-            url
-          }
-          relations {
-            edges {
-              node {
-                title {
-                  english
-                  romaji
-                }
-                id
-                coverImage {
-                  large
-                  color
-                }
-                source
-              }
-            }
-          }
-          reviews {
-            edges {
-              node {
-                id
-                user {
-                  id
-                  name
-                  avatar {
-                    medium
-                  }
-                }
-                score
-                summary
-                body
-              }
-            }
-          }
-          externalLinks {
-            id
-            site
-            url
-          }
-          studios {
-            edges {
-              isMain
-              node {
-                name
-                siteUrl
-                id
-              }
-            }
-          }
-          tags {
-            name
-            rank
-          }
-          popularity
-          meanScore
-          source
-          chapters
-          volumes
-          favourites
-          nextAiringEpisode {
-            timeUntilAiring
-            episode
-          }
-        }
-      }
-    }
-  `;
+  const selectAnimeQuery = detailQuery;
 
   const { loading, error, data } = useQuery(selectAnimeQuery, {
     variables: {
@@ -226,12 +106,7 @@ const AnimeDetail = () => {
             {aData.seasonYear && aData.seasonYear}
             {aData.episodes && ` | ${aData.episodes} Episodes `}
             {aData.duration &&
-              ` | ${
-                (Math.floor(aData.duration / 60) === 0
-                  ? ""
-                  : Math.floor(aData.duration / 60) + "h") +
-                (" " + Math.floor(aData.duration % 60)).slice(-2)
-              }min`}
+              ` | ${secondsToDhms(aData.duration * 60, "dhm")}`}
             {aData.volumes && `${aData.volumes} Volumes | `}
             {aData.chapters && `${aData.chapters} Chapters`}
           </div>
@@ -290,45 +165,12 @@ const AnimeDetail = () => {
               <Popularity popularityRange={popularityRange} />
             </div>
           )}
-          {/* <div>{title}</div>
-            <div>{title}</div> */}
           <div className="d-ranking ">
             <div className="text-center font-bold">Ranking</div>
             <hr />
             <ul>
               {rankings.map((rank) => {
-                let bgRank, bgBorder, rankRound;
-                if (rank.context.includes("most popular")) {
-                  bgRank = "bg-green-200";
-                  bgBorder = "border-green-600";
-                  rankRound = "bg-green-400";
-                } else {
-                  bgRank = "bg-yellow-200";
-                  bgBorder = "border-yellow-600";
-                  rankRound = "bg-yellow-400";
-                }
-                return (
-                  <li
-                    key={rank.id}
-                    className={`rank ${bgRank} ${
-                      rank.allTime ? `border-r-4 border-l-4 ${bgBorder} ` : ""
-                    } min-w-max rounded-2xl pr-3 py-1  my-1 overflow-hidden`}
-                  >
-                    <span
-                      className={`${rankRound} pr-1 py-7 pl-7 font-semibold -ml-6`}
-                    >
-                      #{rank.rank}
-                    </span>
-                    {" " + rank.context}
-                    <span
-                      className={`bg-gray-200 ${
-                        rank.year ? "p-1" : ""
-                      } text-gray-800 rounded-xl text-xs font-bold float-right`}
-                    >
-                      {rank.year ? ` ${rank.year}` : ""}
-                    </span>
-                  </li>
-                );
+                return <Rank key={rank.id} rank={rank} />;
               })}
             </ul>
           </div>
@@ -383,44 +225,7 @@ const AnimeDetail = () => {
               <hr />
               <ul>
                 {externalLinks.map((link) => {
-                  let bg;
-                  switch (link.site) {
-                    case "Twitter":
-                    case "Hulu":
-                    case "Funimation":
-                      bg = "blue";
-                      break;
-                    case "Official Site":
-                      bg = "green";
-                      break;
-                    case "Youtube":
-                    case "Tubi TV":
-                    case "Netflix":
-                      bg = "red";
-                      break;
-                    case "Crunchyroll":
-                    case "VRV":
-                      bg = "purple";
-                      break;
-                    case "AnimeLab":
-                    case "Amazon":
-                      bg = "yellow";
-                      break;
-                    default:
-                      bg = "gray";
-                  }
-                  return (
-                    <li key={link.id}>
-                      <a
-                        className={`block text-center py-2 my-3 text-base font-medium  bg-${bg}-300
-                 hover:bg-${bg}-500 active:bg-${bg}-600 active:text-white
-     shadow-lg rounded-sm active:shadow-inner `}
-                        href={link.url}
-                      >
-                        {link.site}
-                      </a>
-                    </li>
-                  );
+                  return <ExternalLinks key={link.id} link={link} />;
                 })}
               </ul>
             </div>
