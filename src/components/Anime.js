@@ -103,6 +103,7 @@ const Anime = ({ anime }) => {
           }
           studios {
             edges {
+              isMain
               node {
                 name
                 siteUrl
@@ -116,6 +117,14 @@ const Anime = ({ anime }) => {
           }
           popularity
           meanScore
+          source
+          chapters
+          volumes
+          favourites
+          nextAiringEpisode {
+            timeUntilAiring
+            episode
+          }
         }
       }
     }
