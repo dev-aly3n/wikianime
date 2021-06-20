@@ -71,6 +71,8 @@ query SelectedAnImE($id: Int) {
                 color
               }
               source
+              format
+              status
             }
           }
         }
@@ -120,6 +122,9 @@ query SelectedAnImE($id: Int) {
           timeUntilAiring
           episode
         }
+        trailer {
+          id
+        }
       }
     }
   }
@@ -146,6 +151,9 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String) {
         english
         romaji
       }
+      source
+      format
+      status
     }
   }
 }

@@ -4,7 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const CircleRate = ({ rate,simbol }) => {
 
   let grad,bg;
-if(rate<=25){
+if(rate===null) {
+rate = 0;
+}
+ if(rate<=25){
     bg= 'bg-red-500';
     grad = `linear-gradient(${(rate / 100) * 360 + 90}deg, transparent 50%, rgb(212, 212, 212) 50%), linear-gradient(90deg, rgb(212, 212, 212) 50%, transparent 50%)`;
 } else if (rate < 50) {

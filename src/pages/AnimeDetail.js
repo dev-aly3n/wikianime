@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ExternalLinks from "../components/ExternalLinks";
 import Rank from "../components/Rank";
 import { detailQuery } from "../chooks/queries";
+import Trailer from "../components/Trailer";
 
 const AnimeDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -82,7 +83,7 @@ const AnimeDetail = () => {
         <div className="d-header" style={{ backgroundImage: `url(${banner})` }}>
           <div className="banner-inside">
             <h1
-              className="detail-title "
+              className="detail-title"
               style={{ backgroundColor: `${animeColor50}` }}
             >
               {title}
@@ -204,7 +205,7 @@ const AnimeDetail = () => {
                     return (
                       <div
                         key={st.node.id}
-                        className="bg-purple-100 p-1 rounded-2xl m-1 shadow-inner text-sm"
+                        className="bg-purple-100 p-1 rounded-2xl my-1 mx-0.5 shadow-inner text-sm"
                       >
                         {st.node.name}
                       </div>
@@ -238,12 +239,12 @@ const AnimeDetail = () => {
           <div className="absolute right-24 top-0 -mt-16">
             <CircleRate rate={favouritesRange} simbol={faHeart} />
           </div>
-
           <div className="mt-5">
             <Markup content={description} />
           </div>
           <br />
           <br />
+          {aData.trailer && <Trailer embedId={aData.trailer.id} />} <br />
           <div>tags:</div>
           <div className="flex flex-wrap">
             {tags &&
@@ -264,12 +265,16 @@ const AnimeDetail = () => {
         </div>
 
         {relations[0] && (
-          <div className="d-relate">
+          <div className="d-relate bg-purple-50  md:p-10 rounded-lg">
+          <div className="text-left  text-2xl font-semibold p-4 md:p-0">Relations</div>
+          <hr/>
             <AnimeList allAnimeData={relations} />
           </div>
         )}
         {streamingEpisodes[0] && (
-          <div className="d-watch">
+          <div className="d-watch bg-purple-50 ssm:p-10 rounded-lg">
+          <div className="text-left text-2xl font-semibold">Stream Watch</div>
+          <hr/>
             <StreamList allEpisode={streamingEpisodes} />
           </div>
         )}

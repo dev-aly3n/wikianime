@@ -4,30 +4,22 @@ import { motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
 
 const Stream = ({ episode }) => {
-//   const history = useHistory();
+  //   const history = useHistory();
 
-//       history.push(`/anime/${anime.id}`);
-
-
-
-  const episodeCardClickHandler = () => {
-      console.log(episode);
-  };
-
-
+  //       history.push(`/anime/${anime.id}`);
 
   return (
-    <motion.div
-      onClick={episodeCardClickHandler}
+    <motion.a
+      href={episode.url}
+      target="_blank"
+      rel="noopener noreferrer"
       className="anime-card-container"
       animate={{ opacity: 1, transition: { duration: 2 } }}
       initial={{ opacity: 0 }}
     >
-    <img src={episode.thumbnail} ></img>
-        <h3 className="text-sm line-clamp-2 px-2">
-          {episode.title}
-        </h3>
-    </motion.div>
+      <img src={episode.thumbnail}></img>
+      <h3 className="text-sm line-clamp-2 px-2">{episode.title}</h3>
+    </motion.a>
   );
 };
 

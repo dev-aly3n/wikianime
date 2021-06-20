@@ -6,8 +6,11 @@
 
 @layer components {
   /* component: animeList */
+  body {
+
+  }
   .anime-list-container {
-    @apply px-0 pt-20 w-11/12 mx-auto;
+    @apply px-0 py-5 w-11/12 mx-auto;
   }
 
   .anime-list-container h2 {
@@ -32,6 +35,7 @@
       @apply  text-white absolute bottom-0 leading-tight
       bg-gray-800 bg-opacity-50 w-full;
   }
+  
 
 
   html::-webkit-scrollbar{
@@ -96,12 +100,15 @@
         }
         }
 
+        
+
   .d-header { 
     grid-area: header;
     @apply   bg-gray-400
   }
   .d-sidebar {
     grid-area: sidebar;
+    min-width: 260px;
     
   }
   .d-main {
@@ -113,12 +120,10 @@
   .d-relate {
     font-size: 10px;
     grid-area: relate;
-    @apply  bg-red-500
   }
   .d-watch {
     font-size: 10px;
     grid-area: watch;
-    @apply  bg-pink-300
   }
   .d-footer {
     font-size: 10px;
@@ -142,17 +147,17 @@
   .detail-title {
   border-radius: 50% 20% / 10% 40%;
     @apply text-red-100 text-xl font-semibold  m-auto bg-opacity-20 py-3 px-6
-    sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl break-words;
+    sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl line-clamp-1  leading-snug ;
   }
 
   .detail-cover-image{
-    @apply w-full  -mt-20  lg:-mt-40 shadow-3xl border-4 rounded-sm
+    @apply w-full  sm:-mt-20  lg:-mt-28 shadow-3xl border-4 rounded-sm
     border-dashed;
   }
 
 
   .d-sidebar{
-    @apply flex flex-col
+    @apply flex flex-col ssm:mx-16 sm:-mx-0
   }
 
   .stream-show-more-btn{
@@ -181,5 +186,20 @@
   height: 4rem;
   border-radius: 50%;
 
+}
+
+.video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }
 
