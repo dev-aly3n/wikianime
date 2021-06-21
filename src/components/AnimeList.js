@@ -5,7 +5,7 @@ import {motion} from 'framer-motion';
 const AnimeList = ({allAnimeData}) => {
 
   const [showMore, setShowMore] = useState({
-    stream: 11 
+    stream: 3 
   });
 
   const streamShowMoreHandler = (e) => {
@@ -33,7 +33,7 @@ const AnimeList = ({allAnimeData}) => {
         })}
       </motion.div>
       </div>
-      {allAnimeData.length>12 &&
+      {allAnimeData.length>4 &&
       <button onClick={streamShowMoreHandler} className="stream-show-more-btn">Load More</button>
       }
     </motion.div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useCallback} from "react";
 import { gql, useLazyQuery } from "@apollo/client";
 import { motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
@@ -20,10 +20,10 @@ const Anime = ({ anime }) => {
     }, 1);
   }
 
-  const animeCardClickHandler = (e) => {
+  const animeCardClickHandler = useCallback((e) => {
     e.preventDefault();
     getAnime({ variables: { id: anime.id } });
-  };
+  },[])
 
   return (
     <motion.a

@@ -4,15 +4,16 @@ import { Link, useParams } from "react-router-dom";
 import { Markup } from "interweave";
 import { hexToRgbA, secondsToDhms } from "../chooks/simples";
 import AnimeList from "../components/AnimeList";
-import StreamList from "../components/StreamList";
-import CircleRate from "../components/CircleRate";
-import Popularity from "../components/Popularity";
+import StreamList from "../components/detailPage/StreamList";
+import CircleRate from "../components/detailPage/CircleRate";
+import Popularity from "../components/detailPage/Popularity";
 import { faHeart, faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ExternalLinks from "../components/ExternalLinks";
-import Rank from "../components/Rank";
+import ExternalLinks from "../components/detailPage/ExternalLinks";
+import Rank from "../components/detailPage/Rank";
 import { detailQuery } from "../chooks/queries";
-import Trailer from "../components/Trailer";
+import Trailer from "../components/detailPage/Trailer";
+import CharacterList from "../components/detailPage/CharacterList";
 
 const AnimeDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -83,14 +84,14 @@ const AnimeDetail = () => {
         <div className="d-header" style={{ backgroundImage: `url(${banner})` }}>
           <div className="banner-inside">
             <h1
-              className="detail-title"
+              className="detail-title leading-normal"
               style={{ backgroundColor: `${animeColor50}` }}
             >
               {title}
             </h1>
           </div>
         </div>
-        <div className="d-sidebar px-2 bg-gray-100">
+        <div className="d-sidebar px-2 bg-gray-100 shadow-inner">
           <img
             className="detail-cover-image"
             style={{ borderColor: `${animeColor30}` }}
@@ -231,8 +232,18 @@ const AnimeDetail = () => {
               </ul>
             </div>
           )}
+
+          {characters && 
+          <div className="d-relate  rounded-lg my-3">
+          <div className="text-center font-bold mt-2 text-xl">Characters</div>
+
+              <hr />
+          <CharacterList characters={characters} />
+          </div>}
         </div>
-        <div className="d-main relative">
+
+
+        <div className="d-main relative shadow-sm">
           <div className="absolute right-0 top-0 -mt-16">
             <CircleRate rate={aData.meanScore} />
           </div>
@@ -262,19 +273,22 @@ const AnimeDetail = () => {
                 }
               })}
           </div>
+   
         </div>
 
         {relations[0] && (
-          <div className="d-relate bg-purple-50  md:p-10 rounded-lg">
-          <div className="text-left  text-2xl font-semibold p-4 md:p-0">Relations</div>
-          <hr/>
+          <div className="d-relate bg-purple-50  md:p-10 rounded-lg shadow-md">
+            <div className="text-left  text-2xl font-semibold p-4 md:p-0">
+              Relations
+            </div>
+            <hr />
             <AnimeList allAnimeData={relations} />
           </div>
         )}
         {streamingEpisodes[0] && (
-          <div className="d-watch bg-purple-50 ssm:p-10 rounded-lg">
-          <div className="text-left text-2xl font-semibold">Stream Watch</div>
-          <hr/>
+          <div className="d-watch bg-purple-50 ssm:p-10 rounded-lg shadow-md">
+            <div className="text-left text-2xl font-semibold">Stream Watch</div>
+            <hr />
             <StreamList allEpisode={streamingEpisodes} />
           </div>
         )}

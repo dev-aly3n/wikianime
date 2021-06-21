@@ -38,21 +38,6 @@ query SelectedAnImE($id: Int) {
         }
         format
         genres
-        characters {
-          edges {
-            node {
-              age
-              gender
-              name {
-                full
-              }
-              description
-              image {
-                large
-              }
-            }
-          }
-        }
         streamingEpisodes {
           title
           thumbnail
@@ -124,6 +109,30 @@ query SelectedAnImE($id: Int) {
         }
         trailer {
           id
+        }
+        characters {
+          edges {
+            role
+            voiceActors {
+              id
+              name {
+                full
+              }
+              image {
+                medium
+              }
+              languageV2
+            }
+            node {
+              id
+              name {
+                full
+              }
+              image {
+                medium
+              }
+            }
+          }
         }
       }
     }
