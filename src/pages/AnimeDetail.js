@@ -14,6 +14,7 @@ import Rank from "../components/detailPage/Rank";
 import { detailQuery } from "../chooks/queries";
 import Trailer from "../components/detailPage/Trailer";
 import CharacterList from "../components/detailPage/CharacterList";
+import CharacterDetail from "./CharacterDetail";
 
 const AnimeDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -80,6 +81,7 @@ const AnimeDetail = () => {
   console.log(aData);
   return (
     <div>
+    {/* <CharacterDetail /> */}
       <div className="detail-grid-container">
         <div className="d-header" style={{ backgroundImage: `url(${banner})` }}>
           <div className="banner-inside">
@@ -221,6 +223,15 @@ const AnimeDetail = () => {
           <div className="bg-purple-100 p-1 rounded-2xl m-1 shadow-inner text-xs mx-auto max-w-min">
             {aData.source}
           </div>
+
+          {characters && 
+          <div className="d-relate  rounded-lg my-3">
+          <div className="text-center font-bold mt-2 text-lg">Characters</div>
+
+              <hr />
+          <CharacterList characters={characters} />
+          </div>}
+
           {externalLinks && (
             <div>
               <div className="text-center font-bold mt-2">Links</div>
@@ -233,13 +244,7 @@ const AnimeDetail = () => {
             </div>
           )}
 
-          {characters && 
-          <div className="d-relate  rounded-lg my-3">
-          <div className="text-center font-bold mt-2 text-xl">Characters</div>
 
-              <hr />
-          <CharacterList characters={characters} />
-          </div>}
         </div>
 
 

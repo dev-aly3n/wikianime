@@ -35,6 +35,7 @@ query SelectedAnImE($id: Int) {
           allTime
           rank
           year
+          season
         }
         format
         genres
@@ -110,7 +111,7 @@ query SelectedAnImE($id: Int) {
         trailer {
           id
         }
-        characters {
+        characters (sort:[ROLE]) {
           edges {
             role
             voiceActors {

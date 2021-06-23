@@ -158,7 +158,7 @@
 
 
   .d-sidebar{
-    @apply flex flex-col ssm:mx-16 sm:-mx-0
+    @apply flex flex-col ssm:mx-16 sm:-mx-0;
   }
 
   .stream-show-more-btn{
@@ -166,9 +166,14 @@
     rounded-2xl px-5 py-1 block mx-auto shadow-3xl border-collapse ring-2 ring-gray-400 focus:outline-none focus:ring-offset-gray-600 active:shadow-inner mt-5;
   }
 
-  /* .rank {
-    border-left: 10px solid;
-  } */
+/* Page: character detail page */
+.character-page-shadow {
+background-color: rgba(0,0,0,0.65);
+  @apply fixed h-full w-full left-0 top-0 z-10;
+}
+.character-page-container {
+  @apply absolute h-full bg-white;
+}
 
 }
 

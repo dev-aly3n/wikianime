@@ -29,7 +29,7 @@ const Rank = ({rank}) => {
             rank.year ? "p-1" : ""
           } text-gray-800 rounded-xl text-xs font-bold float-right`}
         >
-          {rank.year ? ` ${rank.year}` : ""}
+          {rank.year ? (`${rank.season ? rank.season.toLowerCase() : ""} ${rank.year}` ): ""}
         </span>
       </li>
     );

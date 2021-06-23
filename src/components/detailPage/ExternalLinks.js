@@ -31,8 +31,10 @@ const ExternalLinks = ({ link }) => {
       <a
         className={`transition-all ease-in block text-center py-2 my-3 text-base font-medium  bg-${bg}-300
                hover:bg-${bg}-500 active:bg-${bg}-600 active:text-white
-   shadow-lg rounded-sm active:shadow-inner `}
+   shadow-lg rounded-sm active:shadow-inner`}
         href={link.url}
+        target="_blank"
+      rel="noopener noreferrer"
       >
         {link.site}
       </a>
