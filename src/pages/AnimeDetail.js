@@ -15,9 +15,13 @@ import { detailQuery } from "../chooks/queries";
 import Trailer from "../components/detailPage/Trailer";
 import CharacterList from "../components/detailPage/CharacterList";
 import CharacterDetail from "./CharacterDetail";
+import {useSelector} from 'react-redux'
+
 
 const AnimeDetail = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const charID = useSelector(state=>state.char.selectedChar);
+  console.log(charID);
+  const [characterSelected, setCharacterSelected] = useState(null);
   const params = useParams();
   const id = params.animeID;
 
@@ -79,9 +83,16 @@ const AnimeDetail = () => {
     endDate.day === startDate.day;
 
   console.log(aData);
+
+
   return (
     <div>
-    {/* <CharacterDetail /> */}
+
+{
+charID &&
+    <CharacterDetail id={id} />
+}
+
       <div className="detail-grid-container">
         <div className="d-header" style={{ backgroundImage: `url(${banner})` }}>
           <div className="banner-inside">

@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import { gql, useLazyQuery } from "@apollo/client";
 import { motion } from "framer-motion";
-import { useHistory } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { selectedCharActions } from "../../store/selectedCharSlice"
 
 const Character = ({ char }) => {
-  const history = useHistory();
-
-  const charClickHandler = () => {
-    history.push(`./character/${char.node.id}`);
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const characterClickHandler = () => {
+    dispatch(selectedCharActions.selectChar(char.node.id))
   };
+
   return (
-    <motion.div
-      onClick={charClickHandler}
+    <Link
+      to={`${location.pathname}/character/${char.node.id}`}
+      onClick={characterClickHandler}
       className="flex flex-row justify-around bg-indigo-50 h-16 my-1 w-72 mx-2 rounded-md shadow-md overflow-hidden cursor-pointer"
     >
       <div className="overflow-hidden w-16">
@@ -33,7 +37,7 @@ const Character = ({ char }) => {
       <div className="overflow-hidden w-16">
         <img src={char.voiceActors[0].image.medium} alt="" className="w-full" />
       </div>
-    </motion.div>
+    </Link>
   );
 };
 

@@ -33,7 +33,6 @@ rate = 0;
     }deg, transparent 50%, rgba(16,185,129,1) 50%), linear-gradient(90deg, rgb(212, 212, 212) 50%, transparent 50%)`;
   }
 
-  console.log(rate);
   return (
     <div>
       <div

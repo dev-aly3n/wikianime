@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import animeListReducer from './animeListSlice';
+import selectedCharSlice from './selectedCharSlice';
 
 
 
 
 const store = configureStore({
   reducer: {
-    animeList: animeListReducer
+    char: selectedCharSlice
   }
 })
 

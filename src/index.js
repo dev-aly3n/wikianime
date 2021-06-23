@@ -8,7 +8,6 @@ import store from './store/index';
 
 import { ApolloClient, InMemoryCache} from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
-
 import {BrowserRouter} from 'react-router-dom'
 
 

@@ -1,18 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
-const AnimeListInitialState = { homeAnime: [],
-watch: [],
-search:[]
+const selectedCharInitialState = { selectedChar: undefined,
 };
 
-const animeListSlice = createSlice({
-    name:'animeList',
-    initialState: AnimeListInitialState,
+const selectedCharSlice = createSlice({
+    name:'selectedChar',
+    initialState: selectedCharInitialState,
     reducers: {
-      // setDataAtFirst(state, action){
-      //     state.homeAnime = action.payload;
-      // },
+      selectChar(state, action){
+        state.selectedChar = action.payload;
+      }
     }
 });
 
@@ -30,5 +28,5 @@ const animeListSlice = createSlice({
 
 
 //
-export const animeListActions = animeListSlice.actions;
-export default animeListSlice.reducer;
+export const selectedCharActions = selectedCharSlice.actions;
+export default selectedCharSlice.reducer;
