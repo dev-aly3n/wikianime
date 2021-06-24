@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "@apollo/client";
-import { Link, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { Markup } from "interweave";
 import { hexToRgbA, secondsToDhms } from "../chooks/simples";
 import AnimeList from "../components/AnimeList";
@@ -15,18 +15,18 @@ import { detailQuery } from "../chooks/queries";
 import Trailer from "../components/detailPage/Trailer";
 import CharacterList from "../components/detailPage/CharacterList";
 import CharacterDetail from "./CharacterDetail";
-import {useSelector} from 'react-redux'
 
 
 const AnimeDetail = () => {
-  const charID = useSelector(state=>state.char.selectedChar);
-  console.log(charID);
-  const [characterSelected, setCharacterSelected] = useState(null);
   const params = useParams();
   const id = params.animeID;
+  const location = useLocation();
+  const charID = location.pathname.split('/');
+  const isCharacterPage = (charID[3] ==="character");
+
+
 
   const selectAnimeQuery = detailQuery;
-
   const { loading, error, data } = useQuery(selectAnimeQuery, {
     variables: {
       id: id,
@@ -89,8 +89,8 @@ const AnimeDetail = () => {
     <div>
 
 {
-charID &&
-    <CharacterDetail id={id} />
+isCharacterPage &&
+    <CharacterDetail animeID={charID[2]} characterID={charID[4]} actorID={charID[6]}/>
 }
 
       <div className="detail-grid-container">
@@ -240,7 +240,7 @@ charID &&
           <div className="text-center font-bold mt-2 text-lg">Characters</div>
 
               <hr />
-          <CharacterList characters={characters} />
+          <CharacterList characters={characters} animeID={id} />
           </div>}
 
           {externalLinks && (

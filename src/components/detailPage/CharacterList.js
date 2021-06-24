@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import Character from "./Character";
 import { motion } from "framer-motion";
 
-const CharacterList = ({ characters }) => {
+const CharacterList = ({ characters, animeID }) => {
 
   const [showMore, setShowMore] = useState({
     stream: 5
@@ -25,7 +25,7 @@ const CharacterList = ({ characters }) => {
     <motion.div className="flex flex-row flex-wrap">
     {characters.map((char,index) => {
         if(index <showMore.stream){
-    return <Character key={char.node.id} char={char} />
+    return <Character key={char.node.id} char={char} animeID={animeID} />
         }
     })}
     </motion.div>

@@ -1,5 +1,5 @@
 import React,{useCallback} from "react";
-import { gql, useLazyQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
 import { detailQuery } from "../chooks/queries";

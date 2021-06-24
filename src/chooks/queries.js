@@ -168,3 +168,89 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String) {
   }
 }
 `;
+
+
+export const charQuery = gql`
+query SelectedChar($char_id: Int, $staff_id: Int) {
+  Character(id: $char_id) {
+    id
+    name {
+      full
+      native
+    }
+    age
+    gender
+    dateOfBirth {
+      year
+      month
+      day
+    }
+    description
+    image {
+      medium
+      large
+    }
+    media {
+      edges {
+        node {
+          id
+          coverImage {
+            large
+          }
+          format
+          source
+          status
+          title {
+            english
+            romaji
+          }
+        }
+      }
+    }
+  }
+  Staff(id: $staff_id) {
+    id
+    name {
+      full
+      native
+    }
+    age
+    gender
+    dateOfBirth {
+      year
+      month
+      day
+    }
+    dateOfDeath {
+      year
+      month
+      day
+    }
+    homeTown
+    languageV2
+    image {
+      large
+    }
+    yearsActive
+    description
+    staffMedia {
+      edges {
+        node {
+          id
+          coverImage {
+            large
+          }
+          format
+          source
+          status
+          title {
+            english
+            romaji
+          }
+        }
+      }
+    }
+  }
+}
+
+`;

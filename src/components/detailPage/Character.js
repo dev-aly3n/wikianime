@@ -1,21 +1,16 @@
-import React, { useState } from "react";
-import { gql, useLazyQuery } from "@apollo/client";
+import React, { useState,useCallback } from "react";
+import { useLazyQuery } from "@apollo/client";
 import { motion } from "framer-motion";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { selectedCharActions } from "../../store/selectedCharSlice"
+import { selectedCharActions } from "../../store/selectedCharSlice";
 
-const Character = ({ char }) => {
-  const location = useLocation();
-  const dispatch = useDispatch();
-  const characterClickHandler = () => {
-    dispatch(selectedCharActions.selectChar(char.node.id))
-  };
+const Character = ({ char,animeID }) => {
+
 
   return (
-    <Link
-      to={`${location.pathname}/character/${char.node.id}`}
-      onClick={characterClickHandler}
+    <Link 
+    to={`/anime/${animeID}/character/${char.node.id}/actor/${char.voiceActors[0].id}`}
       className="flex flex-row justify-around bg-indigo-50 h-16 my-1 w-72 mx-2 rounded-md shadow-md overflow-hidden cursor-pointer"
     >
       <div className="overflow-hidden w-16">

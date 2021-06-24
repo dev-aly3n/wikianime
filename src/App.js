@@ -12,7 +12,7 @@ function App() {
         <Route path="/" exact>
           <Home />
         </Route>
-        <Route path={["/anime/:animeID","/anime/:animeID/character/:charID"]}>
+        <Route path={["/anime/:animeID","/anime/:animeID/character/:charID/actor/:actorID"]}>
           <AnimeDetail />
         </Route>
       </Switch>
