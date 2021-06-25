@@ -9,7 +9,7 @@ query SelectedAnImE($id: Int) {
           english
           romaji
         }
-        description
+        description(asHtml: true)
         duration
         startDate {
           year
@@ -185,9 +185,8 @@ query SelectedChar($char_id: Int, $staff_id: Int) {
       month
       day
     }
-    description
+    description(asHtml:true)
     image {
-      medium
       large
     }
     media {
@@ -232,7 +231,7 @@ query SelectedChar($char_id: Int, $staff_id: Int) {
       large
     }
     yearsActive
-    description
+    description(asHtml: true)
     staffMedia {
       edges {
         node {

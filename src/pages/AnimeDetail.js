@@ -82,7 +82,6 @@ const AnimeDetail = () => {
     endDate.month === startDate.month &&
     endDate.day === startDate.day;
 
-  console.log(aData);
 
 
   return (

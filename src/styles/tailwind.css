@@ -38,10 +38,10 @@
   
 
 
-  html::-webkit-scrollbar{
+  *::-webkit-scrollbar{
       width:0.5rem;
   }
-  html::-webkit-scrollbar-thumb{
+  *::-webkit-scrollbar-thumb{
       background-color:darkgray;
   }
   body{
