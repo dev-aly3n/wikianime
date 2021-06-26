@@ -5,7 +5,7 @@ import { charQuery } from "../chooks/queries";
 import { Markup } from "interweave";
 import AnimeList from "../components/AnimeList";
 import { showMoreLessBtn } from "../chooks/simples";
-import {faTimesCircle} from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CharacterDetail = ({ animeID, characterID, actorID }) => {
@@ -16,6 +16,9 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
   const modalCloseHandler = (e) => {
     if (e.target.classList.contains("modal-shadow") || e.target.classList.contains("close-modal-char-staff") ) {
       history.push(`/anime/${animeID}`);
+      //managing 2 scrollbar
+      document.body.style.overflow = "auto";
+
     }
   };
 
@@ -67,22 +70,38 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
     "show-more-btn to-red-50 hover:bg-red-50 hover:bg-opacity-60"
   );
 
+      //managing 2 scrollbar
+document.body.style.overflow = "hidden";
+
+
+
+
+  
   return (
     <div
-      className="modal-shadow character-page-shadow flex justify-center "
+      className="modal-shadow character-page-shadow flex justify-center overflow-y-scroll"
       onClick={modalCloseHandler}
     >
-      <div className="character-page-container relative rounded-md w-7/12 overflow-y-auto bg-yellow-50 flex overscroll-contain py-11">
+      <div className="character-page-container absolute rounded-md flex flex-col md:flex-row w-full ssm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-7/12 bg-yellow-50  overscroll-contain ">
+
+
+
+
+
       <span
-       className="close-modal-char-staff absolute top-1 right-12 text-5xl text-gray-500 hover:text-gray-900 cursor-pointer z-50"
+       className="close-modal-char-staff absolute top-2 right-14 text-5xl text-gray-500 hover:text-gray-900 cursor-pointer z-50"
       >
       <FontAwesomeIcon className="fixed close-modal-char-staff" icon={faTimesCircle} />
       </span>
-        <div className="w-1/2 h-full flex flex-col">
+
+
+
+
+        <div className="w-full md:w-1/2 flex flex-col h-full ">
           <div className="flex">
             <img
               src={character.image.large}
-              className="w-44 h-64  object-cover border-4 border-yellow-600 ml-2 mt-2 "
+              className="w-44 h-64 object-cover border-2 border-red-100 ml-2 mt-2 rounded-lg shadow-md"
             />
             <div className="flex flex-col mx-1 mt-2 justify-around text-base rounded-lg bg-red-50 w-full p-2 shadow-lg">
               <h1>
@@ -114,7 +133,8 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
             >
               <Markup content={character.description} />
             </div>
-            <div className="text-base mx-1 my-2 rounded-lg bg-red-50 p-3 shadow-lg">
+            <div className="text-base mx-1 my-2 rounded-lg bg-red-50 p-3 shadow-lg ssm:px-20 md:p-1">
+            <h3 className="font-semibold text-xl">Character media</h3>
               {
                 <AnimeList
                   allAnimeData={charAnimeList}
@@ -127,7 +147,8 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
           </div>
         </div>
 
-        <div className="w-1/2 flex flex-col  ">
+
+        <div className="w-full md:w-1/2 flex flex-col h-full">
           <div className="flex justify-between">
             <div className="flex flex-col mx-1 mt-2 justify-around text-base rounded-lg bg-blue-50 w-full p-2 shadow-lg">
               <h1>
@@ -153,7 +174,7 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
             </div>
             <img
               src={staff.image.large}
-              className="w-44 h-64 object-cover border-4 border-red-600 mr-2 mt-2 "
+              className="w-44 h-64 object-cover border-2 border-blue-100 mr-2 mt-2 rounded-lg shadow-md"
             />
           </div>
           <div>
@@ -163,7 +184,8 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
             >
               <Markup content={staff.description} />
             </div>
-            <div className=" text-base mx-1 my-2 rounded-lg bg-blue-50 p-3 shadow-lg">
+            <div className=" text-base mx-1 my-2 rounded-lg bg-blue-50 p-3 shadow-lg ssm:px-20 md:p-1">
+            <h3 className="font-semibold text-xl ">Actor media</h3>
               {
                 <AnimeList
                   allAnimeData={staffAnimeList}

@@ -169,10 +169,10 @@
 /* Page: character detail page */
 .character-page-shadow {
 background-color: rgba(0,0,0,0.65);
-  @apply fixed h-full w-full left-0 top-0 z-10;
+height: 100vh;
+  @apply fixed w-full left-0 top-0 z-10;
 }
 .character-page-container {
-  @apply absolute h-full bg-white;
 }
 
 
