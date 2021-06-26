@@ -297,14 +297,14 @@ isCharacterPage &&
               Relations
             </div>
             <hr />
-            <AnimeList allAnimeData={relations} />
+            <AnimeList allAnimeData={relations} colsInRow={4} initialQuantity={4} keyParam={"relate"} />
           </div>
         )}
         {streamingEpisodes[0] && (
           <div className="d-watch bg-purple-50 ssm:p-10 rounded-lg shadow-md">
             <div className="text-left text-2xl font-semibold">Stream Watch</div>
             <hr />
-            <StreamList allEpisode={streamingEpisodes} />
+            <StreamList allEpisode={streamingEpisodes} colsInRow={4} initialQuantity={4} keyParam={"stream"} />
           </div>
         )}
         <div className="d-footer">6</div>

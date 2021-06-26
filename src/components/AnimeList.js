@@ -2,11 +2,13 @@ import React,{useState}  from "react";
 import Anime from "./Anime";
 import {motion} from 'framer-motion';
 
-const AnimeList = ({allAnimeData}) => {
+const AnimeList = ({allAnimeData, initialQuantity, colsInRow, keyParam}) => {
 
   const [showMore, setShowMore] = useState({
-    stream: 3 
+    stream: initialQuantity 
   });
+
+  let gridColsTemp = `grid-cols-2 ssm:grid-cols-${colsInRow-1} lg:grid-cols-${colsInRow-1} xl:grid-cols-${colsInRow}`
 
   const streamShowMoreHandler = (e) => {
     if(showMore.stream>30){
@@ -23,17 +25,17 @@ const AnimeList = ({allAnimeData}) => {
   return (
     <motion.div className="pb-10">
       <div className="anime-list-container">
-      <motion.div className="anime-list">
+      <motion.div className={`anime-list ${gridColsTemp}`}>
         {allAnimeData.map((anime,index) => {
           //check where the data come from node or media
           const animeData = anime.id!==undefined ? anime : anime.node;
-          if (index <= showMore.stream) {
-          return <Anime key={animeData.id} anime={animeData} />;
+          if (index <= showMore.stream - 1) {
+          return <Anime key={`${keyParam}-${animeData.id}`} anime={animeData} />;
           }
         })}
       </motion.div>
       </div>
-      {allAnimeData.length>4 &&
+      {allAnimeData.length>initialQuantity &&
       <button onClick={streamShowMoreHandler} className="stream-show-more-btn">Load More</button>
       }
     </motion.div>

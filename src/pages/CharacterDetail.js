@@ -1,12 +1,20 @@
+import { useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { charQuery } from "../chooks/queries";
 import { Markup } from "interweave";
+import AnimeList from "../components/AnimeList";
+import { showMoreLessBtn } from "../chooks/simples";
+import {faTimesCircle} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CharacterDetail = ({ animeID, characterID, actorID }) => {
+  const staffContentShowLess = useRef(null);
+  const charContentShowLess = useRef(null);
+
   const history = useHistory();
   const modalCloseHandler = (e) => {
-    if (e.target.classList.contains("modal-shadow")) {
+    if (e.target.classList.contains("modal-shadow") || e.target.classList.contains("close-modal-char-staff") ) {
       history.push(`/anime/${animeID}`);
     }
   };
@@ -29,6 +37,8 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
   }
   const character = data.Character;
   const staff = data.Staff;
+  const charAnimeList = character.media.edges;
+  const staffAnimeList = staff.staffMedia.edges;
 
   const monthNames = [
     "January",
@@ -45,91 +55,123 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
     "December",
   ];
 
-  console.log(character);
-  console.log(staff);
+  // staff description
+  showMoreLessBtn(
+    staffContentShowLess,
+    "show-more-btn to-blue-50 hover:bg-blue-50 hover:bg-opacity-60"
+  );
+
+  //character desciption
+  showMoreLessBtn(
+    charContentShowLess,
+    "show-more-btn to-red-50 hover:bg-red-50 hover:bg-opacity-60"
+  );
 
   return (
     <div
       className="modal-shadow character-page-shadow flex justify-center "
       onClick={modalCloseHandler}
     >
-      <div className="character-page-container rounded-md w-7/12 overflow-y-auto bg-yellow-50 flex overscroll-contain">
-        <div className="w-full  flex flex-col">
+      <div className="character-page-container relative rounded-md w-7/12 overflow-y-auto bg-yellow-50 flex overscroll-contain py-11">
+      <span
+       className="close-modal-char-staff absolute top-1 right-12 text-5xl text-gray-500 hover:text-gray-900 cursor-pointer z-50"
+      >
+      <FontAwesomeIcon className="fixed close-modal-char-staff" icon={faTimesCircle} />
+      </span>
+        <div className="w-1/2 h-full flex flex-col">
           <div className="flex">
             <img
               src={character.image.large}
-              className="w-48 border-4 border-yellow-600 ml-2 mt-2 "
+              className="w-44 h-64  object-cover border-4 border-yellow-600 ml-2 mt-2 "
             />
-            <div className="flex flex-col mt-3 ml-2 justify-around">
+            <div className="flex flex-col mx-1 mt-2 justify-around text-base rounded-lg bg-red-50 w-full p-2 shadow-lg">
               <h1>
-               <strong> Name:</strong> <br />
+                <strong> Name:</strong> <br />
                 {character.name.full}
               </h1>
               <p>
-              <strong>Age:</strong>
+                <strong>Age:</strong>
                 <br />
                 {character.age} years
               </p>
               <p>
-              <strong>Date of Birth:</strong>
+                <strong>Date of Birth:</strong>
                 <br />
-                
-                  {character.dateOfBirth.day}{" "}
-                  {monthNames[character.dateOfBirth.month - 1]}
-                
+                {character.dateOfBirth.day}{" "}
+                {monthNames[character.dateOfBirth.month - 1]}
               </p>
               <p>
-              <strong>Gender:</strong>
+                <strong>Gender:</strong>
                 <br />
                 {character.gender}
               </p>
             </div>
           </div>
           <div>
-            <div className="text-base mx-3">
+            <div
+              className="text-base mx-1 my-2 rounded-lg bg-red-50 px-3 pt-3 shadow-lg"
+              ref={charContentShowLess}
+            >
               <Markup content={character.description} />
+            </div>
+            <div className="text-base mx-1 my-2 rounded-lg bg-red-50 p-3 shadow-lg">
+              {
+                <AnimeList
+                  allAnimeData={charAnimeList}
+                  colsInRow={3}
+                  initialQuantity={3}
+                  keyParam={"charMedia"}
+                />
+              }
             </div>
           </div>
         </div>
 
-
-
-
-
-        <div className="w-full  flex flex-col bg-red-50 ">
+        <div className="w-1/2 flex flex-col  ">
           <div className="flex justify-between">
-            <div className="flex flex-col mt-3 ml-2 justify-around">
+            <div className="flex flex-col mx-1 mt-2 justify-around text-base rounded-lg bg-blue-50 w-full p-2 shadow-lg">
               <h1>
-               <strong> Name:</strong> <br />
+                <strong> Name:</strong> <br />
                 {staff.name.full}
               </h1>
               <p>
-              <strong>Age:</strong>
+                <strong>Age:</strong>
                 <br />
                 {staff.age} years
               </p>
               <p>
-              <strong>Date of Birth:</strong>
+                <strong>Date of Birth:</strong>
                 <br />
-                
-                  {staff.dateOfBirth.day}{" "}
-                  {monthNames[staff.dateOfBirth.month - 1]}
-                
+                {staff.dateOfBirth.day}{" "}
+                {monthNames[staff.dateOfBirth.month - 1]}
               </p>
               <p>
-              <strong>Gender:</strong>
+                <strong>Gender:</strong>
                 <br />
                 {staff.gender}
               </p>
             </div>
             <img
               src={staff.image.large}
-              className="w-48 border-4 border-red-600 mr-2 mt-2 "
+              className="w-44 h-64 object-cover border-4 border-red-600 mr-2 mt-2 "
             />
           </div>
           <div>
-            <div className="text-base mx-3">
+            <div
+              className="text-base mx-1 my-2 rounded-lg bg-blue-50 px-3 pt-3 shadow-lg"
+              ref={staffContentShowLess}
+            >
               <Markup content={staff.description} />
+            </div>
+            <div className=" text-base mx-1 my-2 rounded-lg bg-blue-50 p-3 shadow-lg">
+              {
+                <AnimeList
+                  allAnimeData={staffAnimeList}
+                  colsInRow={3}
+                  initialQuantity={3}
+                  keyParam={"staffMedia"}
+                />
+              }
             </div>
           </div>
         </div>

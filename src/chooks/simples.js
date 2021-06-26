@@ -31,3 +31,25 @@ export const secondsToDhms = (seconds,dhms) => {
         return dDisplay + hDisplay + mDisplay;
     }
     }
+
+
+    export const showMoreLessBtn = (refElement, extraClassName) => {
+return (
+    setTimeout(() => {
+        if(refElement.current.firstElementChild.offsetHeight > "350"){
+          refElement.current.firstElementChild.style.height = '250px';
+          refElement.current.firstElementChild.style.overflow = 'hidden';
+          refElement.current.firstElementChild.style.position = "relative";
+          const showMoreBtn = document.createElement('button');
+          showMoreBtn.className = extraClassName;
+          showMoreBtn.textContent = "Show More";
+          refElement.current.firstElementChild.lastElementChild.after(showMoreBtn);
+      
+          showMoreBtn.addEventListener('click', ()=>{
+            showMoreBtn.style.display = "none";
+            refElement.current.firstElementChild.style.height = '100%';
+          });
+        }
+      }, 100)
+);
+    }
