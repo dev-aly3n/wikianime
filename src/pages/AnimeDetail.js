@@ -16,15 +16,14 @@ import Trailer from "../components/detailPage/Trailer";
 import CharacterList from "../components/detailPage/CharacterList";
 import CharacterDetail from "./CharacterDetail";
 
-
 const AnimeDetail = () => {
+  document.body.style.overflow = "auto";
+
   const params = useParams();
   const id = params.animeID;
   const location = useLocation();
-  const charID = location.pathname.split('/');
-  const isCharacterPage = (charID[3] ==="character");
-
-
+  const charID = location.pathname.split("/");
+  const isCharacterPage = charID[3] === "character";
 
   const selectAnimeQuery = detailQuery;
   const { loading, error, data } = useQuery(selectAnimeQuery, {
@@ -42,8 +41,7 @@ const AnimeDetail = () => {
     console.log(error.message);
     return `Error! ${error}`;
   }
-
-  const aData = data.Page.media[0];
+  const aData = data.Media;
   const title = aData.title.english ? aData.title.english : aData.title.romaji;
   const description = aData.description;
   const startDate = aData.startDate;
@@ -82,15 +80,15 @@ const AnimeDetail = () => {
     endDate.month === startDate.month &&
     endDate.day === startDate.day;
 
-
-
   return (
     <div>
-
-{
-isCharacterPage &&
-    <CharacterDetail animeID={charID[2]} characterID={charID[4]} actorID={charID[6]}/>
-}
+      {isCharacterPage && (
+        <CharacterDetail
+          animeID={charID[2]}
+          characterID={charID[4]}
+          actorID={charID[6]}
+        />
+      )}
 
       <div className="detail-grid-container">
         <div className="d-header" style={{ backgroundImage: `url(${banner})` }}>
@@ -233,15 +231,20 @@ isCharacterPage &&
           <div className="bg-purple-100 p-1 rounded-2xl m-1 shadow-inner text-xs mx-auto max-w-min">
             {aData.source}
           </div>
-
-          {characters && 
-          <div className="d-relate  rounded-lg my-3">
-          <div className="text-center font-bold mt-2 text-lg">Characters</div>
+          {characters && (
+            <div className="d-relate  rounded-lg my-3">
+              <div className="text-center font-bold mt-2 text-lg">
+                Characters
+              </div>
 
               <hr />
-          <CharacterList characters={characters} animeID={id} />
-          </div>}
-
+              <CharacterList
+                characters={characters}
+                mangaStaffID={aData.staff.edges[0].node.id}
+                animeID={id}
+              />
+            </div>
+          )}
           {externalLinks && (
             <div>
               <div className="text-center font-bold mt-2">Links</div>
@@ -253,10 +256,7 @@ isCharacterPage &&
               </ul>
             </div>
           )}
-
-
         </div>
-
 
         <div className="d-main relative shadow-sm">
           <div className="absolute right-0 top-0 -mt-16">
@@ -265,7 +265,7 @@ isCharacterPage &&
           <div className="absolute right-24 top-0 -mt-16">
             <CircleRate rate={favouritesRange} simbol={faHeart} />
           </div>
-          <div className="mt-5">
+          <div className="mt-5 ">
             <Markup content={description} />
           </div>
           <br />
@@ -288,7 +288,6 @@ isCharacterPage &&
                 }
               })}
           </div>
-   
         </div>
 
         {relations[0] && (
@@ -297,14 +296,24 @@ isCharacterPage &&
               Relations
             </div>
             <hr />
-            <AnimeList allAnimeData={relations} colsInRow={4} initialQuantity={4} keyParam={"relate"} />
+            <AnimeList
+              allAnimeData={relations}
+              colsInRow={4}
+              initialQuantity={4}
+              keyParam={"relate"}
+            />
           </div>
         )}
         {streamingEpisodes[0] && (
           <div className="d-watch bg-purple-50 ssm:p-10 rounded-lg shadow-md">
             <div className="text-left text-2xl font-semibold">Stream Watch</div>
             <hr />
-            <StreamList allEpisode={streamingEpisodes} colsInRow={4} initialQuantity={4} keyParam={"stream"} />
+            <StreamList
+              allEpisode={streamingEpisodes}
+              colsInRow={4}
+              initialQuantity={4}
+              keyParam={"stream"}
+            />
           </div>
         )}
         <div className="d-footer">6</div>

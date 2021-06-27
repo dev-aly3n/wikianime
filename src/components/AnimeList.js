@@ -1,43 +1,51 @@
-import React,{useState}  from "react";
+import React, { useState } from "react";
 import Anime from "./Anime";
-import {motion} from 'framer-motion';
+import { motion } from "framer-motion";
 
-const AnimeList = ({allAnimeData, initialQuantity, colsInRow, keyParam}) => {
-
+const AnimeList = ({ allAnimeData, initialQuantity, colsInRow, keyParam }) => {
   const [showMore, setShowMore] = useState({
-    stream: initialQuantity 
+    stream: initialQuantity,
   });
 
-  let gridColsTemp = `grid-cols-2 ssm:grid-cols-${colsInRow-1} lg:grid-cols-${colsInRow-1} xl:grid-cols-${colsInRow}`
+  let gridColsTemp = `grid-cols-2 ssm:grid-cols-${colsInRow - 1} lg:grid-cols-${
+    colsInRow - 1
+  } xl:grid-cols-${colsInRow}`;
 
   const streamShowMoreHandler = (e) => {
-    if(showMore.stream>30){
-      setShowMore({stream: showMore.stream+999})
-      e.target.remove();
-    } else{
-    setShowMore({stream: showMore.stream+10})
+    if (showMore.stream > 30) {
+      setShowMore({ stream: showMore.stream + 999 });
+      e.target.style.display = "none";
+    } else {
+      setShowMore({ stream: showMore.stream + 10 });
     }
-  if(showMore.stream+10 >= allAnimeData.length){
-    e.target.remove();
-  }
-  }
+    if (showMore.stream + 10 >= allAnimeData.length) {
+      e.target.style.display = "none";
+    }
+  };
 
   return (
     <motion.div className="pb-10">
       <div className="anime-list-container">
-      <motion.div className={`anime-list ${gridColsTemp}`}>
-        {allAnimeData.map((anime,index) => {
-          //check where the data come from node or media
-          const animeData = anime.id!==undefined ? anime : anime.node;
-          if (index <= showMore.stream - 1) {
-          return <Anime key={`${keyParam}-${animeData.id}`} anime={animeData} />;
-          }
-        })}
-      </motion.div>
+        <motion.div className={`anime-list ${gridColsTemp}`}>
+          {allAnimeData.map((anime, index) => {
+            //check where the data come from node or media
+            const animeData = anime.id !== undefined ? anime : anime.node;
+            if (index <= showMore.stream - 1) {
+              return (
+                <Anime key={`${keyParam}-${animeData.id}`} anime={animeData} />
+              );
+            }
+          })}
+        </motion.div>
       </div>
-      {allAnimeData.length>initialQuantity &&
-      <button onClick={streamShowMoreHandler} className="stream-show-more-btn">Load More</button>
-      }
+      {allAnimeData.length > initialQuantity && (
+        <button
+          onClick={streamShowMoreHandler}
+          className="stream-show-more-btn"
+        >
+          Load More
+        </button>
+      )}
     </motion.div>
   );
 };

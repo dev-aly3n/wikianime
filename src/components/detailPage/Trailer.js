@@ -14,6 +14,4 @@ const Trailer = ({ embedId }) => (
   </div>
 );
 
-
-
 export default Trailer;

@@ -2,8 +2,7 @@ import {gql} from '@apollo/client';
 
 export const detailQuery = gql`
 query SelectedAnImE($id: Int) {
-    Page {
-      media(id: $id) {
+      Media(id: $id) {
         id
         title {
           english
@@ -135,8 +134,14 @@ query SelectedAnImE($id: Int) {
             }
           }
         }
+        staff{
+          edges {
+            node{
+              id
+            }
+          }
+        }
       }
-    }
   }
 `;
 
@@ -189,6 +194,7 @@ query SelectedChar($char_id: Int, $staff_id: Int) {
     image {
       large
     }
+    favourites
     media {
       edges {
         node {
@@ -213,6 +219,7 @@ query SelectedChar($char_id: Int, $staff_id: Int) {
       full
       native
     }
+    favourites
     age
     gender
     dateOfBirth {

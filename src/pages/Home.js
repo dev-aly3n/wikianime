@@ -12,25 +12,28 @@ const Home = () => {
   const hQuery = homeQuery;
   const { loading, error, data } = useQuery(hQuery, {
     variables: {
-      perPage: 9,
+      perPage: 8,
     },
   });
 
   if (loading) {
     console.log("loading");
-    return null
-
+    return null;
   }
 
   if (error) {
     console.log(error.message);
-    return `Error! ${error}`
+    return `Error! ${error}`;
   }
-
 
   return (
     <div>
-      <AnimeList allAnimeData={data.Page.media} />
+      <AnimeList
+        allAnimeData={data.Page.media}
+        colsInRow={4}
+        initialQuantity={8}
+        keyParam={"homeAnime"}
+      />
     </div>
   );
 };

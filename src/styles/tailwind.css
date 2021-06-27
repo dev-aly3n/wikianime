@@ -44,6 +44,14 @@
   *::-webkit-scrollbar-thumb{
       background-color:darkgray;
   }
+  .character-page-shadow::-webkit-scrollbar-thumb{
+@apply bg-yellow-50
+  }
+
+
+
+
+
   body{
       font-family: "Montserrat", sans-serif;
   }
@@ -179,6 +187,10 @@ height: 100vh;
 .show-more-btn {
   @apply absolute text-blue-600 bottom-0 left-0 bg-gradient-to-b from-transparent w-full pt-10 pb-3 font-semibold
    focus:outline-none;
+}
+
+.description-character-markup a {
+  @apply text-blue-600 font-medium italic hover:text-blue-900;
 }
 }
 

@@ -34,7 +34,7 @@ const ExternalLinks = ({ link }) => {
    shadow-lg rounded-sm active:shadow-inner`}
         href={link.url}
         target="_blank"
-      rel="noopener noreferrer"
+        rel="noopener noreferrer"
       >
         {link.site}
       </a>

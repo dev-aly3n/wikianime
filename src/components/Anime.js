@@ -1,4 +1,4 @@
-import React,{useCallback} from "react";
+import React, { useCallback } from "react";
 import { useLazyQuery } from "@apollo/client";
 import { motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
@@ -23,7 +23,7 @@ const Anime = ({ anime }) => {
   const animeCardClickHandler = useCallback((e) => {
     e.preventDefault();
     getAnime({ variables: { id: anime.id } });
-  },[])
+  }, []);
 
   return (
     <motion.a
@@ -34,9 +34,12 @@ const Anime = ({ anime }) => {
       initial={{ opacity: 0 }}
     >
       <img src={anime.coverImage.large}></img>
-      <div className="absolute top-0 left-0 rounded-md font-medium flex flex-col 
-       " style={{fontSize:"9px"}}>
-        <div className="max-w-min bg-yellow-300 text-black px-1 rounded-r-md my-px" >
+      <div
+        className="absolute top-0 left-0 rounded-md font-medium flex flex-col 
+       "
+        style={{ fontSize: "9px" }}
+      >
+        <div className="max-w-min bg-yellow-300 text-black px-1 rounded-r-md my-px">
           {anime.format}
         </div>
         <div className="max-w-min bg-green-300 text-black px-1 rounded-r-md my-px">
