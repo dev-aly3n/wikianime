@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { useLazyQuery } from "@apollo/client";
 import { motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
@@ -11,6 +11,7 @@ const Anime = ({ anime }) => {
   const [getAnime, { error, data }] = useLazyQuery(selectAnimeQuery);
   if (error) {
     console.log(error.message);
+    return `Error! ${error}`;
   }
   if (data) {
     //using set time out just BCS React is being bitch about to pushing to another page during getting the data
@@ -20,10 +21,10 @@ const Anime = ({ anime }) => {
     }, 1);
   }
 
-  const animeCardClickHandler = useCallback((e) => {
+  const animeCardClickHandler = (e) => {
     e.preventDefault();
     getAnime({ variables: { id: anime.id } });
-  }, []);
+  }
 
   return (
     <motion.a

@@ -36,6 +36,7 @@ export const secondsToDhms = (seconds,dhms) => {
     export const showMoreLessBtn = (refElement, extraClassName) => {
 return (
     setTimeout(() => {
+        if(refElement.current){
         if(refElement.current.firstElementChild.offsetHeight > "350"){
           refElement.current.firstElementChild.style.height = '250px';
           refElement.current.firstElementChild.style.overflow = 'hidden';
@@ -50,6 +51,7 @@ return (
             refElement.current.firstElementChild.style.height = '100%';
           });
         }
+    }
       }, 100)
 );
     }

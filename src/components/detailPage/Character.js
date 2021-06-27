@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import { useLazyQuery } from "@apollo/client";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";

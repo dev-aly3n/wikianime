@@ -51,8 +51,6 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
 
   let charFavouritesRange = ((character.favourites / 30000) * 100).toFixed(0);
   let actorFavouritesRange = ((staff.favourites / 10000) * 100).toFixed(0);
-  console.log(character);
-  console.log(staff);
 
   const monthNames = [
     "January",

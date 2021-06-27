@@ -134,7 +134,7 @@ query SelectedAnImE($id: Int) {
             }
           }
         }
-        staff{
+        staff(sort:FAVOURITES_DESC){
           edges {
             node{
               id

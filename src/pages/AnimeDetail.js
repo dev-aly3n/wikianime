@@ -245,7 +245,7 @@ const AnimeDetail = () => {
               />
             </div>
           )}
-          {externalLinks && (
+          {externalLinks[0] && (
             <div>
               <div className="text-center font-bold mt-2">Links</div>
               <hr />

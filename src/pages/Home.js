@@ -25,7 +25,7 @@ const Home = () => {
     console.log(error.message);
     return `Error! ${error}`;
   }
-
+console.log(data);
   return (
     <div>
       <AnimeList
