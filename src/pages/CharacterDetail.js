@@ -70,13 +70,15 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
   // staff description
   showMoreLessBtn(
     staffContentShowLess,
-    "show-more-btn to-blue-50 hover:bg-blue-50 hover:bg-opacity-60"
+    "show-more-btn to-blue-50 hover:bg-blue-50 hover:bg-opacity-60",
+    250
   );
 
   //character desciption
   showMoreLessBtn(
     charContentShowLess,
-    "show-more-btn to-red-50 hover:bg-red-50 hover:bg-opacity-60"
+    "show-more-btn to-red-50 hover:bg-red-50 hover:bg-opacity-60",
+    250
   );
 
   //managing 2 scrollbar
@@ -100,7 +102,7 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
                 className="w-full h-full object-cover block"
               />
               <div className="absolute -bottom-2 -left-2">
-                <CircleRate rate={charFavouritesRange} simbol={faHeart} />
+                <CircleRate rate={charFavouritesRange} symbol={faHeart} size={5} />
               </div>
             </div>
             <div className="flex flex-col mx-1 mt-2 justify-around text-base rounded-lg bg-red-50 w-full p-2 shadow-lg">
@@ -194,7 +196,7 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
                 className="w-full h-full object-cover block"
               />
               <div className="absolute -bottom-2 -right-2">
-                <CircleRate rate={actorFavouritesRange} simbol={faHeart} />
+                <CircleRate rate={actorFavouritesRange} symbol={faHeart} size={5} />
               </div>
             </div>
           </div>

@@ -15,6 +15,7 @@ import { detailQuery } from "../chooks/queries";
 import Trailer from "../components/detailPage/Trailer";
 import CharacterList from "../components/detailPage/CharacterList";
 import CharacterDetail from "./CharacterDetail";
+import ReviewList from '../components/detailPage/ReviewList'
 
 const AnimeDetail = () => {
   document.body.style.overflow = "auto";
@@ -80,6 +81,7 @@ const AnimeDetail = () => {
     endDate.month === startDate.month &&
     endDate.day === startDate.day;
 
+    console.log(aData.reviews)
   return (
     <div>
       {isCharacterPage && (
@@ -260,10 +262,10 @@ const AnimeDetail = () => {
 
         <div className="d-main relative shadow-sm">
           <div className="absolute right-0 top-0 -mt-16">
-            <CircleRate rate={aData.meanScore} />
+            <CircleRate rate={aData.meanScore} size={5}  />
           </div>
           <div className="absolute right-24 top-0 -mt-16">
-            <CircleRate rate={favouritesRange} simbol={faHeart} />
+            <CircleRate rate={favouritesRange} symbol={faHeart} size={5}  />
           </div>
           <div className="mt-5 ">
             <Markup content={description} />
@@ -304,8 +306,9 @@ const AnimeDetail = () => {
             />
           </div>
         )}
+          <div className="d-watch ">
         {streamingEpisodes[0] && (
-          <div className="d-watch bg-purple-50 ssm:p-10 rounded-lg shadow-md">
+          <div className="bg-purple-50 ssm:p-10 rounded-lg shadow-md">
             <div className="text-left text-2xl font-semibold">Stream Watch</div>
             <hr />
             <StreamList
@@ -314,8 +317,15 @@ const AnimeDetail = () => {
               initialQuantity={4}
               keyParam={"stream"}
             />
-          </div>
+            </div>
         )}
+
+        {reviews[0] &&
+        <div className="bg-purple-50 ssm:p-5 rounded-lg shadow-md my-5">
+          <ReviewList allReviewData={reviews} initialQuantity={3} keyParam={"review"} />
+        </div>
+        }
+          </div>
         <div className="d-footer">6</div>
       </div>
     </div>

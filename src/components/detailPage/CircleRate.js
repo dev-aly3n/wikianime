@@ -1,7 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { size } from "lodash";
 
-const CircleRate = ({ rate, simbol }) => {
+const CircleRate = ({ rate, symbol, size }) => {
   let grad, bg;
   if (rate === null) {
     rate = 0;
@@ -19,7 +20,8 @@ const CircleRate = ({ rate, simbol }) => {
   } else if (rate === 50) {
     bg = "bg-yellow-300";
     grad = `linear-gradient(90deg, rgb(212, 212, 212) 50%, transparent 50%)`;
-  } else if (rate === 100) {
+  } else if (rate >= 100) {
+    rate = 100;
     bg = "bg-green-600";
     grad = "none";
   } else if (rate <= 75) {
@@ -37,24 +39,28 @@ const CircleRate = ({ rate, simbol }) => {
   return (
     <div>
       <div
-        style={{ backgroundImage: grad }}
-        className={`pie1 relative flex justify-center items-center m-2 ${bg}`}
+        style={{ backgroundImage: grad , width: `${size}rem` , height: `${size}rem` , borderRadius: "50%" }}
+        className={` relative flex justify-center items-center m-2 ${bg}`}
       >
-        <div className="pie2 bg-white absolute flex flex-col justify-center items-center text-xl font-semibold">
-          {simbol ? (
-            <span className="absolute top-0 right-px">
+        <div className=" bg-white flex flex-col justify-center items-center text-xl font-semibold"
+        style={{ width: `${size-1}rem` , height: `${size-1}rem` , borderRadius: "50%" }}
+        >
+          {symbol ? (
+            <div className="relative -mb-1">
               <FontAwesomeIcon
-                icon={simbol}
-                className="text-6xl text-red-500 absolute top-0.5 right-px"
+                icon={symbol}
+                className={`${size===5 ? "text-6xl" : size===4 ? "text-5xl " :"" } text-red-500`}
               />
-              <span className="text-white text-lg absolute top-4 right-3">
+              <div className={`${size===5 ? "text-lg" : size===4 ? "text-sm" : ""} text-white absolute`}
+              style={{right:"50%", top:"50%", transform: "translate(50%, -50%)"}}
+              >
                 {rate}%
-              </span>
-            </span>
+              </div>
+            </div>
           ) : (
             <span className="flex flex-col justify-center items-center">
               <span className="text-xs font-thin h-2 text-gray-400">score</span>
-              <span>{rate}%</span>
+              <span className={`${size===5 ? "text-2xl" : size===4 ? "text-base": "" }`}>{rate}%</span>
             </span>
           )}
         </div>

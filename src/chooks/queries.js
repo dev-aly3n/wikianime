@@ -73,8 +73,11 @@ query SelectedAnImE($id: Int) {
                 }
               }
               score
+              rating
+              ratingAmount
               summary
-              body
+              body(asHtml:true)
+              createdAt
             }
           }
         }

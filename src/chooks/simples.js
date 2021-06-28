@@ -33,12 +33,12 @@ export const secondsToDhms = (seconds,dhms) => {
     }
 
 
-    export const showMoreLessBtn = (refElement, extraClassName) => {
+    export const showMoreLessBtn = (refElement, extraClassName, height) => {
 return (
     setTimeout(() => {
         if(refElement.current){
-        if(refElement.current.firstElementChild.offsetHeight > "350"){
-          refElement.current.firstElementChild.style.height = '250px';
+        if(refElement.current.firstElementChild.offsetHeight > `${height+100}`){
+          refElement.current.firstElementChild.style.height = `${height}px`;
           refElement.current.firstElementChild.style.overflow = 'hidden';
           refElement.current.firstElementChild.style.position = "relative";
           const showMoreBtn = document.createElement('button');
