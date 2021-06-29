@@ -101,7 +101,7 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
                 src={character.image.large ? character.image.large : unKnownPng}
                 className="w-full h-full object-cover block"
               />
-              <div className="absolute -bottom-2 -left-2">
+              <div className="absolute bottom-0 left-0">
                 <CircleRate rate={charFavouritesRange} symbol={faHeart} size={5} />
               </div>
             </div>
@@ -195,7 +195,7 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
                 src={staff.image.large ? staff.image.large : unKnownPng}
                 className="w-full h-full object-cover block"
               />
-              <div className="absolute -bottom-2 -right-2">
+              <div className="absolute bottom-0 right-0">
                 <CircleRate rate={actorFavouritesRange} symbol={faHeart} size={5} />
               </div>
             </div>

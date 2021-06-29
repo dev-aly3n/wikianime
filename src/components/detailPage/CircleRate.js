@@ -40,7 +40,7 @@ const CircleRate = ({ rate, symbol, size }) => {
     <div>
       <div
         style={{ backgroundImage: grad , width: `${size}rem` , height: `${size}rem` , borderRadius: "50%" }}
-        className={` relative flex justify-center items-center m-2 ${bg}`}
+        className={` relative flex justify-center items-center m-0 ${bg}`}
       >
         <div className=" bg-white flex flex-col justify-center items-center text-xl font-semibold"
         style={{ width: `${size-1}rem` , height: `${size-1}rem` , borderRadius: "50%" }}

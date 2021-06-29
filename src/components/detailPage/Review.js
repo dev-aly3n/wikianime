@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Markup } from "interweave";
 import CircleRate from "./CircleRate";
@@ -6,6 +6,10 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { showMoreLessBtn } from "../../chooks/simples";
 
 const Review = ({ review }) => {
+  let reviewText = review.body;
+  let reg1 = /[\[]+(.+)+[\]]+\(\)/g;
+  reviewText = reviewText.replace(reg1, "$1");
+
   const reviewContentShowLess = useRef(null);
 
   let date = new Date(review.createdAt * 1000);
@@ -14,16 +18,17 @@ const Review = ({ review }) => {
   let day = date.getDay();
   date = `${year}/${month}/${day}`;
 
-  const animeCardClickHandler = (e) => {
-    e.preventDefault();
-  };
 
-  showMoreLessBtn(
-    reviewContentShowLess,
-    "show-more-btn to-indigo-50 hover:bg-indigo-50 hover:bg-opacity-60",
-    150
-  );
 
+  useEffect(() => {
+    showMoreLessBtn(
+      reviewContentShowLess,
+      "show-more-btn to-indigo-50 hover:bg-indigo-50 hover:bg-opacity-60",
+      150
+    );
+  }, [reviewContentShowLess]);
+
+  
   let rate;
   if (review.rating >= 100) {
     rate = 100;
@@ -33,41 +38,42 @@ const Review = ({ review }) => {
 
   return (
     <motion.div
-      onClick={animeCardClickHandler}
       className="review-card-container my-4 rounded-md flex flex-col"
       animate={{ opacity: 1, transition: { duration: 2 } }}
       initial={{ opacity: 0 }}
     >
       <div className=" flex bg-indigo-100 px-3 pt-1 rounded-md shadow-lg relative">
-        <div className="flex flex-row justify-between items-center mt-2">
-          <div className=" flex flex-col justify-center items-center">
+        <div className="flex flex-row justify-between items-center mt-2 md:w-1/2">
+          <div className=" flex flex-col justify-center items-center mr-1">
             <img
               className=" w-20 h-20 object-cover rounded-full border-2 border-gray-500 shadow-2xl"
               src={review.user.avatar.medium}
             />
-            <h4 className="text-xs md:text-base font-bold md:-mt-1">{review.user.name}</h4>
+            <h4 className="text-xs md:text-base font-medium md:-mt-1">
+              {review.user.name}
+            </h4>
           </div>
           <div className="flex flex-col justify-center items-center">
             <CircleRate rate={review.score} size={4} />
-<br/>
+            <br />
           </div>
           <div className="flex flex-col justify-center items-center">
             <CircleRate rate={rate} symbol={faHeart} size={4} />
-            <p className="text-xs font-medium -mt-2 text-center">
-              {review.ratingAmount} rates to this review
+            <p style={{fontSize:"8px"}} className="font-medium text-center">
+              <strong>{review.ratingAmount}</strong> rates to this review
             </p>
           </div>
         </div>
-        <div className="text-sm absolute top-0 ssm:top-3 right-0  rounded-l-lg bg-indigo-500 text-white px-2">
+        <div className="text-sm absolute top-0 md:top-3 right-0 rounded-l-lg bg-indigo-500 text-white px-2">
           {date}
         </div>
       </div>
       {review.body ? (
         <div
-          className="description-character-markup text-base mx-3 mt-0.5 rounded-lg bg-blue-50 px-3 pt-3 shadow-xl"
+          className="description-character-markup text-base mx-1 mt-0.5 rounded-lg bg-blue-50 px-6 py-3 shadow-xl"
           ref={reviewContentShowLess}
         >
-          <Markup content={review.body} />
+          <Markup content={reviewText} />
         </div>
       ) : (
         <div className="description-character-markup text-base mx-1 my-2 rounded-lg bg-blue-50 px-3 pt-3 shadow-lg">

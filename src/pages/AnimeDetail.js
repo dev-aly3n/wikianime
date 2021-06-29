@@ -309,7 +309,7 @@ const AnimeDetail = () => {
           <div className="d-watch ">
         {streamingEpisodes[0] && (
           <div className="bg-purple-50 ssm:p-10 rounded-lg shadow-md">
-            <div className="text-left text-2xl font-semibold">Stream Watch</div>
+            <div className="text-left text-2xl font-semibold py-5 pl-4">Stream Watch</div>
             <hr />
             <StreamList
               allEpisode={streamingEpisodes}
@@ -321,8 +321,10 @@ const AnimeDetail = () => {
         )}
 
         {reviews[0] &&
-        <div className="bg-purple-50 ssm:p-5 rounded-lg shadow-md my-5">
-          <ReviewList allReviewData={reviews} initialQuantity={3} keyParam={"review"} />
+        <div className="bg-purple-50 md:p-5 rounded-lg shadow-md my-5">
+        <div className="text-left text-2xl font-semibold ml-5 mt-5 py-5">Reviews</div>
+            <hr />
+          <ReviewList allReviewData={reviews} initialQuantity={2} keyParam={"review"} />
         </div>
         }
           </div>

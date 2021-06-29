@@ -189,27 +189,21 @@ height: 100vh;
    focus:outline-none;
 }
 
+.description-character-markup{
+  @apply pb-5 px-2;
+}
+
 .description-character-markup a {
-  @apply text-blue-600 font-medium italic hover:text-blue-900;
+  @apply text-blue-600 font-medium italic hover:text-blue-900 cursor-pointer;
+}
+
+.description-character-markup img {
+  @apply block mx-auto w-full;
 }
 }
 
-.some {
 
- 
-}
 
-.pie1 {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
-}
-.pie2 {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 50%;
-
-}
 
 .video-responsive {
   overflow: hidden;
