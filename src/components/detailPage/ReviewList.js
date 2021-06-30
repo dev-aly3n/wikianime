@@ -12,7 +12,7 @@ const ReviewList = ({ allReviewData, initialQuantity, keyParam }) => {
       setShowMore({ ...showMore, review: showMore.review + 999 });
       e.target.style.display = "none";
     } else {
-      setShowMore({ ...showMore, review: showMore.review + 3 });
+      setShowMore({ ...showMore, review: showMore.review + 9 });
     }
     if (showMore.review + 10 >= allReviewData.length) {
       e.target.style.display = "none";

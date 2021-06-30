@@ -81,7 +81,7 @@ const AnimeDetail = () => {
     endDate.month === startDate.month &&
     endDate.day === startDate.day;
 
-    console.log(aData.reviews)
+    console.log(aData)
   return (
     <div>
       {isCharacterPage && (

@@ -7,6 +7,7 @@
 @layer components {
   /* component: animeList */
   body {
+    font-family: 'Montserrat', sans-serif;
 
   }
   .anime-list-container {
@@ -47,18 +48,6 @@
   .character-page-shadow::-webkit-scrollbar-thumb{
 @apply bg-yellow-50
   }
-
-
-
-
-
-  body{
-      font-family: "Montserrat", sans-serif;
-  }
-  h2 {
-      font-family: 'Abril Fatface', cursive;
-  }
-
 
 
 
@@ -198,7 +187,8 @@ height: 100vh;
 }
 
 .description-character-markup img {
-  @apply block mx-auto w-full;
+  width: 100% !important;
+  @apply block mx-auto;
 }
 }
 
