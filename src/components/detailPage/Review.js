@@ -47,8 +47,8 @@ const Review = ({ review }) => {
       animate={{ opacity: 1, transition: { duration: 2 } }}
       initial={{ opacity: 0 }}
     >
-      <div className=" flex bg-indigo-100 px-3 pt-1 rounded-md shadow-lg relative">
-        <div className="flex flex-row justify-between items-center mt-2 w-full">
+      <div className=" flex bg-indigo-100 px-3 pt-2 rounded-md shadow-lg relative">
+        <div className="flex flex-row justify-between items-end mt-2 w-full">
           <div className=" flex flex-col justify-center items-center mr-1">
             <img
               className=" w-20 h-20 object-cover rounded-full border-2 border-gray-500 shadow-2xl"
@@ -73,7 +73,7 @@ const Review = ({ review }) => {
                 this review
               </p>
               <p
-                style={{ fontSize: "8px" }}
+                style={{ fontSize: "10px" }}
                 className="font-medium text-center"
               >
                 <strong>{review.ratingAmount}</strong> rates
@@ -82,7 +82,7 @@ const Review = ({ review }) => {
           </div>
         </div>
 
-        <div className="text-sm absolute top-0 md:top-3 right-0 rounded-l-lg bg-indigo-500 text-white px-2">
+        <div className="text-sm absolute top-3 md:top-3 right-0 rounded-l-lg bg-indigo-500 text-white px-2">
           {date}
         </div>
       </div>

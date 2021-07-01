@@ -109,9 +109,9 @@ const AnimeDetail = () => {
             style={{ borderColor: `${animeColor30}` }}
             src={coverImage.large}
           ></img>
-          <div className="block mx-auto py-2 text-xl font-semibold">
+          <h2 className="block mx-auto py-2 text-xl font-semibold">
             {title}
-          </div>
+          </h2>
           <div className="w-max px-3 block mx-auto py-1 font-semibold rounded-2xl bg-gray-100 shadow-inner">
             {aData.format}
           </div>
