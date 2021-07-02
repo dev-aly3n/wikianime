@@ -1049,6 +1049,7 @@ module.exports = {
       backgroundColor: ["active"],
       boxShadow: ["active"],
       textColor: ["active"],
+      translate: ["active"],
     },
   },
   plugins: [

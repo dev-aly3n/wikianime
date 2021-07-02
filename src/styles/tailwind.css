@@ -6,6 +6,9 @@
 
 @layer components {
   /* component: animeList */
+  html{
+    scroll-behavior: smooth;
+}
   body {
     font-family: 'Lato', sans-serif;
   }
@@ -50,8 +53,13 @@
       background-color:darkgray;
   }
   .character-page-shadow::-webkit-scrollbar-thumb{
-@apply bg-yellow-50
+@apply bg-yellow-50;
   }
+
+  .recommendation::-webkit-scrollbar{
+display:none;
+  }
+
 
 
 
@@ -130,7 +138,6 @@
   .d-footer {
     font-size: 10px;
     grid-area: footer;
-    @apply  bg-yellow-500;
   }
 
   .d-header{
@@ -193,6 +200,10 @@ height: 100vh;
 .description-character-markup img {
   width: 100% !important;
   @apply block mx-auto;
+}
+
+.recommendation {
+  scroll-behavior: smooth;
 }
 }
 

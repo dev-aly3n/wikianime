@@ -16,6 +16,7 @@ import Trailer from "../components/detailPage/Trailer";
 import CharacterList from "../components/detailPage/CharacterList";
 import CharacterDetail from "./CharacterDetail";
 import ReviewList from '../components/detailPage/ReviewList'
+import RecomList from "../components/detailPage/RecomList";
 
 const AnimeDetail = () => {
   document.body.style.overflow = "auto";
@@ -61,6 +62,7 @@ const AnimeDetail = () => {
   const studios = aData.studios.edges;
   const tags = aData.tags;
   const nextAiringEpisode = aData.nextAiringEpisode;
+  const recommendations = aData.recommendations.edges;
   let favouritesRange = ((aData.favourites / 30000) * 100).toFixed(0);
   if (favouritesRange > 100) {
     favouritesRange = 100;
@@ -81,7 +83,6 @@ const AnimeDetail = () => {
     endDate.month === startDate.month &&
     endDate.day === startDate.day;
 
-    console.log(aData)
   return (
     <div>
       {isCharacterPage && (
@@ -328,7 +329,11 @@ const AnimeDetail = () => {
         </div>
         }
           </div>
-        <div className="d-footer">6</div>
+        <div className="d-footer">
+          { recommendations[0] &&
+            <RecomList allRecom={recommendations} keyParam={'recom'} initialQuantity={7} />
+          }
+        </div>
       </div>
     </div>
   );
