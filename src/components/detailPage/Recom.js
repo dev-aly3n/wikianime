@@ -32,6 +32,8 @@ const Recom = ({recom}) => {
 
     return(
         <div
+        draggable={true}
+
         onClick={animeCardClickHandler}
          className="w-60 flex flex-col bg-purple-50 mx-3 overflow-hidden rounded shadow-xl cursor-pointer
         transform  hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 relative">
