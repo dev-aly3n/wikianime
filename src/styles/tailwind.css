@@ -205,6 +205,17 @@ height: 100vh;
 .recommendation {
   scroll-behavior: smooth;
 }
+
+@media (min-width: 768px) {
+  .recommendation-parent{
+      width: 95%;
+  }
+}
+@media (min-width: 1024px) {
+  .recommendation-parent{
+      width: 72%;
+  }
+}
 }
 
 
