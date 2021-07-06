@@ -329,11 +329,12 @@ const AnimeDetail = () => {
         </div>
         }
           </div>
-        <div className="d-footer">
           { recommendations[0] &&
+        <div className="d-recom">
+        <div className="text-left text-2xl font-semibold ml-5 mt-5 py-5">Recommendations</div>
             <RecomList allRecom={recommendations} keyParam={'recom'} initialQuantity={7} />
-          }
         </div>
+          }
       </div>
     </div>
   );

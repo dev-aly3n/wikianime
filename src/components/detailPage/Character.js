@@ -18,7 +18,7 @@ const Character = ({ char, animeID, mangaStaffID }) => {
   return (
     <Link
       to={`/anime/${animeID}/character/${charID}/actor/${staffID}`}
-      className="flex flex-row justify-around bg-indigo-50 h-16 my-1 w-72 mx-2 rounded-md shadow-md overflow-hidden cursor-pointer"
+      className="flex flex-row justify-around bg-indigo-50 h-16 my-1 mx-2 rounded-md shadow-md overflow-hidden cursor-pointer w-full"
     >
       <div className="overflow-hidden w-16">
         <img src={char.node.image.medium} alt="" className="w-full h-full" />

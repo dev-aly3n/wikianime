@@ -30,6 +30,7 @@ const Recom = ({recom}) => {
     getAnime({ variables: { id: recMedia.id } });
   }
 
+  console.log(recom);
     return(
         <div
         draggable={true}
@@ -41,21 +42,21 @@ const Recom = ({recom}) => {
         <img className="h-56 w-40 object-fill rounded" src={recMedia.coverImage.large} />
         <div className="flex flex-col items-start justify-between ml-1 text-sm h-56 pt-2 break-words">
             <p className="line-clamp-4 break-words"><b>Title:</b><br/> {recMedia.title.english? recMedia.title.english : recMedia.title.romaji}</p>
-            <p><b>Format:</b><br/> {recMedia.format.toLowerCase()}</p>
-            <p><b>Source:</b><br/> {recMedia.source.toLowerCase()}</p>
-            <p><b>Status:</b><br/> {recMedia.status.toLowerCase()}</p>
+           {recMedia.format && <p><b>Format:</b><br/> {recMedia.format.toLowerCase()}</p> }
+            {recMedia.source && <p><b>Source:</b><br/> {recMedia.source.toLowerCase()}</p>}
+            {recMedia.status && <p><b>Status:</b><br/> {recMedia.status.toLowerCase()}</p>}
         </div>
         </div>
-        <div className="flex flex-row line-clamp-5 text-sm mx-2 my-2 break-words">
+        {recMedia.description&& <div className="flex flex-row line-clamp-5 text-sm mx-2 my-2 break-words">
         <b>Description:</b> <Markup content={recMedia.description} />
-        </div>
+        </div> }
         <div className="absolute top-0 left-0">
-            {
-                recom.rating < 0 ?  
+            { recom.rating &&
+                (recom.rating < 0 ?  
                 <div className="bg-red-500 text-white text-base px-1 rounded-br-md">{recom.rating}  <FontAwesomeIcon icon={faThumbsDown} /></div>
                 :
                 <div className="bg-green-500 text-white text-base px-1 rounded-br-md">+{recom.rating} <FontAwesomeIcon icon={faThumbsUp} /></div>
-
+                )
             }
         </div>
         </div>

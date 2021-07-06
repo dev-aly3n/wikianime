@@ -136,44 +136,44 @@ const RecomList = ({ allRecom, initialQuantity }) => {
     }
   };
 
-
-
   return (
-    <div className=" recommendation-parent relative block mx-auto rounded-md overflow-hidden">
-      <div
-        className="recommendation flex justify-between items-center h-96  overflow-x-auto"
-        ref={rightLeftScroll}
-        onTouchEnd={recTouchHandler}
-        onMouseUp={recMouseUpHandler}
-      >
-        <div className="flex flex-row mx-5 md:mx-10">
-          {allRecom.map((recom, index) => {
-            if (index <= showMore.recommend - 1) {
-              return <Recom key={"rec" + recom.node.id} recom={recom.node} />;
-            }
-          })}
+    <div>
+      <div className=" recommendation-parent relative block mx-auto overflow-hidden rounded-md">
+        <div
+          className="recommendation flex justify-between items-center h-96  overflow-x-auto"
+          ref={rightLeftScroll}
+          onTouchEnd={recTouchHandler}
+          onMouseUp={recMouseUpHandler}
+        >
+          <div className="flex flex-row mx-5 md:mx-10">
+            {allRecom.map((recom, index) => {
+              if (index <= showMore.recommend - 1) {
+                return <Recom key={"rec" + recom.node.id} recom={recom.node} />;
+              }
+            })}
+          </div>
         </div>
+        <button
+          onClick={leftScrollHandler}
+          className="absolute left-0 top-0 h-full w-12 bg-gradient-to-l from-transparent to-gray-200 hover:to-gray-400
+        focus:outline-none"
+        >
+          <FontAwesomeIcon
+            className=" text-4xl transform rotate-180 text-gray-600"
+            icon={faChevronCircleRight}
+          />
+        </button>
+        <button
+          onClick={rightScrollHandler}
+          className="absolute right-0 top-0 h-full w-12 bg-gradient-to-r from-transparent to-gray-200 hover:to-gray-400
+        focus:outline-none"
+        >
+          <FontAwesomeIcon
+            className="text-4xl text-gray-600"
+            icon={faChevronCircleRight}
+          />
+        </button>
       </div>
-      <button
-        onClick={leftScrollHandler}
-        className="absolute left-0 top-0 h-full w-12 bg-gradient-to-l from-transparent to-gray-200 hover:to-gray-400
-        focus:outline-none"
-      >
-        <FontAwesomeIcon
-          className=" text-4xl transform rotate-180 text-gray-600"
-          icon={faChevronCircleRight}
-        />
-      </button>
-      <button
-        onClick={rightScrollHandler}
-        className="absolute right-0 top-0 h-full w-12 bg-gradient-to-r from-transparent to-gray-200 hover:to-gray-400
-        focus:outline-none"
-      >
-        <FontAwesomeIcon
-          className="text-4xl text-gray-600"
-          icon={faChevronCircleRight}
-        />
-      </button>
     </div>
   );
 };

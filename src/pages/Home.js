@@ -25,15 +25,22 @@ const Home = () => {
     console.log(error.message);
     return `Error! ${error}`;
   }
-console.log(data);
+
   return (
     <div>
-      <AnimeList
-        allAnimeData={data.Page.media}
-        colsInRow={4}
-        initialQuantity={8}
-        keyParam={"homeAnime"}
-      />
+      <div className="home-grid-container">
+      <div className="h-header">
+      
+      </div>
+      <div className="h-trending">
+        <AnimeList
+          allAnimeData={data.Page.media}
+          colsInRow={4}
+          initialQuantity={8}
+          keyParam={"homeAnime"}
+        />
+        </div>
+      </div>
     </div>
   );
 };
