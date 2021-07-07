@@ -32,19 +32,21 @@ const Airing = ({ airing }) => {
   return (
     <motion.a
       onClick={animeCardClickHandler}
+      href={`/anime/${airing.id}`}
       className="cursor-pointer group"
       animate={{ opacity: 1, transition: { duration: 2 } }}
       initial={{ opacity: 0 }}
     >
-      <div className="flex flex-col relative h-28 justify-center items-center
+      <div className="flex flex-col relative h-24 justify-center items-center
        overflow-hidden ">
 
 
-        <img className="h-full w-full object-cover transform transition-all duration-1000 group-hover:scale-125 " src={airing.bannerImage} />
+        <img className="h-full w-full object-cover transform transition-all duration-1500 group-hover:scale-110" src={airing.bannerImage} />
 
 
-        <div className="absolute bg-gray-900 bg-opacity-60 w-full h-full flex flex-col justify-evenly items-center text-white">
-          <h3 className="mx-1 line-clamp-1 text-base font-semibold text-yellow-400">
+        <div className="absolute bg-gray-900 bg-opacity-75 w-full h-full flex flex-col justify-evenly items-center
+         text-white group-hover:bg-opacity-60">
+          <h3 className="mx-2 line-clamp-1 text-base font-semibold text-yellow-400">
             {airing.title.english ? airing.title.english : airing.title.romaji}
           </h3>
           <p className="flex justify-around w-full text-sm">

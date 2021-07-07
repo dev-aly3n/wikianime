@@ -157,7 +157,7 @@ export const detailQuery = gql`
                 english
                 romaji
               }
-              coverImage{
+              coverImage {
                 large
               }
               description
@@ -171,62 +171,80 @@ export const detailQuery = gql`
 `;
 
 export const homeQuery = gql`
-{
-  top100: Page(perPage: 50, page: 2) {
-    media(sort: POPULARITY_DESC) {
-      rankings {
-        rank
-        allTime
-      }
-      id
-      title {
-        english
-        romaji
-      }
-      coverImage {
-        large
-      }
-      source
-      format
-      status
-      meanScore
-      averageScore
-      popularity
-    }
-  }
-  airing: Page(perPage: 50, page: 1) {
-    airingSchedules(sort: TIME, notYetAired: true) {
-      media {
-        id
-        nextAiringEpisode {
-          episode
-          timeUntilAiring
+  {
+    top100: Page(perPage: 50, page: 2) {
+      media(sort: POPULARITY_DESC) {
+        rankings {
+          rank
+          allTime
         }
-        bannerImage
+        id
         title {
           english
           romaji
         }
+        coverImage {
+          large
+        }
+        source
+        format
+        status
+        meanScore
+        averageScore
+        popularity
+      }
+    }
+    airing: Page(perPage: 50, page: 1) {
+      airingSchedules(sort: TIME, notYetAired: true) {
+        media {
+          id
+          nextAiringEpisode {
+            episode
+            timeUntilAiring
+          }
+          bannerImage
+          title {
+            english
+            romaji
+          }
+        }
+      }
+    }
+    trending: Page(page: 1, perPage: 50) {
+      media(sort: TRENDING_DESC) {
+        id
+        coverImage {
+          large
+        }
+        title {
+          english
+          romaji
+        }
+        source
+        format
+        status
+      }
+    }
+    homeRecom: Page(perPage: 2, page: 1) {
+      recommendations(sort: RATING_DESC) {
+        rating
+        media {
+          description(asHtml: true)
+          id
+          title {
+            english
+            romaji
+          }
+          format
+          status
+          source
+          coverImage {
+            large
+          }
+        }
       }
     }
   }
-  trending: Page(page: 1, perPage: 10) {
-    media(sort:TRENDING_DESC) {
-      id
-      coverImage {
-        large
-      }
-      title {
-        english
-        romaji
-      }
-      source
-      format
-      status
-    }
-  }
-}
-
 `;
 
 export const charQuery = gql`

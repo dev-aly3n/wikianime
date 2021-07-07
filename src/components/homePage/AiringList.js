@@ -16,7 +16,6 @@ const AiringList = ({ allAiring, keyParam }) => {
     }
   })
 
-  console.log(trimedallAiring);
   return (
     <motion.div className="pb-10">
       <div className="flex flex-col justify-start items-center">

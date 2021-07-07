@@ -4,9 +4,11 @@ import { useHistory } from "react-router-dom";
 import { detailQuery } from "../../chooks/queries";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from 'framer-motion';
 
 const Recom = ({recom}) => {
-    const recMedia = recom.mediaRecommendation;
+  const isHome = recom.mediaRecommendation ? false : true;
+    const recMedia = (isHome ? recom.media : recom.mediaRecommendation);
 
 
     const history = useHistory();
@@ -30,14 +32,13 @@ const Recom = ({recom}) => {
     getAnime({ variables: { id: recMedia.id } });
   }
 
-  console.log(recom);
     return(
-        <div
+        <motion.a 
         draggable={true}
-
+        href={`/anime/${recMedia.id}`}
         onClick={animeCardClickHandler}
-         className="w-60 flex flex-col bg-purple-50 mx-3 overflow-hidden rounded shadow-xl cursor-pointer
-        transform  hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 relative">
+         className={` ${isHome ? "w-full ssm:w-8/12 sm:w-11/12 my-3" :"w-60 mx-3"}  flex flex-col bg-purple-50 overflow-hidden rounded shadow-xl cursor-pointer
+        transform  hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 relative`}>
         <div className="flex flex-row">
         <img className="h-56 w-40 object-fill rounded" src={recMedia.coverImage.large} />
         <div className="flex flex-col items-start justify-between ml-1 text-sm h-56 pt-2 break-words">
@@ -59,7 +60,7 @@ const Recom = ({recom}) => {
                 )
             }
         </div>
-        </div>
+        </motion.a>
     );
 }
 

@@ -89,7 +89,8 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
       className="character-page-shadow flex justify-center overflow-y-scroll"
       onClick={modalCloseHandler}
     >
-      <div className="character-page-container z-50 absolute rounded-md flex flex-col md:flex-row w-full ssm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-7/12 bg-yellow-50  overscroll-contain ">
+      <div className="character-page-container z-50 absolute rounded-md flex flex-col md:flex-row w-full
+       ssm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-7/12 bg-yellow-50  overscroll-contain ">
         <span className="modal-close absolute top-2 right-14 text-5xl text-gray-500 hover:text-gray-900 cursor-pointer z-50">
           <FontAwesomeIcon className="fixed modal-close" icon={faTimesCircle} />
         </span>
