@@ -171,31 +171,62 @@ export const detailQuery = gql`
 `;
 
 export const homeQuery = gql`
-  query ($id: Int, $page: Int, $perPage: Int, $search: String) {
-    Page(page: $page, perPage: $perPage) {
-      pageInfo {
-        total
-        currentPage
-        lastPage
-        hasNextPage
-        perPage
+{
+  top100: Page(perPage: 50, page: 2) {
+    media(sort: POPULARITY_DESC) {
+      rankings {
+        rank
+        allTime
       }
-      media(id: $id, search: $search) {
+      id
+      title {
+        english
+        romaji
+      }
+      coverImage {
+        large
+      }
+      source
+      format
+      status
+      meanScore
+      averageScore
+      popularity
+    }
+  }
+  airing: Page(perPage: 50, page: 1) {
+    airingSchedules(sort: TIME, notYetAired: true) {
+      media {
         id
-        coverImage {
-          large
-          color
+        nextAiringEpisode {
+          episode
+          timeUntilAiring
         }
+        bannerImage
         title {
           english
           romaji
         }
-        source
-        format
-        status
       }
     }
   }
+  trending: Page(page: 1, perPage: 10) {
+    media(sort:TRENDING_DESC) {
+      id
+      coverImage {
+        large
+      }
+      title {
+        english
+        romaji
+      }
+      source
+      format
+      status
+    }
+  }
+}
+
 `;
 
 export const charQuery = gql`
