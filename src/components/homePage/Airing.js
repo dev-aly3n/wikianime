@@ -33,12 +33,12 @@ const Airing = ({ airing }) => {
     <motion.a
       onClick={animeCardClickHandler}
       href={`/anime/${airing.id}`}
-      className="cursor-pointer group"
+      className="cursor-pointer group "
       animate={{ opacity: 1, transition: { duration: 2 } }}
       initial={{ opacity: 0 }}
     >
       <div className="flex flex-col relative h-24 justify-center items-center
-       overflow-hidden ">
+       overflow-hidden max-w-sm">
 
 
         <img className="h-full w-full object-cover transform transition-all duration-1500 group-hover:scale-110" src={airing.bannerImage} />

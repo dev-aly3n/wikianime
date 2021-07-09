@@ -1057,8 +1057,8 @@ module.exports = {
       backgroundColor: ["active"],
       boxShadow: ["active"],
       textColor: ["active"],
-      translate: ["active"],
-
+      translate: ["active", "group-hover"],
+      display: ["hover", "group-hover",],
     },
   },
   plugins: [

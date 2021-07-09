@@ -172,6 +172,7 @@ export const detailQuery = gql`
 
 export const homeQuery = gql`
   {
+
     top100: Page(perPage: 50, page: 2) {
       media(sort: POPULARITY_DESC) {
         rankings {
@@ -223,6 +224,8 @@ export const homeQuery = gql`
         source
         format
         status
+        averageScore
+        meanScore
       }
     }
     homeRecom: Page(perPage: 2, page: 1) {

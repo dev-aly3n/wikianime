@@ -17,6 +17,10 @@
     font-family: 'Open Sans', sans-serif;
   }
 
+  .hover-card-num-1 {
+    @apply transform  hover:-translate-y-1 hover:shadow-2xl transition-all duration-300;
+  }
+
   .anime-list-container {
     @apply px-0 py-5 w-11/12 mx-auto;
   }
@@ -27,7 +31,7 @@
 
   .anime-list {
     gap: 10px;
-@apply grid;
+@apply grid gap-y-7;
 
   }
 

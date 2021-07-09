@@ -15,14 +15,14 @@ import { detailQuery } from "../chooks/queries";
 import Trailer from "../components/detailPage/Trailer";
 import CharacterList from "../components/detailPage/CharacterList";
 import CharacterDetail from "./CharacterDetail";
-import ReviewList from '../components/detailPage/ReviewList'
+import ReviewList from "../components/detailPage/ReviewList";
 import RecomList from "../components/detailPage/RecomList";
 
 const AnimeDetail = () => {
   document.body.style.overflow = "auto";
 
   const params = useParams();
-  const id = params.animeID;
+  const id = Number(params.animeID);
   const location = useLocation();
   const charID = location.pathname.split("/");
   const isCharacterPage = charID[3] === "character";
@@ -71,13 +71,6 @@ const AnimeDetail = () => {
     favouritesRange = 1;
   }
   const popularity = aData.popularity;
-  let popularityRange = 100 - ((popularity / 400000) * 100).toFixed(0);
-  if (popularityRange > 94) {
-    popularityRange = 94;
-  }
-  if (popularityRange < 0) {
-    popularityRange = 0;
-  }
   const isOneDate =
     endDate.year === startDate.year &&
     endDate.month === startDate.month &&
@@ -110,9 +103,7 @@ const AnimeDetail = () => {
             style={{ borderColor: `${animeColor30}` }}
             src={coverImage.large}
           ></img>
-          <h2 className="block mx-auto py-2 text-xl font-semibold">
-            {title}
-          </h2>
+          <h2 className="block mx-auto py-2 text-xl font-semibold">{title}</h2>
           <div className="w-max px-3 block mx-auto py-1 font-semibold rounded-2xl bg-gray-100 shadow-inner">
             {aData.format}
           </div>
@@ -174,10 +165,10 @@ const AnimeDetail = () => {
               </div>
             </div>
           )}
-          {popularity && (
+          {popularity!==undefined && (
             <div className="mb-3">
               <div className="text-center font-bold my-1">Popularity</div>
-              <Popularity popularityRange={popularityRange} />
+              <Popularity popularity={popularity} />
             </div>
           )}
           <div className="d-ranking ">
@@ -263,10 +254,10 @@ const AnimeDetail = () => {
 
         <div className="d-main relative shadow-sm">
           <div className="absolute right-0 top-0 -mt-16">
-            <CircleRate rate={aData.meanScore} size={5}  />
+            <CircleRate rate={aData.meanScore} size={5} />
           </div>
           <div className="absolute right-24 top-0 -mt-16">
-            <CircleRate rate={favouritesRange} symbol={faHeart} size={5}  />
+            <CircleRate rate={favouritesRange} symbol={faHeart} size={5} />
           </div>
           <div className="mt-5 ">
             <Markup content={description} />
@@ -307,34 +298,48 @@ const AnimeDetail = () => {
             />
           </div>
         )}
-          <div className="d-watch ">
-        {streamingEpisodes[0] && (
-          <div className="bg-purple-50 ssm:p-10 rounded-lg shadow-md">
-            <div className="text-left text-2xl font-semibold py-5 pl-4">Stream Watch</div>
-            <hr />
-            <StreamList
-              allEpisode={streamingEpisodes}
-              colsInRow={4}
-              initialQuantity={4}
-              keyParam={"stream"}
-            />
+        <div className="d-watch ">
+          {streamingEpisodes[0] && (
+            <div className="bg-purple-50 ssm:p-10 rounded-lg shadow-md">
+              <div className="text-left text-2xl font-semibold py-5 pl-4">
+                Stream Watch
+              </div>
+              <hr />
+              <StreamList
+                allEpisode={streamingEpisodes}
+                colsInRow={4}
+                initialQuantity={4}
+                keyParam={"stream"}
+              />
             </div>
-        )}
+          )}
 
-        {reviews[0] &&
-        <div className="bg-purple-50 md:p-5 rounded-lg shadow-md my-5">
-        <div className="text-left text-2xl font-semibold ml-5 mt-5 py-5">Reviews</div>
-            <hr />
-          <ReviewList allReviewData={reviews} initialQuantity={2} keyParam={"review"} />
+          {reviews[0] && (
+            <div className="bg-purple-50 md:p-5 rounded-lg shadow-md my-5">
+              <div className="text-left text-2xl font-semibold ml-5 mt-5 py-5">
+                Reviews
+              </div>
+              <hr />
+              <ReviewList
+                allReviewData={reviews}
+                initialQuantity={2}
+                keyParam={"review"}
+              />
+            </div>
+          )}
         </div>
-        }
+        {recommendations[0] && (
+          <div className="d-recom">
+            <div className="text-left text-2xl font-semibold ml-5 mt-5 py-5">
+              Recommendations
+            </div>
+            <RecomList
+              allRecom={recommendations}
+              keyParam={"recom"}
+              initialQuantity={7}
+            />
           </div>
-          { recommendations[0] &&
-        <div className="d-recom">
-        <div className="text-left text-2xl font-semibold ml-5 mt-5 py-5">Recommendations</div>
-            <RecomList allRecom={recommendations} keyParam={'recom'} initialQuantity={7} />
-        </div>
-          }
+        )}
       </div>
     </div>
   );
