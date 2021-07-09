@@ -173,28 +173,28 @@ export const detailQuery = gql`
 export const homeQuery = gql`
   {
 
-    top100: Page(perPage: 50, page: 2) {
-      media(sort: POPULARITY_DESC) {
-        rankings {
-          rank
-          allTime
-        }
-        id
-        title {
-          english
-          romaji
-        }
-        coverImage {
-          large
-        }
-        source
-        format
-        status
-        meanScore
-        averageScore
-        popularity
+  top100: Page(perPage: 50, page: 1) {
+    media(sort: SCORE_DESC) {
+      id
+      title {
+        english
+        romaji
+      }
+      coverImage {
+        large
+      }
+      source
+      format
+      status
+      averageScore
+      popularity
+      seasonYear
+      season
+      tags {
+        name
       }
     }
+  }
     airing: Page(perPage: 50, page: 1) {
       airingSchedules(sort: TIME, notYetAired: true) {
         media {
@@ -245,6 +245,22 @@ export const homeQuery = gql`
             large
           }
         }
+      }
+    }
+    allTime: Page(perPage: 50, page: 1) {
+      media(sort: POPULARITY_DESC) {
+        id
+        title {
+          english
+          romaji
+        }
+        coverImage {
+          large
+        }
+        source
+        format
+        status
+        averageScore
       }
     }
   }

@@ -272,7 +272,7 @@ const AnimeDetail = () => {
                 if (index < 6) {
                   return (
                     <div
-                      className="bg-purple-100 p-1 rounded-2xl m-1 shadow-inner  text-xs "
+                      className="tag-names"
                       key={tag.name}
                     >
                       <span className="float-left mr-4">{tag.name}</span>

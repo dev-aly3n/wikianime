@@ -2,7 +2,8 @@ import { useQuery } from "@apollo/client";
 import { homeQuery } from "../chooks/queries";
 import AnimeList from "../components/AnimeList";
 import AiringList from "../components/homePage/AiringList";
-import HomeRec from '../components/homePage/HomeRec'
+import HomeRec from '../components/homePage/HomeRec';
+import TopList from '../components/homePage/TopList';
 
 const Home = () => {
 
@@ -20,8 +21,9 @@ const Home = () => {
   }
   const trending = data.trending.media;
   const airing = data.airing.airingSchedules;
+  const allTime = data.allTime.media;
+  const top100 = data.top100.media;
 
-  console.log(data);
   return (
     <div className="">
       <div className="home-grid-container" >
@@ -44,15 +46,33 @@ const Home = () => {
       </div>}
 
       </div>
-      <div className="h-trending">
+      <div className="h-trending bg-indigo-50 shadow-lg rounded">
       <div className="text-left text-2xl font-semibold py-3 mx-3">Trending</div>
         <AnimeList
           allAnimeData={trending}
           colsInRow={4}
           initialQuantity={8}
-          keyParam={"homeAnime"}
+          keyParam={"homeTrending"}
         />
         </div>
+      <div className="h-alltime bg-indigo-50 shadow-lg rounded">
+      <div className="text-left text-2xl font-semibold py-3 mx-3">Popular All Time</div>
+        <AnimeList
+          allAnimeData={allTime}
+          colsInRow={4}
+          initialQuantity={8}
+          keyParam={"homepopAllTime"}
+        />
+        </div>
+      <div className="h-top100 bg-indigo-50 shadow-lg rounded">
+      <div className="text-left text-2xl font-semibold py-3 mx-3">Top 100</div>
+        <TopList
+          allAnimeData={top100}
+          initialQuantity={8}
+          keyParam={"top100"}
+        />
+        </div>
+
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { size } from "lodash";
 
 const CircleRate = ({ rate, symbol, size }) => {
   let grad, bg;

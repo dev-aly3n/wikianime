@@ -45,7 +45,7 @@
   }
   .anime-card-container h3 {
       @apply  text-white absolute bottom-0 leading-tight
-      bg-gray-800 bg-opacity-50 w-full;
+      bg-gray-800 bg-opacity-80 w-full;
   }
   
 
@@ -192,22 +192,19 @@ display:none;
     
   }
   .h-trending {
-    font-family: 'Lato', sans-serif;
-    font-weight: 300;
     grid-area: trending;
-    @apply   text-base text-gray-700 p-3 md:p-10;
+    @apply    text-gray-700 p-3 md:p-10;
   }
-  .h-popular {
-    font-size: 10px;
-    grid-area: popular;
-  }
+
   .h-alltime  {
-    font-size: 10px;
     grid-area: alltime;
+    @apply    text-gray-700 p-3 md:p-10;
+
   }
   .h-top100 {
-    font-size: 10px;
     grid-area: top100;
+    @apply    text-gray-700 p-3 md:p-10;
+
   }
 
   .d-header{
@@ -277,6 +274,9 @@ height: 100vh;
 }
 
 
+.tag-names {
+  @apply bg-purple-100 p-1 rounded-2xl m-1 shadow-inner  text-xs ;
+}
 }
 
 
