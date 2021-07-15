@@ -9,6 +9,7 @@ const RecomList = ({ allRecom, initialQuantity }) => {
   const magicNum2 = isSmallDevice ? 264 : 264 * 2;
   const magicNum3 = 275;
   const rightLeftScroll = useRef(null);
+  const wastefulCover = useRef(null);
 
   const [showMore, setShowMore] = useState({
     recommend: initialQuantity,
@@ -107,50 +108,56 @@ const RecomList = ({ allRecom, initialQuantity }) => {
     let isDown = false;
     let startx, scrollLeft;
     recSlider.addEventListener("mousedown", (e) => {
+      e.preventDefault();
       isDown = true;
       startx = e.pageX - recSlider.offsetLeft;
       scrollLeft = recSlider.scrollLeft;
     });
     recSlider.addEventListener("mouseleave", () => {
       isDown = false;
+      wastefulCover.current.style.display="none";
     });
     recSlider.addEventListener("mouseup", () => {
       isDown = false;
+      let recLeft = rightLeftScroll.current.scrollLeft;
+      let recWidth = rightLeftScroll.current.scrollWidth;
+      if (recLeft / recWidth < 0.5) {
+        if (showMore.recommend < allRecom.length + 3) {
+          const newRecommend = showMore.recommend + 3;
+          setShowMore({ recommend: newRecommend });
+        }
+      }
+      wastefulCover.current.style.display="none";
+
     });
     recSlider.addEventListener("mousemove", (e) => {
       if (!isDown) return;
       e.preventDefault();
       const x = e.pageX - recSlider.offsetLeft;
-      const walk = x - startx;
+      const walk = (x - startx)*1.5;
       recSlider.scrollLeft = scrollLeft - walk;
+      wastefulCover.current.style.display="block";
+
     });
   }, [rightLeftScroll.current]);
-  const recMouseUpHandler = () => {
-    let recLeft = rightLeftScroll.current.scrollLeft;
-    let recWidth = rightLeftScroll.current.scrollWidth;
-    if (recLeft / recWidth < 0.5) {
-      if (showMore.recommend < allRecom.length + 3) {
-        const newRecommend = showMore.recommend + 3;
-        setShowMore({ recommend: newRecommend });
-      }
-    }
-  };
+
 
   return (
-    <div>
+    
       <div className=" recommendation-parent relative block mx-auto overflow-hidden rounded-md">
         <div
           className="recommendation flex justify-between items-center h-96  overflow-x-auto"
           ref={rightLeftScroll}
           onTouchEnd={recTouchHandler}
-          onMouseUp={recMouseUpHandler}
         >
-          <div className="flex flex-row mx-5 md:mx-10">
+          <div className="flex flex-row mx-5 md:mx-10 relative">
             {allRecom.map((recom, index) => {
               if (index <= showMore.recommend - 1) {
                 return <Recom key={"rec" + recom.node.id} recom={recom.node} />;
               }
             })}
+            <div ref={wastefulCover} className="wasteful-cover absolute top-0 left-0 h-full w-full opacity-0 hidden"></div>
+
           </div>
         </div>
         <button
@@ -174,7 +181,7 @@ const RecomList = ({ allRecom, initialQuantity }) => {
           />
         </button>
       </div>
-    </div>
+    
   );
 };
 

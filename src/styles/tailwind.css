@@ -269,9 +269,9 @@ height: 100vh;
   @apply block mx-auto;
 }
 
-.recommendation {
+/* .recommendation {
   scroll-behavior: smooth;
-}
+} */
 
 
 .tag-names {

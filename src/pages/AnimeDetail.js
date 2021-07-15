@@ -76,8 +76,9 @@ const AnimeDetail = () => {
     endDate.month === startDate.month &&
     endDate.day === startDate.day;
 
+    console.log(aData);
   return (
-    <div>
+    <React.Fragment>
       {isCharacterPage && (
         <CharacterDetail
           animeID={charID[2]}
@@ -341,7 +342,7 @@ const AnimeDetail = () => {
           </div>
         )}
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

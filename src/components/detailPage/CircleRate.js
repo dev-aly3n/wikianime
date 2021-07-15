@@ -36,7 +36,7 @@ const CircleRate = ({ rate, symbol, size }) => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <div
         style={{ backgroundImage: grad , width: `${size}rem` , height: `${size}rem` , borderRadius: "50%" }}
         className={` relative flex justify-center items-center m-0 ${bg}`}
@@ -64,7 +64,7 @@ const CircleRate = ({ rate, symbol, size }) => {
           )}
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

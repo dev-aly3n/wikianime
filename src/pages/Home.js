@@ -1,3 +1,4 @@
+import React from "react";
 import { useQuery } from "@apollo/client";
 import { homeQuery } from "../chooks/queries";
 import AnimeList from "../components/AnimeList";
@@ -25,7 +26,7 @@ const Home = () => {
   const top100 = data.top100.media;
 
   return (
-    <div className="">
+    <React.Fragment>
       <div className="home-grid-container" >
       <div className="h-header">
       
@@ -74,7 +75,7 @@ const Home = () => {
         </div>
 
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 
