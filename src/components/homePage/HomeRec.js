@@ -1,7 +1,7 @@
 import Recom from '../detailPage/Recom';
 
 
-const HomeRecom = ({allRecom}) => {
+const HomeRecom = ({allRecom, keyParam}) => {
     
 
     return(
@@ -9,7 +9,7 @@ const HomeRecom = ({allRecom}) => {
         {
             allRecom.map((rec, index)=> {
                 if(index<=1){
-                return <Recom key={"homeRec"+ rec.media.id} recom={rec} />
+                return <Recom key={keyParam+ rec.media.id} widthParam={true} recom={rec} />
                 }
             })
         }

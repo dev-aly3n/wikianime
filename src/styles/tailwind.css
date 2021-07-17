@@ -184,7 +184,6 @@ display:none;
 
   .h-header { 
     grid-area: header;
-    @apply   bg-gray-400;
   }
   .h-sidebar {
     grid-area: sidebar;
@@ -300,4 +299,17 @@ height: 100vh;
 
 .showLess {
 
+}
+
+
+@keyframes example {
+  from {transform: translateY(3%);
+  opacity: 0.3;}
+  to {transform: translateY(0%);
+  opacity: 1;}
+}
+
+.anni {
+  animation-name: example;
+  animation-duration: 0.7s;
 }

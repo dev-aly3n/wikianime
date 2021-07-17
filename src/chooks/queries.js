@@ -162,7 +162,6 @@ export const detailQuery = gql`
               }
               description
             }
-            id
           }
         }
       }
@@ -172,29 +171,29 @@ export const detailQuery = gql`
 
 export const homeQuery = gql`
   {
-
-  top100: Page(perPage: 50, page: 1) {
-    media(sort: SCORE_DESC) {
-      id
-      title {
-        english
-        romaji
-      }
-      coverImage {
-        large
-      }
-      source
-      format
-      status
-      averageScore
-      popularity
-      seasonYear
-      season
-      tags {
-        name
+    top100: Page(perPage: 50, page: 1) {
+      media(sort: SCORE_DESC) {
+        id
+        title {
+          english
+          romaji
+        }
+        coverImage {
+          large
+        }
+        source
+        format
+        status
+        averageScore
+        popularity
+        seasonYear
+        season
+        tags {
+          name
+        }
+        description(asHtml:true)
       }
     }
-  }
     airing: Page(perPage: 50, page: 1) {
       airingSchedules(sort: TIME, notYetAired: true) {
         media {
@@ -208,6 +207,13 @@ export const homeQuery = gql`
             english
             romaji
           }
+          source
+          format
+          genres
+          coverImage {
+            large
+          }
+          description(asHtml: true)
         }
       }
     }
@@ -228,12 +234,12 @@ export const homeQuery = gql`
         meanScore
       }
     }
-    homeRecom: Page(perPage: 2, page: 1) {
+    homeRecom: Page(perPage: 30, page: 1) {
       recommendations(sort: RATING_DESC) {
         rating
         media {
-          description(asHtml: true)
           id
+          description(asHtml: true)
           title {
             english
             romaji

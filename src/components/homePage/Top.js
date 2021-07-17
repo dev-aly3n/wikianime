@@ -5,8 +5,11 @@ import { useHistory } from "react-router-dom";
 import { detailQuery } from "../../chooks/queries";
 import CircleRate from "../detailPage/CircleRate";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { Markup } from "interweave";
 
 const Top = ({ anime, rank }) => {
+  console.log(anime);
+  console.log(rank);
   const history = useHistory();
   const selectAnimeQuery = detailQuery;
 
@@ -53,7 +56,7 @@ const Top = ({ anime, rank }) => {
           <div className="flex flex-wrap">
             {anime.tags.map((tag, index) => {
               if (index <= 2) {
-                return <span className="tag-names">{tag.name}</span>;
+                return <span key={tag.name} className="tag-names">{tag.name}</span>;
               }
             })}
           </div>

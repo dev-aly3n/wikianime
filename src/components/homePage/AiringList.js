@@ -20,10 +20,12 @@ const AiringList = ({ allAiring, keyParam }) => {
     <motion.div className="pb-10">
       <div className="flex flex-col justify-start items-center">
         <motion.div >
-          {trimedallAiring.map((airing) => {
+          {trimedallAiring.map((airing,index) => {
+            if(index <=7){
               return (
                 <Airing key={`${keyParam}-${airing.media.id}`} airing={airing.media} />
               );
+            }
             
           })}
         </motion.div>

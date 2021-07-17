@@ -1059,6 +1059,7 @@ module.exports = {
       textColor: ["active"],
       translate: ["active", "group-hover"],
       display: ["hover", "group-hover",],
+      scale: ["group-hover"]
     },
   },
   plugins: [

@@ -6,9 +6,8 @@ import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from 'framer-motion';
 
-const Recom = ({recom}) => {
-  const isHome = recom.mediaRecommendation ? false : true;
-    const recMedia = (isHome ? recom.media : recom.mediaRecommendation);
+const Recom = ({recom , widthParam}) => {
+    const recMedia = (recom.node ?  recom.node.mediaRecommendation : recom.media);
 
 
     const history = useHistory();
@@ -36,7 +35,7 @@ const Recom = ({recom}) => {
         draggable={true}
         href={`/anime/${recMedia.id}`}
         onClick={animeCardClickHandler}
-         className={`recom-card  ${isHome ? "w-full ssm:w-8/12 sm:w-11/12 my-3" :"w-60 mx-3"}  flex flex-col bg-purple-50 overflow-hidden rounded shadow-xl cursor-pointer
+         className={`recom-card  ${widthParam ? "w-full ssm:w-8/12 sm:w-11/12 my-3" :"w-60 mx-3"}  flex flex-col bg-purple-50 overflow-hidden rounded shadow-xl cursor-pointer
         transform  hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 relative`}>
         <div className="flex flex-row">
         <img className="h-56 w-40 object-fill rounded" src={recMedia.coverImage.large} />

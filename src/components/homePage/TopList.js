@@ -31,7 +31,6 @@ const TopList = ({ allAnimeData, initialQuantity, keyParam }) => {
       }
     }
   })
-  console.log(allAnimeData);
 
   return (
     <motion.div className="pb-10">

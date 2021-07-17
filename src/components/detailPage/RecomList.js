@@ -3,7 +3,7 @@ import Recom from "./Recom";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const RecomList = ({ allRecom, initialQuantity }) => {
+const RecomList = ({ allRecom, initialQuantity, keyParam }) => {
   const isSmallDevice = document.documentElement.clientWidth <= 768;
   const magicNum1 = 250;
   const magicNum2 = isSmallDevice ? 264 : 264 * 2;
@@ -86,10 +86,10 @@ const RecomList = ({ allRecom, initialQuantity }) => {
           ? showMore.recommend < allRecom.length + 1
           : showMore.recommend < allRecom.length + 3
       ) {
-        const newRecommend = isSmallDevice
-          ? showMore.recommend + 1
-          : showMore.recommend + 3;
-        setShowMore({ recommend: newRecommend });
+        // const newRecommend = isSmallDevice
+        //   ? showMore.recommend + 1
+        //   : showMore.recommend + 3;
+        setShowMore({ recommend: allRecom.length });
       }
     }
     if ((Math.round(recLeft) - magicNum1) % magicNum2 !== 0 && recLeft !== 0) {
@@ -116,19 +116,16 @@ const RecomList = ({ allRecom, initialQuantity }) => {
     recSlider.addEventListener("mouseleave", () => {
       isDown = false;
       wastefulCover.current.style.display="none";
+
     });
     recSlider.addEventListener("mouseup", () => {
       isDown = false;
-      let recLeft = rightLeftScroll.current.scrollLeft;
-      let recWidth = rightLeftScroll.current.scrollWidth;
-      if (recLeft / recWidth < 0.5) {
-        if (showMore.recommend < allRecom.length + 3) {
-          const newRecommend = showMore.recommend + 3;
-          setShowMore({ recommend: newRecommend });
-        }
-      }
-      wastefulCover.current.style.display="none";
 
+          
+      
+      wastefulCover.current.style.display="none";
+      
+      setShowMore({ recommend: allRecom.length });
     });
     recSlider.addEventListener("mousemove", (e) => {
       if (!isDown) return;
@@ -137,10 +134,11 @@ const RecomList = ({ allRecom, initialQuantity }) => {
       const walk = (x - startx)*1.5;
       recSlider.scrollLeft = scrollLeft - walk;
       wastefulCover.current.style.display="block";
+      
 
     });
   }, [rightLeftScroll.current]);
-
+  
 
   return (
     
@@ -153,10 +151,11 @@ const RecomList = ({ allRecom, initialQuantity }) => {
           <div className="flex flex-row mx-5 md:mx-10 relative">
             {allRecom.map((recom, index) => {
               if (index <= showMore.recommend - 1) {
-                return <Recom key={"rec" + recom.node.id} recom={recom.node} />;
+                const id = (recom.node ? recom.node.mediaRecommendation.id : recom.media.id);
+                return <Recom key={keyParam + id + index} recom={recom} />;
               }
             })}
-            <div ref={wastefulCover} className="wasteful-cover absolute top-0 left-0 h-full w-full opacity-0 hidden"></div>
+            <div ref={wastefulCover} className="wasteful-cover absolute top-0 left-0 h-full w-full opacity-0 hidden cursor-pointer"></div>
 
           </div>
         </div>
