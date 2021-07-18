@@ -32,13 +32,13 @@ const Anime = ({ anime }) => {
       href={`/anime/${anime.id}`}
       onClick={animeCardClickHandler}
       className="anime-card-container group shadow-xl hover-card-num-1"
-      animate={{ opacity: 1, transition: { duration: 2 } }}
+      animate={{ opacity: 1, transition: { duration: 1 } }}
       initial={{ opacity: 0 }}
     >
       {anime.averageScore !== undefined && (
         <div
           className="absolute top-0 right-0 transform translate-x-4 -translate-y-4 
-    group-hover:translate-y-0.5 group-hover:-translate-x-0.5 transition-all duration-500"
+    group-hover:translate-y-0.5 group-hover:-translate-x-0.5 transition-transform duration-500"
         >
           <CircleRate rate={anime.averageScore} size={4} />
         </div>

@@ -78,7 +78,10 @@ module.exports = {
     },
     animation: {
       none: "none",
-      spin: "spin 1s linear infinite",
+      spininf: "spin 1s linear infinite",
+      spin: "spin 1s linear",
+      cycler: "cycler 0.5s",
+      reversecycler: "reversecycler 0.5s",
       ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
       pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       bounce: "bounce 1s infinite",
@@ -497,6 +500,17 @@ module.exports = {
         "50%": {
           transform: "none",
           animationTimingFunction: "cubic-bezier(0,0,0.2,1)",
+        },
+      },
+      cycler: {
+        to: {
+          transform: "rotate(1080deg)",
+        },
+      },
+      reversecycler: {
+
+        to: {
+          transform: "rotate(-1080deg)",
         },
       },
     },
@@ -1059,7 +1073,8 @@ module.exports = {
       textColor: ["active"],
       translate: ["active", "group-hover"],
       display: ["hover", "group-hover",],
-      scale: ["group-hover"]
+      scale: ["group-hover"],
+      animation: ["group-hover", "hover"],
     },
   },
   plugins: [

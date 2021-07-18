@@ -18,7 +18,7 @@
   }
 
   .hover-card-num-1 {
-    @apply transform  hover:-translate-y-1 hover:shadow-2xl transition-all duration-300;
+    @apply transform  hover:-translate-y-1 hover:shadow-2xl transition-transform duration-500;
   }
 
   .anime-list-container {
@@ -302,7 +302,7 @@ height: 100vh;
 }
 
 
-@keyframes example {
+@keyframes top100ani {
   from {transform: translateY(3%);
   opacity: 0.3;}
   to {transform: translateY(0%);
@@ -310,6 +310,6 @@ height: 100vh;
 }
 
 .anni {
-  animation-name: example;
+  animation-name: top100ani;
   animation-duration: 0.7s;
 }

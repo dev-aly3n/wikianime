@@ -34,11 +34,15 @@ const AirSlide = ({ airing }) => {
       <img className="h-full w-full object-cover transform group-hover:scale-110 transition-all duration-3000" src={airing.bannerImage} />
       <div className="w-full h-full absolute top-0 left-0 bg-opacity-60 animate-none group-hover:bg-opacity-80 transition-all duration-3000 bg-black flex justify-center md:justify-start items-center ">
       <div className="flex flex-col md:ml-16 lg:ml-56 w-40 transform group-hover:scale-95 transition-all duration-3000">
+      <a onClick={animeCardClickHandler} href={`/anime/${airing.id}`}>
       <img
-      onClick={animeCardClickHandler} className="h-56 w-40 cursor-pointer" src={airing.coverImage.large} />
+       className="h-56 w-40 cursor-pointer" src={airing.coverImage.large} />
+      </a>
       </div>
       <div className=" h-56 w-56 ml-2 flex flex-col justify-between items-start  text-white">
+      <a href={`/anime/${airing.id}`} onClick={animeCardClickHandler}>
       <h3 onClick={animeCardClickHandler} className=" line-clamp-1 cursor-pointer font-extrabold hover:text-blue-500 transition-all">{airing.title.english ? airing.title.english : airing.title.romaji}</h3>
+      </a>
       {airing.format && <p><b>Format:</b><br/> {airing.format.toLowerCase()}</p> }
       {airing.source && <p><b>Source:</b><br/> {airing.source.toLowerCase()}</p>}
       {airing.genres && <p><b>Genres:</b><br/> {airing.genres.map((genre,index)=>{

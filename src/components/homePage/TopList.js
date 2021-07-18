@@ -41,7 +41,7 @@ const TopList = ({ allAnimeData, initialQuantity, keyParam }) => {
             const animeData = anime.id !== undefined ? anime : anime.node;
             if (index <= showMore.stream - 1) {
               return (
-                <Top key={`${keyParam}-${animeData.id}`} anime={animeData} rank={index+1} />
+                <Top key={`${keyParam}-${animeData.id}`}  anime={animeData} rank={index+1} />
               );
             }
           })}
