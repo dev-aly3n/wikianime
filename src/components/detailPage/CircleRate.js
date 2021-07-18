@@ -41,7 +41,7 @@ const CircleRate = ({ rate, symbol, size }) => {
         style={{ backgroundImage: grad , width: `${size}rem` , height: `${size}rem` , borderRadius: "50%" }}
         className={` relative flex justify-center items-center m-0 ${bg}  group hover:animate-reversecycler group-hover:animate-reversecycler`}
       >
-        <div className=" bg-white flex flex-col justify-center items-center text-xl font-semibold  group-hover:animate-cycler"
+        <div className="select-none bg-white flex flex-col justify-center items-center text-xl font-semibold  group-hover:animate-cycler"
         style={{ width: `${size-1}rem` , height: `${size-1}rem` , borderRadius: "50%" }}
         >
           {symbol ? (

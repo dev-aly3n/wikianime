@@ -43,8 +43,21 @@ const [slideNum, setSlideNum] = useState(0);
         }, 200);
   }
   
+
+  useEffect(() => {
+let autoSlidePlay = setTimeout(() => {
+  if(slideNum===7){
+    setSlideNum(0);
+  } else {
+      setSlideNum(slideNum + 1);
+  }
+}, 4000);
+    return () => {
+      clearTimeout(autoSlidePlay);
+    }
+  }, [slideNum])
   return (
-      <div className="flex flex-col justify-start items-center relative bg-gray-700">
+      <div className="flex flex-col justify-start items-center relative bg-indigo-900">
           {trimedallAiring.map((airing, index) => {
             if(index === slideNum) {
               return (

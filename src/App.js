@@ -1,6 +1,7 @@
 import React from "react";
 import Home from "./pages/Home";
 import AnimeDetail from './pages/AnimeDetail';
+import Header from "./pages/Header";
 
 import { Switch, Route } from "react-router-dom";
 
@@ -8,6 +9,8 @@ function App() {
   //// jsx
   return (
     <div className="app">
+    <Header />
+    <main>
       <Switch>
         <Route path="/" exact>
           <Home />
@@ -16,6 +19,7 @@ function App() {
           <AnimeDetail />
         </Route>
       </Switch>
+      </main>
     </div>
   );
 }

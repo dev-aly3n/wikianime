@@ -68,7 +68,7 @@ const Review = ({ review }) => {
               
               <p
                 style={{ fontSize: "7px" }}
-                className="font-semibold text-center absolute -mt-7 text-white"
+                className="select-none font-semibold text-center absolute -mt-7 text-white"
               >
                 this review
               </p>

@@ -1,0 +1,118 @@
+import React, { useRef, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+
+const Header = ({ appRef }) => {
+  const navRef = useRef(null);
+  const burgerRef = useRef(null);
+  const navLinksRef = useRef(null);
+  const homeLinkRef = useRef(null);
+  const animeLinkRef = useRef(null);
+
+  // modern Navigation bar code start here
+
+  useEffect(() => {
+    const navSlide = () => {
+      const burger = burgerRef.current;
+      const nav = navLinksRef.current;
+      const navLinks = [homeLinkRef.current, animeLinkRef.current];
+
+      //toggle nav
+      burger.addEventListener("click", () => {
+        nav.classList.toggle("nav-active");
+
+        //animate links
+        navLinks.forEach((link, index) => {
+          if (link.style.animation) {
+            link.style.animation = "";
+          } else {
+            link.style.animation = `navLinkFade 0.5s ease forwards ${
+              index / 7 + 0.6
+            }s`;
+          }
+        });
+
+        //burger animation
+        burger.classList.toggle("toggle");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (e.target.matches(".navigation")) return;
+        nav.classList.remove("nav-active");
+        burger.classList.remove("toggle");
+        navLinks.forEach((link) => {
+          link.style.animation = "";
+        });
+      });
+    };
+    navSlide();
+    // modern Navigation bar code stop here
+
+    setTimeout(() => {
+      let prevScrollpos = Number(
+        navRef.current.parentElement.children[1].children[0].offsetParent.scrollTop.toFixed(
+          2
+        )
+      );
+      window.addEventListener("wheel", () => {
+        let currentScrollPos = Number(
+          navRef.current.parentElement.children[1].children[0].offsetParent.scrollTop.toFixed(
+            2
+          )
+        );
+        if (prevScrollpos > currentScrollPos && currentScrollPos > 300) {
+          navRef.current.style.top = "0";
+          navRef.current.style.backgroundColor = "rgba(49,46,129,1)";
+        } else if (currentScrollPos < 300 || currentScrollPos === 0) {
+          navRef.current.style.top = "0";
+          navRef.current.style.backgroundColor = "rgba(49,46,129,0.7)";
+        } else {
+          navRef.current.style.top = "-8vh";
+        }
+        prevScrollpos = currentScrollPos;
+      });
+    }, 2000);
+  }, []);
+
+  return (
+    <nav
+      ref={navRef}
+      id="navigation"
+      className="navigation bg-indigo-900 fixed top-0 w-full z-30 transition-all duration-700"
+    >
+      <div className="logo flex justify-around items-center group">
+        <h1 className="text-white text-5xl font-bold select-none animate-textShadowPopTl group-hover:animate-none">
+          WA
+        </h1>
+        <span className="self-end text-purple-50 font-bold animate-textShadowPopTl group-hover:animate-none -mb-px ml-px">
+          Wiki Anime
+        </span>
+      </div>
+      <ul ref={navLinksRef} className="nav-links navigation">
+        <li ref={homeLinkRef}>
+          <NavLink
+            activeStyle={{ backgroundColor: "#EEF2FF", color: "#312E81" }}
+            to="/"
+            exact={true}
+          >
+            Home
+          </NavLink>
+        </li>
+        <li ref={animeLinkRef}>
+          <NavLink
+            activeStyle={{ backgroundColor: "#EEF2FF", color: "#312E81" }}
+            to="/anime/16498"
+          >
+            Anime
+          </NavLink>
+        </li>
+      </ul>
+      <div ref={burgerRef} className="navigation burger cursor-pointer">
+        <div className="navigation line1"></div>
+        <div className="navigation line2"></div>
+        <div className="navigation line3"></div>
+      </div>
+    </nav>
+  );
+};
+
+export default Header;
