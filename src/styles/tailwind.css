@@ -367,6 +367,8 @@
   .tag-names {
     @apply bg-purple-100 p-1 rounded-2xl m-1 shadow-inner  text-xs;
   }
+
+
 }
 
 .video-responsive {

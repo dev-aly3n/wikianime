@@ -1,9 +1,9 @@
 
 const Footer = () => {
   return (
-    <div className="h-80 bg-indigo-900 text-indigo-50 w-full">
-      <div className="h-full flex justify-evenly items-center">
-        <div className="w-1/4 text-base">
+    <div className=" pt-14 bg-indigo-900 text-indigo-50 w-full">
+      <div className="h-full flex flex-col md:flex-row justify-center md:justify-evenly items-center pb-10">
+        <div className="w-10/12 ssm:w-1/2 md:w-1/4 text-base my-5">
           <p>
             This Single Page Application built by the power of React, graphQL
             and Tailwind css and ect... <br />
@@ -11,10 +11,11 @@ const Footer = () => {
             time beside working on my application <br />
             anyway thank you to visiting my app and a big thanks to anilist
             graphQL server <br />
+            <p className="text-red-400">if you think there is something wrong, then please open the application with chrome browser.</p>
           </p>
         </div>
 
-        <div className="logo flex justify-around items-center group">
+        <div className=" flex justify-around items-center group my-5">
         <h1 className="text-white text-7xl font-bold select-none animate-textShadowPopTl group-hover:animate-none">
           WA
         </h1>
@@ -23,7 +24,7 @@ const Footer = () => {
         </span>
       </div>
 
-        <div className="flex flex-col justify-between w-1/4">
+        <div className="flex flex-col justify-between items-center w-10/12 ssm:w-1/2 md:w-1/4 my-5">
           <h4 className="text-2xl font-bold"> Links</h4>
           <ul>
             <li className=" flex hover:text-yellow-500 my-1">

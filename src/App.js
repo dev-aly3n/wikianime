@@ -15,7 +15,7 @@ function App() {
     <ScrollToTop />
     <main >
       <Switch>
-        <Route path="/" exact>
+        <Route path={["/", "/wikianime"]} exact>
           <Home />
         </Route>
         <Route path={["/anime/:animeID","/anime/:animeID/character/:charID/actor/:actorID"]}>
