@@ -86,7 +86,7 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
 
   return (
     <div
-      className="character-page-shadow flex justify-center overflow-y-scroll"
+      className="character-page-shadow flex justify-center overflow-y-scroll z-40"
       onClick={modalCloseHandler}
     >
       <div className="character-page-container z-50 absolute rounded-md flex flex-col md:flex-row w-full

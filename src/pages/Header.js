@@ -89,7 +89,7 @@ const Header = ({ appRef }) => {
     <nav
       ref={navRef}
       id="navigation"
-      className="navigation bg-indigo-900 fixed top-0 w-full z-30 transition-all duration-700"
+      className="navigation bg-indigo-900 fixed top-0 w-full z-30 transition-all duration-700 bg-opacity-70"
     >
       <div className="logo flex justify-around items-center group">
         <h1 className="text-white text-5xl font-bold select-none animate-textShadowPopTl group-hover:animate-none">
