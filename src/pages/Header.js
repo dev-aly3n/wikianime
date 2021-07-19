@@ -47,17 +47,12 @@ const Header = ({ appRef }) => {
     navSlide();
     // modern Navigation bar code stop here
 
-    setTimeout(() => {
       let prevScrollpos = Number(
-        navRef.current.parentElement.children[1].children[0].offsetParent.scrollTop.toFixed(
-          2
-        )
+        navRef.current.parentElement.parentElement.scrollTop.toFixed(2)
       );
       window.addEventListener("wheel", () => {
         let currentScrollPos = Number(
-          navRef.current.parentElement.children[1].children[0].offsetParent.scrollTop.toFixed(
-            2
-          )
+          navRef.current.parentElement.parentElement.scrollTop.toFixed(2)
         );
         if (prevScrollpos > currentScrollPos && currentScrollPos > 300) {
           navRef.current.style.top = "0";
@@ -70,8 +65,25 @@ const Header = ({ appRef }) => {
         }
         prevScrollpos = currentScrollPos;
       });
-    }, 2000);
+
+      window.addEventListener("touchmove", () => {
+        let currentScrollPos = Number(
+          navRef.current.parentElement.parentElement.scrollTop.toFixed(2)
+        );
+        if (prevScrollpos > currentScrollPos && currentScrollPos > 300) {
+          navRef.current.style.top = "0";
+          navRef.current.style.backgroundColor = "rgba(49,46,129,1)";
+        } else if (currentScrollPos < 300 || currentScrollPos === 0) {
+          navRef.current.style.top = "0";
+          navRef.current.style.backgroundColor = "rgba(49,46,129,0.7)";
+        } else {
+          navRef.current.style.top = "-8vh";
+        }
+        prevScrollpos = currentScrollPos;
+
+      })
   }, []);
+
 
   return (
     <nav

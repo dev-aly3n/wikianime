@@ -8,8 +8,7 @@ import TopList from '../components/homePage/TopList';
 import RecomList from '../components/detailPage/RecomList'
 import AiringSlider from "../components/homePage/AiringSlider";
 
-const Home = () => {
-  const gridRef = useRef(null);
+const Home = ({gridRef}) => {
 
 
   const hQuery = homeQuery;
