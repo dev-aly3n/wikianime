@@ -7,6 +7,7 @@ import HomeRec from '../components/homePage/HomeRec';
 import TopList from '../components/homePage/TopList';
 import RecomList from '../components/detailPage/RecomList'
 import AiringSlider from "../components/homePage/AiringSlider";
+import Footer from "./Footer";
 
 const Home = ({gridRef}) => {
 
@@ -34,7 +35,7 @@ const Home = ({gridRef}) => {
 
   return (
     <React.Fragment>
-      <div ref={gridRef} onWheel={ioio} className="home-grid-container" >
+      <div ref={gridRef} onWheel={ioio} className=" home-grid-container" >
       <div className="h-header">
 
       {airing[0] && 
@@ -92,7 +93,9 @@ const Home = ({gridRef}) => {
           keyParam={"top100"}
         />
         </div>
-
+        <div className="h-footer">
+      <Footer />
+      </div>
       </div>
     </React.Fragment>
   );

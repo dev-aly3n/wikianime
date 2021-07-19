@@ -17,6 +17,7 @@ import CharacterList from "../components/detailPage/CharacterList";
 import CharacterDetail from "./CharacterDetail";
 import ReviewList from "../components/detailPage/ReviewList";
 import RecomList from "../components/detailPage/RecomList";
+import Footer from "./Footer";
 
 const AnimeDetail = () => {
   document.body.style.overflow = "auto";
@@ -340,6 +341,9 @@ const AnimeDetail = () => {
             />
           </div>
         )}
+        <div className="d-footer">
+        <Footer />
+        </div>
       </div>
     </React.Fragment>
   );

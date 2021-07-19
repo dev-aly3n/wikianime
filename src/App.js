@@ -4,6 +4,7 @@ import AnimeDetail from './pages/AnimeDetail';
 import Header from "./pages/Header";
 import { Switch, Route } from "react-router-dom";
 import ScrollToTop from "./pages/ScrollToTop";
+import Footer from "./pages/Footer";
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
     <div className="app">
     <Header />
     <ScrollToTop />
-    <main>
+    <main >
       <Switch>
         <Route path="/" exact>
           <Home />

@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 const Recom = ({recom , widthParam}) => {
     const recMedia = (recom.node ?  recom.node.mediaRecommendation : recom.media);
 
+    const rating = (recom.node ?  recom.node.rating : recom.rating);
 
     const history = useHistory();
   const selectAnimeQuery = detailQuery;
@@ -50,12 +51,11 @@ const Recom = ({recom , widthParam}) => {
         <b>Description:</b> <Markup content={recMedia.description} />
         </div> }
         <div className="absolute top-0 left-0">
-            { recom.rating !==undefined &&
-            
-                (recom.rating <= 0 ?  
-                <div className="bg-red-500 text-white text-base px-1 rounded-br-md">{recom.rating}  <FontAwesomeIcon icon={faThumbsDown} /></div>
+            { rating !==undefined &&
+                (rating <= 0 ?  
+                <div className="bg-red-500 text-white text-base px-1 rounded-br-md">{rating}  <FontAwesomeIcon icon={faThumbsDown} /></div>
                 :
-                <div className="bg-green-500 text-white text-base px-1 rounded-br-md">+{recom.rating} <FontAwesomeIcon icon={faThumbsUp} /></div>
+                <div className="bg-green-500 text-white text-base px-1 rounded-br-md">+{rating} <FontAwesomeIcon icon={faThumbsUp} /></div>
                 )
             }
         </div>
