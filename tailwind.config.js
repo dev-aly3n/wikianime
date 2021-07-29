@@ -766,6 +766,7 @@ module.exports = {
       "top-left": "top left",
     },
     transitionDelay: {
+      5: "-500ms",
       75: "75ms",
       100: "100ms",
       150: "150ms",

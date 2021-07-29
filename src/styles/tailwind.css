@@ -53,7 +53,7 @@
     }
 
     .nav-links li {
-      @apply hover:bg-gray-300  text-center w-full h-20;
+      @apply hover:bg-gray-300  text-center w-full h-20 ;
     }
     .nav-links li a {
       @apply hover:bg-indigo-100  text-center w-full pt-6;
@@ -79,6 +79,18 @@
 
   .toggle .line3 {
     transform: rotate(45deg) translate(-5px, -6px);
+  }
+
+  @keyframes navLinkFade {
+    from {
+      opacity: 0;
+      transform: translateX(200px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
   }
 
   /* this is the end of  the navbar css */
@@ -144,7 +156,7 @@
     display: none;
   }
 
-  /* .all-grid-container {
+  .all-grid-container {
     display: grid;
     grid-template-areas:
       "nav"
@@ -159,40 +171,36 @@
   }
   .all-footer {
     grid-area: footer;
-  } */
+  }
 
   /*  Page: AnimeDetail */
 
   .home-grid-container {
-    height: 100vh;
     display: grid;
     grid-template-columns: 0.7fr 2fr 2fr 1.5fr 0.7fr;
-    grid-template-rows: 1fr min-content auto max-content 1fr auto;
+    grid-template-rows: auto min-content auto max-content auto;
     grid-template-areas:
       "header header header header header"
       ".....  trending  trending  sidebar ....."
       ".....  alltime  alltime  sidebar ....."
       ".....  .....  .....  sidebar ....."
-      "..... top100  top100 top100 ..... "
-      "footer footer  footer footer footer ";
-    @apply gap-x-2 gap-y-7 md:gap-5;
+      "..... top100  top100 top100 ..... ";
+    @apply gap-x-2 gap-y-7 md:gap-5 h-full;
   }
 
   .detail-grid-container {
-    height: 100vh;
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1.4fr 1fr;
-    grid-template-rows: 1fr min-content auto auto max-content 1fr;
+    grid-template-rows: auto min-content auto auto max-content;
     grid-template-areas:
       "header header header header header"
       ".....  main  main  sidebar ....."
       ".....  relate relate sidebar ....."
       ".....  watch  watch  sidebar ....."
       ".....  .....  .....  sidebar ....."
-      "..... recom  recom recom ..... "
-      "footer footer  footer footer footer ";
+      "..... recom  recom recom ..... ";
 
-    @apply gap-x-2 gap-y-7 md:gap-5;
+    @apply gap-x-2 gap-y-7 md:gap-5 h-full;
   }
 
   @media screen and (max-width: 1024px) {
@@ -203,8 +211,7 @@
         ".....  trending  trending  sidebar ....."
         ".....  alltime  alltime  sidebar ....."
         ".....  .....  .....  sidebar ....."
-        "..... top100   top100   top100     ..... "
-        "footer footer  footer footer footer ";
+        "..... top100   top100   top100     ..... ";
     }
 
     .detail-grid-container {
@@ -215,9 +222,7 @@
         ".....  relate relate sidebar ....."
         ".....  watch  watch  sidebar ....."
         ".....  .....  .....  sidebar ....."
-        "..... recom   recom   recom     ..... "
-        "footer footer  footer footer footer ";
-
+        "..... recom   recom   recom     ..... ";
     }
   }
 
@@ -229,8 +234,7 @@
         "..... sidebar    ....."
         "..... trending ....."
         "..... alltime   ....."
-        "top100 top100 top100"
-        "footer footer footer ";
+        "top100 top100 top100";
 
     }
     .detail-grid-container {
@@ -241,8 +245,7 @@
         "..... sidebar ....."
         "..... relate  ....."
         "..... watch   ....."
-        "recom recom recom"
-        "footer footer footer ";
+        "recom recom recom";
 
     }
   }
@@ -273,9 +276,6 @@
     font-size: 10px;
     grid-area: recom;
   }
-  .d-footer {
-    grid-area: footer;
-  }
 
   .h-header {
     grid-area: header;
@@ -296,9 +296,6 @@
   .h-top100 {
     grid-area: top100;
     @apply text-gray-700 p-3 md:p-10;
-  }
-  .h-footer {
-    grid-area: footer;
   }
 
   .d-header {

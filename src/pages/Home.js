@@ -7,7 +7,6 @@ import HomeRec from '../components/homePage/HomeRec';
 import TopList from '../components/homePage/TopList';
 import RecomList from '../components/detailPage/RecomList'
 import AiringSlider from "../components/homePage/AiringSlider";
-import Footer from "./Footer";
 
 const Home = ({gridRef}) => {
 
@@ -93,9 +92,7 @@ const Home = ({gridRef}) => {
           keyParam={"top100"}
         />
         </div>
-        <div className="h-footer">
-      <Footer />
-      </div>
+
       </div>
     </React.Fragment>
   );
