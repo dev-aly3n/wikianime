@@ -4,8 +4,13 @@ import { motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
 import { detailQuery } from "../chooks/queries";
 import CircleRate from "./detailPage/CircleRate";
+import { useApolloClient } from '@apollo/client';
+import {gql} from "@apollo/client";
+import ProgressBar from "../pages/ProgressBar";
+
 
 const Anime = ({ anime }) => {
+  const client = useApolloClient();
   const history = useHistory();
   const selectAnimeQuery = detailQuery;
 
@@ -18,13 +23,41 @@ const Anime = ({ anime }) => {
     //using set time out just BCS React is being bitch about to pushing to another page during getting the data
     //the error was :  Cannot update during an existing state transition (such as within `render`). Render methods should be a pure function of props and state.
     setTimeout(() => {
+
+ 
+      console.log("2222");
+
+
       history.push(`/anime/${anime.id}`);
     }, 1);
   }
 
   const animeCardClickHandler = (e) => {
+    
+    client.writeQuery({
+      query: gql`
+      query WriteIsLoading {
+        loadingbar {
+          isLoading
+        }
+      }`,
+      data: { // Contains the data to write
+        loadingbar: {
+          __typename: 'LoadingBar',
+          isLoading: 30
+        },
+      }
+    });
+    
+    console.log("1111");
+    
     e.preventDefault();
+    
+
     getAnime({ variables: { id: anime.id } });
+
+
+ 
   };
 
   return (
@@ -43,7 +76,6 @@ const Anime = ({ anime }) => {
           <CircleRate rate={anime.averageScore} size={4} />
         </div>
       )}
-
 
       <img src={anime.coverImage.large}></img>
       <div

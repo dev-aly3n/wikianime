@@ -13,8 +13,7 @@ import {BrowserRouter} from 'react-router-dom'
 
 const client = new ApolloClient({
   uri: 'https://graphql.anilist.co',
-  cache: new InMemoryCache()
-});
+  cache: new InMemoryCache()});
 
 
 

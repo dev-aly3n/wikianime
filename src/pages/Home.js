@@ -7,6 +7,7 @@ import HomeRec from '../components/homePage/HomeRec';
 import TopList from '../components/homePage/TopList';
 import RecomList from '../components/detailPage/RecomList'
 import AiringSlider from "../components/homePage/AiringSlider";
+import Loading from "./Loading";
 
 const Home = ({gridRef}) => {
 
@@ -16,8 +17,7 @@ const Home = ({gridRef}) => {
 
   if (loading) {
     console.log("loading");
-    return null;
-  }
+    return <Loading />  }
 
   if (error) {
     console.log(error.message);

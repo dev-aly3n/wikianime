@@ -170,7 +170,7 @@ export const detailQuery = gql`
 `;
 
 export const homeQuery = gql`
-  {
+query HoMeAnImE{
     top100: Page(perPage: 50, page: 1) {
       media(sort: SCORE_DESC) {
         id

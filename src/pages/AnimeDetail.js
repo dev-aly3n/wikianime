@@ -17,8 +17,29 @@ import CharacterList from "../components/detailPage/CharacterList";
 import CharacterDetail from "./CharacterDetail";
 import ReviewList from "../components/detailPage/ReviewList";
 import RecomList from "../components/detailPage/RecomList";
+import {useApolloClient, gql} from '@apollo/client'
+import Loading from "./Loading";
 
 const AnimeDetail = () => {
+  const client = useApolloClient();
+  client.writeQuery({
+    query: gql`
+    query WriteIsLoading {
+      loadingbar {
+        isLoading
+      }
+    }`,
+    data: { // Contains the data to write
+      loadingbar: {
+        __typename: 'LoadingBar',
+        isLoading: 80
+      },
+    }
+  });
+
+
+
+
   document.body.style.overflow = "auto";
 
   const params = useParams();
@@ -35,14 +56,16 @@ const AnimeDetail = () => {
   });
 
   if (loading) {
-    console.log("loading");
-    return null;
+    return <Loading />
   }
 
   if (error) {
     console.log(error.message);
     return `Error! ${error}`;
   }
+
+
+
   const aData = data.Media;
   const title = aData.title.english ? aData.title.english : aData.title.romaji;
   const description = aData.description;
