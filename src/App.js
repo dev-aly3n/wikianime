@@ -8,9 +8,10 @@ import Footer from "./pages/Footer";
 import ProgressBar from "./pages/ProgressBar";
 import { useApolloClient } from '@apollo/client';
 import {gql} from "@apollo/client";
+import {useLocation} from "react-router-dom";
 
 function App() {
-
+const location = useLocation();
 
   const client = useApolloClient();
   client.writeQuery({
@@ -34,7 +35,7 @@ function App() {
     <div className="app all-grid-container">
     <ProgressBar />
       <header className="all-nav">
-        <Header />
+        <Header location={location} />
       </header>
       <ScrollToTop />
       <main className="all-main">

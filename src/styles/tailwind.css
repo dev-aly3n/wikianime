@@ -134,6 +134,91 @@
   
   /* loading page */
 
+  /* progress bar */
+
+  .first-load-animate {
+    animation-name: first-load;
+  animation-duration: 0.7s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  }
+  .last-load-animate {
+    animation-name: last-load;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  }
+  .last-load-animate-for-parent {
+    animation-name: last-load-for-parent;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  }
+  .last-load-animate-for-parent {
+    animation-name: first-load-for-parent;
+  animation-duration: 0.7s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  }
+
+
+  @keyframes first-load {
+    0% {
+      opacity:1;
+      left: 0%;
+    }
+    100% {
+      opacity:1;
+      left: 30%;
+    }
+  }
+  @keyframes first-load-for-parent {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  @keyframes last-load {
+    0% {
+      opacity:1;
+      left: 30%;
+    }
+    40% {
+      left: 60%;
+    }
+    60% {
+      left: 80%;
+    }
+    80% {
+      left: 100%;
+      opacity:1;
+    }
+    90% {
+      opacity:0;
+      left: 100%;
+    }
+    100% {
+      opacity:0;
+      left: 0%;
+    }
+  }
+  @keyframes last-load-for-parent {
+    0% {
+      opacity:1;
+    }
+    80% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+
+
+  /* progress bar */
+
 
   /* component: animeList */
   html {

@@ -8,8 +8,25 @@ import TopList from '../components/homePage/TopList';
 import RecomList from '../components/detailPage/RecomList'
 import AiringSlider from "../components/homePage/AiringSlider";
 import Loading from "./Loading";
+import {useApolloClient, gql} from '@apollo/client'
+
 
 const Home = ({gridRef}) => {
+  const client = useApolloClient();
+  client.writeQuery({
+    query: gql`
+    query WriteIsLoading {
+      loadingbar {
+        isLoading
+      }
+    }`,
+    data: { // Contains the data to write
+      loadingbar: {
+        __typename: 'LoadingBar',
+        isLoading: 80
+      },
+    }
+  });
 
 
   const hQuery = homeQuery;

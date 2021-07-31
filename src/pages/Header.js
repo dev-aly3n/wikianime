@@ -1,7 +1,10 @@
 import React, { useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useApolloClient } from "@apollo/client";
+import { gql } from "@apollo/client";
 
-const Header = () => {
+const Header = ({ location }) => {
+  const client = useApolloClient();
   const navRef = useRef(null);
   const burgerRef = useRef(null);
   const navLinksRef = useRef(null);
@@ -11,11 +14,11 @@ const Header = () => {
   // modern Navigation bar code start here
 
   useEffect(() => {
-    const navSlide = () => {
-      const burger = burgerRef.current;
-      const nav = navLinksRef.current;
-      const navLinks = [homeLinkRef.current, animeLinkRef.current];
+    const burger = burgerRef.current;
+    const nav = navLinksRef.current;
+    const navLinks = [homeLinkRef.current, animeLinkRef.current];
 
+    const navSlide = () => {
       //toggle nav
       burger.addEventListener("click", () => {
         nav.classList.toggle("nav-active");
@@ -86,7 +89,45 @@ const Header = () => {
       }
       prevScrollpos = currentScrollPos;
     });
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", LinkClickHandler);
+    });
   }, []);
+
+  const LinkClickHandler = () => {
+    client.writeQuery({
+      query: gql`
+        query WriteIsLoading {
+          loadingbar {
+            isLoading
+          }
+        }
+      `,
+      data: {
+        // Contains the data to write
+        loadingbar: {
+          __typename: "LoadingBar",
+          isLoading: 30,
+        },
+      },
+    });
+  };
+
+  const headerLinks = [
+    {
+      to: "/",
+      text: "Home",
+      activeStyle: { backgroundColor: "#EEF2FF", color: "#312E81" },
+      ref: homeLinkRef,
+    },
+    {
+      to: "/anime/16498",
+      text: "Anime",
+      activeStyle: { backgroundColor: "#EEF2FF", color: "#312E81" },
+      ref: animeLinkRef,
+    },
+  ];
 
   return (
     <nav
@@ -103,23 +144,15 @@ const Header = () => {
         </span>
       </div>
       <ul ref={navLinksRef} className="nav-links navigation">
-        <li ref={homeLinkRef}>
-          <NavLink
-            activeStyle={{ backgroundColor: "#EEF2FF", color: "#312E81" }}
-            to="/"
-            exact={true}
-          >
-            Home
-          </NavLink>
-        </li>
-        <li ref={animeLinkRef}>
-          <NavLink
-            activeStyle={{ backgroundColor: "#EEF2FF", color: "#312E81" }}
-            to="/anime/16498"
-          >
-            Anime
-          </NavLink>
-        </li>
+        {headerLinks.map((link) => {
+          return (
+            <li ref={link.ref}>
+              <NavLink activeStyle={link.activeStyle} to={link.to} exact={true}>
+                {link.text}
+              </NavLink>
+            </li>
+          );
+        })}
       </ul>
       <div ref={burgerRef} className="navigation burger cursor-pointer">
         <div className="navigation line1"></div>
