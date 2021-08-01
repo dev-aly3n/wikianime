@@ -208,6 +208,8 @@ module.exports = {
       text: "text",
       move: "move",
       help: "help",
+      grab: "grab",
+      grabbing: "grabbing",
       "not-allowed": "not-allowed",
     },
     divideColor: (theme) => theme("borderColor"),
@@ -519,12 +521,12 @@ module.exports = {
       },
        textShadowPopTr: {
         "0%": {
-          textShadow:" 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555",
+          textShadow:" 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555",
           transform: "translateX(0) translateY(0)"
         },
         "100%": {
-          textShadow: "1px -1px #555555, 2px -2px #555555, 3px -3px #555555, 4px -4px #555555, 5px -5px #555555, 6px -6px #555555, 7px -7px #555555, 8px -8px #555555",
-          transform: "translateX(-8px) translateY(8px)"
+          textShadow: "1px -1px #555555, 2px -2px #555555, 3px -3px #555555, 4px -4px #555555",
+          transform: "translateX(-4px) translateY(4px)"
         }
       },
        textShadowPopTl: {
@@ -1098,8 +1100,9 @@ module.exports = {
       textColor: ["active"],
       translate: ["active", "group-hover"],
       display: ["hover", "group-hover",],
-      scale: ["group-hover"],
+      scale: ["group-hover","active"],
       animation: ["group-hover", "hover"],
+      cursor: ["active"],
     },
   },
   plugins: [

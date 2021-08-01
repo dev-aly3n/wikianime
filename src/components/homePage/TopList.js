@@ -50,7 +50,7 @@ const TopList = ({ allAnimeData, initialQuantity, keyParam }) => {
       {allAnimeData.length > initialQuantity && (
         <button
           onClick={streamShowMoreHandler}
-          className="stream-show-more-btn"
+          className="stream-show-more-btn "
         >
           Load More
         </button>

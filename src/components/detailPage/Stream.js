@@ -13,7 +13,7 @@ const Stream = ({ episode }) => {
       href={episode.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="anime-card-container"
+      className="anime-card-container hover-card-num-1"
       animate={{ opacity: 1, transition: { duration: 2 } }}
       initial={{ opacity: 0 }}
     >

@@ -1,12 +1,18 @@
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect, useCallback} from "react";
 import AirSlide from "./AirSlide";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AiringSlider = ({ allAiring, keyParam }) => {
 const [slideNum, setSlideNum] = useState(0);
+const [isAutoPlayOn, setIsAutoPlayOn] = useState(true);
 
-
+const onGrabbingSlider = useCallback(
+  () => {
+    setIsAutoPlayOn(false);
+  },
+  [setIsAutoPlayOn],
+)
 
 
   // maintain the array for duplicate elements
@@ -22,6 +28,8 @@ const [slideNum, setSlideNum] = useState(0);
 
 
   const rightHandler = () => {
+    setIsAutoPlayOn(false);
+
       setTimeout(() => {
           if(slideNum===7){
               setSlideNum(0);
@@ -33,6 +41,7 @@ const [slideNum, setSlideNum] = useState(0);
   }
 
   const leftHandler = () => {
+    setIsAutoPlayOn(false);
       setTimeout(() => {
           
           if(slideNum===0){
@@ -45,7 +54,8 @@ const [slideNum, setSlideNum] = useState(0);
   
 
   useEffect(() => {
-let autoSlidePlay = setTimeout(() => {
+    if(isAutoPlayOn) {
+const autoSlidePlay = setTimeout(() => {
   if(slideNum===7){
     setSlideNum(0);
   } else {
@@ -55,14 +65,15 @@ let autoSlidePlay = setTimeout(() => {
     return () => {
       clearTimeout(autoSlidePlay);
     }
+  }
   }, [slideNum])
   return (
-      <div className="flex flex-col justify-start items-center relative bg-indigo-900">
+      <div  className="flex flex-col justify-start items-center relative bg-indigo-900">
           {trimedallAiring.map((airing, index) => {
             if(index === slideNum) {
               return (
 
-                <AirSlide key={`${keyParam}-${airing.media.id}`}  airing={airing.media} />
+                <AirSlide onGrabbingSlider={onGrabbingSlider} key={`${keyParam}-${airing.media.id}`}  airing={airing.media} />
 
               );
             }

@@ -59,7 +59,7 @@ const Recom = ({recom , widthParam}) => {
         href={`/anime/${recMedia.id}`}
         onClick={animeCardClickHandler}
          className={`recom-card  ${widthParam ? "w-full ssm:w-8/12 sm:w-11/12 my-3" :"w-60 mx-3"}  flex flex-col bg-purple-50 overflow-hidden rounded shadow-xl cursor-pointer
-        transform  hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 relative`}>
+        transform  hover:-translate-y-1 hover:shadow-2xl hover:scale-105 transition-all duration-500 relative`}>
         <div className="flex flex-row">
         <img className="h-56 w-40 object-fill rounded" src={recMedia.coverImage.large} />
         <div className="flex flex-col items-start justify-between ml-1 text-sm h-56 pt-2 break-words">

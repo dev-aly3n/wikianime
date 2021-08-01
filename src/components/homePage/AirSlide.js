@@ -9,7 +9,7 @@ import { Markup } from "interweave"
 import { useApolloClient,gql } from '@apollo/client';
 
 
-const AirSlide = ({ airing }) => {
+const AirSlide = ({ airing, onGrabbingSlider }) => {
   const client = useApolloClient();
   const history = useHistory();
   const selectAnimeQuery = detailQuery;
@@ -49,7 +49,8 @@ const AirSlide = ({ airing }) => {
   };
 
   return (
-    <div className="relative h-110 w-full text-white group overflow-hidden anni">
+    <div className="relative h-110 w-full text-white group overflow-hidden anni cursor-grab active:cursor-grabbing"
+    onMouseDown={()=>onGrabbingSlider()}>
       <img className="h-full w-full object-cover transform group-hover:scale-110 transition-all duration-3000" src={airing.bannerImage} />
       <div className="w-full h-full absolute top-0 left-0 bg-opacity-60 animate-none group-hover:bg-opacity-80 transition-all duration-3000 bg-black flex justify-center md:justify-start items-center ">
       <div className="flex flex-col md:ml-16 lg:ml-56 w-40 transform group-hover:scale-95 transition-all duration-3000">

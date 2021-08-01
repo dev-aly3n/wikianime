@@ -44,7 +44,8 @@ const Character = ({ char, animeID, mangaStaffID }) => {
   return (
     <Link ref={linkRef}
       to={`/anime/${animeID}/character/${charID}/actor/${staffID}`}
-      className="flex flex-row justify-around bg-indigo-50 h-16 my-1 mx-2 rounded-md shadow-md overflow-hidden cursor-pointer w-full"
+      className="flex flex-row justify-around bg-indigo-50 h-16 my-1 mx-2 rounded-md shadow-md overflow-hidden
+       cursor-pointer w-full hover:scale-105 active:scale-100 active:shadow-inner hover-card-num-1"
     >
       <div className="overflow-hidden w-16">
         <img src={char.node.image.medium} alt="" className="w-full h-full" />

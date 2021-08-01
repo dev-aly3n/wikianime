@@ -59,7 +59,9 @@ const ProgressBar = () => {
       <div
         className="absolute bg-indigo-900 w-full h-full"
         style={{ left: "0" }}
-      ></div>
+      >
+      </div>
+          <div className="absolute h-full w-28 skew-x-12 bg-indigo-900 opacity-20 shining-bar-animate z-50"></div>
     </div>
   );
 };

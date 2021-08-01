@@ -42,7 +42,7 @@ const StreamList = ({ allEpisode, colsInRow, initialQuantity, keyParam }) => {
       {allEpisode.length > initialQuantity && (
         <button
           onClick={streamShowMoreHandler}
-          className="stream-show-more-btn"
+          className="stream-show-more-btn "
         >
           Load More
         </button>

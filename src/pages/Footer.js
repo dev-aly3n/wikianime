@@ -16,10 +16,10 @@ const Footer = () => {
         </div>
 
         <div className=" flex justify-around items-center group my-5">
-        <h1 className="text-white text-7xl font-bold select-none animate-textShadowPopTl group-hover:animate-none">
+        <h1 className="text-white text-7xl font-bold select-none animate-textShadowPopTl group-hover:animate-textShadowPopTr">
           WA
         </h1>
-        <span className="self-end text-purple-50 font-bold animate-textShadowPopTl group-hover:animate-none  ml-px">
+        <span className="self-end text-purple-50 font-bold animate-textShadowPopTl group-hover:animate-textShadowPopTr  ml-px">
           Wiki Anime
         </span>
       </div>

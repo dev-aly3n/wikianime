@@ -131,6 +131,8 @@
       opacity: 0;
     }
   }
+
+
   
   /* loading page */
 
@@ -159,6 +161,13 @@
   animation-duration: 0.7s;
   animation-timing-function: ease-in;
   animation-fill-mode: forwards;
+  }
+  .shining-bar-animate {
+    animation-name: shining-bar;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
   }
 
 
@@ -215,7 +224,24 @@
       opacity:0;
     }
   }
-
+  @keyframes shining-bar {
+    0% {
+      left: -20%;
+      transform: scaleX(1);
+    }    
+    33% {
+      left: 40%;
+      transform: scaleX(1.5);
+    }    
+    66% {
+      left: 70%;
+      transform: scaleX(1);
+    }    
+    100% {
+      left: 120%;
+      transform: scaleX(1.5);
+    }    
+    }
 
   /* progress bar */
 
@@ -238,7 +264,7 @@
   }
 
   .hover-card-num-1 {
-    @apply transform  hover:-translate-y-1 hover:shadow-2xl transition-transform duration-500;
+    @apply transform  hover:-translate-y-1 hover:shadow-2xl  hover:scale-105 active:scale-100 active:shadow-none transition-transform duration-500;
   }
 
   .anime-list-container {
@@ -452,7 +478,9 @@
 
   .stream-show-more-btn {
     @apply text-2xl bg-gray-200 hover:bg-gray-400 active:bg-gray-600 active:text-white
-    rounded-2xl px-5 py-1 block mx-auto shadow-3xl border-collapse ring-2 ring-gray-400 focus:outline-none focus:ring-offset-gray-600 active:shadow-inner mt-5;
+    rounded-2xl px-5 py-1 block mx-auto shadow-xl hover:shadow-3xl border-collapse ring-2 ring-gray-400 focus:outline-none
+     focus:ring-offset-gray-600 active:shadow-inner mt-5
+     transform  hover:-translate-y-1  hover:scale-105 active:scale-100  transition-transform duration-500;
   }
 
   /* Page: character detail page */
