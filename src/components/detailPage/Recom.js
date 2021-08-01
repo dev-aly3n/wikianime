@@ -5,8 +5,11 @@ import { detailQuery } from "../../chooks/queries";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from 'framer-motion';
+import { useApolloClient,gql } from '@apollo/client';
+
 
 const Recom = ({recom , widthParam}) => {
+  const client = useApolloClient();
     const recMedia = (recom.node ?  recom.node.mediaRecommendation : recom.media);
 
     const rating = (recom.node ?  recom.node.rating : recom.rating);
@@ -29,6 +32,25 @@ const Recom = ({recom , widthParam}) => {
 
   const animeCardClickHandler = (e) => {
     e.preventDefault();
+
+
+    client.writeQuery({
+      query: gql`
+      query WriteIsLoading {
+        loadingbar {
+          isLoading
+        }
+      }`,
+      data: { // Contains the data to write
+        loadingbar: {
+          __typename: 'LoadingBar',
+          isLoading: 30
+        },
+      }
+    });
+
+
+
     getAnime({ variables: { id: recMedia.id } });
   }
     return(

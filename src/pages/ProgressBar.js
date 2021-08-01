@@ -54,7 +54,7 @@ const ProgressBar = () => {
   return (
     <div
       ref={progressRef}
-      className="w-full h-1 bg-green-500 fixed top-0 left-0 z-50 opacity-0"
+      className="w-full h-1 bg-gradient-to-r from-yellow-300 to-green-500 fixed top-0 left-0 z-50 opacity-0"
     >
       <div
         className="absolute bg-indigo-900 w-full h-full"

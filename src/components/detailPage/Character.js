@@ -1,12 +1,16 @@
-import React from "react";
+import React,{useEffect, useRef} from "react";
 import { useLazyQuery } from "@apollo/client";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { selectedCharActions } from "../../store/selectedCharSlice";
 import { unKnownPng } from "../../chooks/simples";
+import { useApolloClient,gql } from '@apollo/client';
+
 
 const Character = ({ char, animeID, mangaStaffID }) => {
+  const client = useApolloClient();
+  const linkRef = useRef(null);
   let charID, staffID;
   charID = char.node.id;
   if (char.voiceActors[0] === undefined) {
@@ -15,8 +19,30 @@ const Character = ({ char, animeID, mangaStaffID }) => {
     staffID = char.voiceActors[0].id;
   }
 
+  useEffect(() => {
+    
+    linkRef.current.addEventListener('click', charClickHandler)
+  }, []);
+  
+  const charClickHandler = () => {
+    client.writeQuery({
+      query: gql`
+      query WriteIsLoading {
+        loadingbar {
+          isLoading
+        }
+      }`,
+      data: { // Contains the data to write
+        loadingbar: {
+          __typename: 'LoadingBar',
+          isLoading: 30
+        },
+      }
+    });
+  }
+
   return (
-    <Link
+    <Link ref={linkRef}
       to={`/anime/${animeID}/character/${charID}/actor/${staffID}`}
       className="flex flex-row justify-around bg-indigo-50 h-16 my-1 mx-2 rounded-md shadow-md overflow-hidden cursor-pointer w-full"
     >

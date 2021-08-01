@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useApolloClient } from "@apollo/client";
 import { gql } from "@apollo/client";
 
-const Header = ({ location }) => {
+const Header = ( ) => {
   const client = useApolloClient();
   const navRef = useRef(null);
   const burgerRef = useRef(null);

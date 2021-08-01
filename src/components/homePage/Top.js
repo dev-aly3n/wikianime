@@ -6,8 +6,11 @@ import { detailQuery } from "../../chooks/queries";
 import CircleRate from "../detailPage/CircleRate";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Markup } from "interweave";
+import { useApolloClient,gql } from '@apollo/client';
+
 
 const Top = ({ anime, rank }) => {
+  const client = useApolloClient();
   const history = useHistory();
   const selectAnimeQuery = detailQuery;
 
@@ -26,6 +29,22 @@ const Top = ({ anime, rank }) => {
 
   const animeCardClickHandler = (e) => {
     e.preventDefault();
+
+    client.writeQuery({
+      query: gql`
+      query WriteIsLoading {
+        loadingbar {
+          isLoading
+        }
+      }`,
+      data: { // Contains the data to write
+        loadingbar: {
+          __typename: 'LoadingBar',
+          isLoading: 30
+        },
+      }
+    });
+
     getAnime({ variables: { id: anime.id } });
   };
 

@@ -6,8 +6,11 @@ import { secondsToDhms } from "../../chooks/simples";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Markup } from "interweave"
+import { useApolloClient,gql } from '@apollo/client';
+
 
 const AirSlide = ({ airing }) => {
+  const client = useApolloClient();
   const history = useHistory();
   const selectAnimeQuery = detailQuery;
 
@@ -26,6 +29,22 @@ const AirSlide = ({ airing }) => {
 
   const animeCardClickHandler = (e) => {
     e.preventDefault();
+
+    client.writeQuery({
+      query: gql`
+      query WriteIsLoading {
+        loadingbar {
+          isLoading
+        }
+      }`,
+      data: { // Contains the data to write
+        loadingbar: {
+          __typename: 'LoadingBar',
+          isLoading: 30
+        },
+      }
+    });
+
     getAnime({ variables: { id: airing.id } });
   };
 

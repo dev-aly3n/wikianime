@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
 import { detailQuery } from "../chooks/queries";
 import CircleRate from "./detailPage/CircleRate";
-import { useApolloClient } from '@apollo/client';
-import {gql} from "@apollo/client";
+import { useApolloClient,gql } from '@apollo/client';
 
 
 const Anime = ({ anime }) => {
