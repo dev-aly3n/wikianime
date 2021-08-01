@@ -20,7 +20,7 @@ const ProgressBar = () => {
 
   useEffect(() => {
     const bar = progressRef.current.firstElementChild;
-
+    const shining = progressRef.current.children[1];
     const watchLoadingBar = client
       .watchQuery({
         query: READ_ISLOADING,
@@ -32,6 +32,7 @@ const ProgressBar = () => {
           if(loadingParam < 50) {
             bar.classList.add('first-load-animate');
             progressRef.current.classList.add('last-load-animate-for-parent');
+            shining.classList.add("shining-bar-animate");
 
           } else {
             progressRef.current.classList.remove('last-load-animate-for-parent');
@@ -42,6 +43,7 @@ const ProgressBar = () => {
             setTimeout(() => {
               bar.classList.remove('last-load-animate');
               progressRef.current.classList.remove('last-load-animate-for-parent');
+              shining.classList.remove("shining-bar-animate");
             }, 1000);
           }
             isChanged = !isChanged;
@@ -61,7 +63,7 @@ const ProgressBar = () => {
         style={{ left: "0" }}
       >
       </div>
-          <div className="absolute h-full w-28 skew-x-12 bg-indigo-900 opacity-20 shining-bar-animate z-50"></div>
+          <div className="absolute h-full w-28 skew-x-12 bg-indigo-900 opacity-20  z-50"></div>
     </div>
   );
 };
