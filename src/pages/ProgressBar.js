@@ -4,7 +4,6 @@ import { useApolloClient } from "@apollo/client";
 import { gql } from "@apollo/client";
 
 const ProgressBar = () => {
-  const location = useLocation();
   const progressRef = useRef(null);
   const client = useApolloClient();
 

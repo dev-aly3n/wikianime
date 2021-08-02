@@ -12,6 +12,8 @@ const Header = ( ) => {
   const animeLinkRef = useRef(null);
 
   // modern Navigation bar code start here
+  const scrollerContainer = document.getElementById('root');
+
 
   useEffect(() => {
     const burger = burgerRef.current;
@@ -50,13 +52,13 @@ const Header = ( ) => {
     // modern Navigation bar code stop here
 
     let prevScrollpos = Number(
-      navRef.current.parentElement.parentElement.parentElement.scrollTop.toFixed(
+      scrollerContainer.scrollTop.toFixed(
         2
       )
     );
-    window.addEventListener("wheel", () => {
+    scrollerContainer.addEventListener("scroll", () => {
       let currentScrollPos = Number(
-        navRef.current.parentElement.parentElement.parentElement.scrollTop.toFixed(
+        scrollerContainer.scrollTop.toFixed(
           2
         )
       );
@@ -74,7 +76,7 @@ const Header = ( ) => {
 
     window.addEventListener("touchmove", () => {
       let currentScrollPos = Number(
-        navRef.current.parentElement.parentElement.parentElement.scrollTop.toFixed(
+        scrollerContainer.scrollTop.toFixed(
           2
         )
       );
@@ -128,6 +130,7 @@ const Header = ( ) => {
       ref: animeLinkRef,
     },
   ];
+
 
   return (
     <nav
