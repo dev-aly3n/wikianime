@@ -4,12 +4,14 @@ import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AiringSlider = ({ allAiring, keyParam }) => {
+  let autoSlidePlay;
 const [slideNum, setSlideNum] = useState(0);
 const [isAutoPlayOn, setIsAutoPlayOn] = useState(true);
 
 const onGrabbingSlider = useCallback(
   () => {
     setIsAutoPlayOn(false);
+    clearTimeout(autoSlidePlay);
   },
   [setIsAutoPlayOn],
 )
@@ -55,7 +57,7 @@ const onGrabbingSlider = useCallback(
 
   useEffect(() => {
     if(isAutoPlayOn) {
-const autoSlidePlay = setTimeout(() => {
+      autoSlidePlay = setTimeout(() => {
   if(slideNum===7){
     setSlideNum(0);
   } else {
@@ -65,8 +67,8 @@ const autoSlidePlay = setTimeout(() => {
     return () => {
       clearTimeout(autoSlidePlay);
     }
-  }
-  }, [slideNum])
+  } 
+  }, [slideNum,isAutoPlayOn])
   return (
       <div  className="flex flex-col justify-start items-center relative bg-indigo-900">
           {trimedallAiring.map((airing, index) => {

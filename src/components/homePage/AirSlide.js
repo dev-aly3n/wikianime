@@ -50,10 +50,10 @@ const AirSlide = ({ airing, onGrabbingSlider }) => {
 
   return (
     <div className="relative h-110 w-full text-white group overflow-hidden anni cursor-grab active:cursor-grabbing"
-    onMouseDown={()=>onGrabbingSlider()}>
+    onMouseDown={()=>onGrabbingSlider()} onTouchStart={()=>onGrabbingSlider()}>
       <img className="h-full w-full object-cover transform group-hover:scale-110 transition-all duration-3000" src={airing.bannerImage} />
       <div className="w-full h-full absolute top-0 left-0 bg-opacity-60 animate-none group-hover:bg-opacity-80 transition-all duration-3000 bg-black flex justify-center md:justify-start items-center ">
-      <div className="flex flex-col md:ml-16 lg:ml-56 w-40 transform group-hover:scale-95 transition-all duration-3000">
+      <div className="flex flex-col md:ml-16 lg:ml-56 w-40 transform group-hover:scale-95 hover:skew-x-3 transition-all duration-3000">
       <a onClick={animeCardClickHandler} href={`/anime/${airing.id}`}>
       <img
        className="h-56 w-40 cursor-pointer" src={airing.coverImage.large} />

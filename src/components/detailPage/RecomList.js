@@ -162,10 +162,10 @@ const RecomList = ({ allRecom, initialQuantity, keyParam }) => {
         <button
           onClick={leftScrollHandler}
           className="absolute left-0 top-0 h-full w-12 bg-gradient-to-l from-transparent to-gray-200 hover:to-gray-400
-        focus:outline-none"
+        focus:outline-none group"
         >
           <FontAwesomeIcon
-            className=" text-4xl transform rotate-180 text-gray-600"
+            className=" text-4xl transform rotate-180 text-gray-600 active:scale-y-95"
             icon={faChevronCircleRight}
           />
         </button>
@@ -175,7 +175,7 @@ const RecomList = ({ allRecom, initialQuantity, keyParam }) => {
         focus:outline-none"
         >
           <FontAwesomeIcon
-            className="text-4xl text-gray-600"
+            className="text-4xl text-gray-600 transform active:scale-y-95"
             icon={faChevronCircleRight}
           />
         </button>

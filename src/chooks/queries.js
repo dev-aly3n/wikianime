@@ -1,5 +1,22 @@
 import { gql } from "@apollo/client";
 
+export const menuSearchQuery = gql`
+  query MeNuSeArCh($search: String) {
+    Page(perPage: 5, page: 1) {
+      media(search: $search, sort: SEARCH_MATCH) {
+        id
+        coverImage {
+          medium
+        }
+        title {
+          english
+          romaji
+        }
+      }
+    }
+  }
+`;
+
 export const detailQuery = gql`
   query SelectedAnImE($id: Int) {
     Media(id: $id) {
@@ -170,7 +187,7 @@ export const detailQuery = gql`
 `;
 
 export const homeQuery = gql`
-query HoMeAnImE{
+  query HoMeAnImE {
     top100: Page(perPage: 50, page: 1) {
       media(sort: SCORE_DESC) {
         id
@@ -191,7 +208,7 @@ query HoMeAnImE{
         tags {
           name
         }
-        description(asHtml:true)
+        description(asHtml: true)
       }
     }
     airing: Page(perPage: 50, page: 1) {

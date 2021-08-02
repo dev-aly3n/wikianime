@@ -25,7 +25,7 @@ const Footer = () => {
       </div>
 
         <div className="flex flex-col justify-between items-center w-10/12 ssm:w-1/2 md:w-1/4 my-5">
-          <h4 className="text-2xl font-bold"> Links</h4>
+          <h4 className="text-2xl font-bold "> Links</h4>
           <ul>
             <li className=" flex hover:text-yellow-500 my-1">
             <img className="w-5 mx-1" src={"https://img.pngio.com/github-logo-icon-of-glyph-style-available-in-svg-png-eps-ai-github-icon-png-256_256.png"} />

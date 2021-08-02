@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useApolloClient } from "@apollo/client";
 import { gql } from "@apollo/client";
+import SearchList from "./SearchList";
 
 const Header = ( ) => {
   const client = useApolloClient();
@@ -157,6 +158,8 @@ const Header = ( ) => {
           );
         })}
       </ul>
+      <SearchList />
+
       <div ref={burgerRef} className="navigation burger cursor-pointer">
         <div className="navigation line1"></div>
         <div className="navigation line2"></div>
