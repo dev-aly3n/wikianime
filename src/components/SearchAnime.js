@@ -2,7 +2,7 @@ import { useApolloClient,gql } from '@apollo/client';
 import { useHistory } from "react-router-dom";
 
 
-const SearchAnime = ({anime}) => {
+const SearchAnime = ({anime, emptySearchValue}) => {
   const history = useHistory();
   const client = useApolloClient();
 
@@ -25,6 +25,7 @@ const SearchAnime = ({anime}) => {
     });
         
     setTimeout(() => {
+      emptySearchValue();
       history.push(`/anime/${anime.id}`);
     }, 500);
 
