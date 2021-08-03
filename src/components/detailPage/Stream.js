@@ -1,12 +1,8 @@
 import React from "react";
-import { gql, useLazyQuery } from "@apollo/client";
 import { motion } from "framer-motion";
-import { useHistory } from "react-router-dom";
 
 const Stream = ({ episode }) => {
-  //   const history = useHistory();
 
-  //       history.push(`/anime/${anime.id}`);
 
   return (
     <motion.a

@@ -1,7 +1,5 @@
 import React from "react";
-import { useLazyQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
-import { detailQuery } from "../../chooks/queries";
 import { secondsToDhms } from "../../chooks/simples";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,26 +8,12 @@ import { useApolloClient,gql } from '@apollo/client';
 
 
 const AirSlide = ({ airing, onGrabbingSlider }) => {
-  const client = useApolloClient();
   const history = useHistory();
-  const selectAnimeQuery = detailQuery;
-
-  const [getAnime, { error, data }] = useLazyQuery(selectAnimeQuery);
-  if (error) {
-    console.log(error.message);
-    return `Error! ${error}`;
-  }
-  if (data) {
-    //using set time out just BCS React is being bitch about to pushing to another page during getting the data
-    //the error was :  Cannot update during an existing state transition (such as within `render`). Render methods should be a pure function of props and state.
-    setTimeout(() => {
-      history.push(`/anime/${airing.id}`);
-    }, 1);
-  }
+  const client = useApolloClient();
 
   const animeCardClickHandler = (e) => {
     e.preventDefault();
-
+    
     client.writeQuery({
       query: gql`
       query WriteIsLoading {
@@ -44,8 +28,11 @@ const AirSlide = ({ airing, onGrabbingSlider }) => {
         },
       }
     });
+        
+    setTimeout(() => {
+      history.push(`/anime/${airing.id}`);
+    }, 500);
 
-    getAnime({ variables: { id: airing.id } });
   };
 
   return (
