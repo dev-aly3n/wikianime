@@ -59,9 +59,9 @@ const Top = ({ anime, rank }) => {
               {anime.title.english ? anime.title.english : anime.title.romaji}
             </h3>
             <div className="flex flex-wrap justify-between text-sm text-gray-700">
-              <p>{anime.format.toLowerCase()}</p>
-              <p>{anime.source.toLowerCase()}</p>
-              <p>{anime.status.toLowerCase()}</p>
+              {anime.format && <p>{anime.format.toLowerCase()}</p>}
+              {anime.source && <p>{anime.source.toLowerCase()}</p>}
+              {anime.status && <p>{anime.status.toLowerCase()}</p>}
               <p>
                 {anime.season ? anime.season.toLowerCase() : ""}{" "}
                 {anime.seasonYear ? anime.seasonYear : ""}

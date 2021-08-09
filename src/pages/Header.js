@@ -125,7 +125,7 @@ const Header = ( ) => {
       ref: homeLinkRef,
     },
     {
-      to: "/anime/16498",
+      to: "/search/",
       text: "Anime",
       activeStyle: { backgroundColor: "#EEF2FF", color: "#312E81" },
       ref: animeLinkRef,
@@ -139,18 +139,19 @@ const Header = ( ) => {
       id="navigation"
       className="navigation bg-indigo-900 fixed top-0 w-full z-30 transition-all duration-700 bg-opacity-70"
     >
-      <div className="logo flex justify-around items-center group">
+      <div className="logo relative flex justify-between items-center group w-40">
         <h1 className="text-white text-5xl font-bold select-none animate-textShadowPopTl group-hover:animate-none">
           WA
         </h1>
-        <span className="self-end text-purple-50 font-bold animate-textShadowPopTl group-hover:animate-none -mb-px ml-px">
+        <span className="self-end text-purple-50 font-bold animate-textShadowPopTl
+         group-hover:animate-none -mb-px ml-px whitespace-nowrap absolute bottom-0" style={{left:"75px"}}>
           Wiki Anime
         </span>
       </div>
       <ul ref={navLinksRef} className="nav-links navigation">
         {headerLinks.map((link) => {
           return (
-            <li ref={link.ref}>
+            <li key={link.text} ref={link.ref}>
               <NavLink activeStyle={link.activeStyle} to={link.to} exact={true}>
                 {link.text}
               </NavLink>

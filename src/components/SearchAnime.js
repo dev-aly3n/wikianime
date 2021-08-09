@@ -35,7 +35,7 @@ const SearchAnime = ({anime, emptySearchValue}) => {
         <a href={`/anime/${anime.id}`} onClick={animeCardClickHandler} className=" flex justify-start items-center h-24 w-full cursor-pointer
         hover:text-indigo-900 hover:bg-indigo-200 transition-all">
           <img src={anime.coverImage.medium} className="object-cover h-full w-16" />
-          <h4>{anime.title.english ? anime.title.english : anime.title.romaji}</h4>
+          <h4 className="line-clamp-2 mx-2">{anime.title.english ? anime.title.english : anime.title.romaji}</h4>
         </a>
     );
 }

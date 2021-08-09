@@ -65,7 +65,6 @@ const AnimeDetail = () => {
   }
 
 
-
   const aData = data.Media;
   const title = aData.title.english ? aData.title.english : aData.title.romaji;
   const description = aData.description;
@@ -366,6 +365,7 @@ const AnimeDetail = () => {
       </div>
     </React.Fragment>
   );
+        
 };
 
 export default AnimeDetail;

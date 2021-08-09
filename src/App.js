@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Home from "./pages/Home";
 import AnimeDetail from "./pages/AnimeDetail";
 import Header from "./pages/Header";
@@ -6,11 +6,11 @@ import { Switch, Route } from "react-router-dom";
 import ScrollToTop from "./pages/ScrollToTop";
 import Footer from "./pages/Footer";
 import ProgressBar from "./pages/ProgressBar";
-import { useApolloClient } from '@apollo/client';
-import {gql} from "@apollo/client";
+import { useApolloClient } from "@apollo/client";
+import { gql } from "@apollo/client";
+import AnimeFilter from "./pages/AnimeFilter";
 
 function App() {
-
   const client = useApolloClient();
   client.writeQuery({
     query: gql`
@@ -18,20 +18,21 @@ function App() {
         loadingbar {
           isLoading
         }
-      }`,
-    data: { // Contains the data to write
+      }
+    `,
+    data: {
+      // Contains the data to write
       loadingbar: {
-        __typename: 'LoadingBar',
-        isLoading: 0
+        __typename: "LoadingBar",
+        isLoading: 0,
       },
-    }
+    },
   });
-  
 
   //// jsx
   return (
     <div className="app all-grid-container">
-    <ProgressBar />
+      <ProgressBar />
       <header className="all-nav">
         <Header />
       </header>
@@ -41,12 +42,13 @@ function App() {
           <Route path={["/", "/wikianime"]} exact>
             <Home />
           </Route>
-          <Route
-            path={[
-              "/anime/:animeID",
-              "/anime/:animeID/character/:charID/actor/:actorID",
-            ]}
-          >
+          <Route path={"/anime/:animeID"}>
+            <AnimeDetail />
+          </Route>
+          <Route path={"/search/"} >
+            <AnimeFilter />
+          </Route>
+          <Route path={"/anime/:animeID/character/:charID/actor/:actorID"}>
             <AnimeDetail />
           </Route>
         </Switch>

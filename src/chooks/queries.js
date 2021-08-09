@@ -17,6 +17,37 @@ export const menuSearchQuery = gql`
   }
 `;
 
+
+
+export const filterQuery = gql`
+  query FiLtErPaGe($search:String) {
+    filter: Page(perPage: 50, page: 1) {
+      media(search:$search) {
+        id
+        title {
+          english
+          romaji
+        }
+        coverImage {
+          large
+        }
+        source
+        format
+        status
+        averageScore
+        popularity
+        seasonYear
+        season
+        tags {
+          name
+        }
+        description(asHtml: true)
+      }
+    }
+  }`;
+
+
+
 export const detailQuery = gql`
   query SelectedAnImE($id: Int) {
     Media(id: $id) {
