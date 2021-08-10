@@ -1,0 +1,94 @@
+@layer components {
+    /* this is the start of navbar css */
+nav {
+    min-height: 8vh;
+    @apply flex justify-around bg-indigo-900 items-center;
+  }
+
+  .nav-links {
+    width: 25%;
+    height: 8vh;
+    @apply flex mx-0 justify-center items-center;
+  }
+  .nav-links li {
+    @apply w-full h-full;
+  }
+  .nav-links li a {
+    @apply block pt-3 w-full h-full list-none hover:bg-indigo-50 text-indigo-50
+      hover:text-indigo-900 text-center cursor-pointer transition-colors duration-300;
+  }
+
+  .nav-links a {
+    @apply no-underline tracking-wider font-medium text-2xl z-30;
+  }
+
+  .burger {
+    display: none;
+  }
+
+  .burger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
+    transition: all 0.3s ease;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .nav-links {
+      right: 0px;
+      min-height: 92vh;
+      top: 8vh;
+      width: 60%;
+      transform: translateX(100%);
+      transition: transform 0.5s ease-in;
+
+      @apply bg-indigo-900  absolute flex flex-col justify-start items-center z-30;
+    }
+
+    .nav-links li {
+      @apply hover:bg-gray-300  text-center w-full h-20 ;
+    }
+    .nav-links li a {
+      @apply hover:bg-indigo-100  text-center w-full pt-6;
+    }
+
+    .burger {
+      display: block;
+      padding: 5px;
+    }
+  }
+
+  .nav-active {
+    transform: translateX(0%);
+  }
+
+  .toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+
+  .toggle .line2 {
+    opacity: 0;
+  }
+
+  .toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+
+  @keyframes navLinkFade {
+    from {
+      opacity: 0;
+      transform: translateX(200px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+
+  /* this is the end of  the navbar css */
+
+
+  
+}

@@ -1,0 +1,6 @@
+@layer components {
+    .footer-container {
+        @apply pt-14 bg-indigo-900 text-indigo-50 w-full ;
+    }
+
+}

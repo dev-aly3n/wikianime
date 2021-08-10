@@ -1,0 +1,26 @@
+@layer components {
+    .character-page-shadow {
+        background-color: rgba(0, 0, 0, 0.65);
+        height: 100vh;
+        @apply fixed w-full left-0 top-0 z-10;
+      }
+      .character-page-container {
+      }
+    
+  .description-character-markup {
+    @apply pb-5 px-2;
+  }
+
+  .description-character-markup a {
+    @apply text-blue-600 font-medium italic hover:text-blue-900 cursor-pointer;
+  }
+
+  .description-character-markup img {
+    width: 100% !important;
+    @apply block mx-auto;
+  }
+
+  .character-page-shadow::-webkit-scrollbar-thumb {
+    @apply bg-yellow-50;
+  }
+}

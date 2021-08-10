@@ -1,0 +1,17 @@
+@layer components {
+    @keyframes top100ani {
+        from {
+          transform: translateY(3%);
+          opacity: 0.3;
+        }
+        to {
+          transform: translateY(0%);
+          opacity: 1;
+        }
+      }
+      
+      .anni {
+        animation-name: top100ani;
+        animation-duration: 0.7s;
+      }
+}

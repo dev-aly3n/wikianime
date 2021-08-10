@@ -10,7 +10,6 @@ module.exports = {
     "src/**/*.tsx",
     "public/**/*.html",
   ],
-  presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {

@@ -1,0 +1,110 @@
+@layer components {
+     /* progress bar */
+
+  .first-load-animate {
+    animation-name: first-load;
+  animation-duration: 0.7s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  }
+  .last-load-animate {
+    animation-name: last-load;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  }
+  .last-load-animate-for-parent {
+    animation-name: last-load-for-parent;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  }
+  .last-load-animate-for-parent {
+    animation-name: first-load-for-parent;
+  animation-duration: 0.7s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  }
+  .shining-bar-animate {
+    animation-name: shining-bar;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  }
+
+
+  @keyframes first-load {
+    0% {
+      opacity:1;
+      left: 0%;
+    }
+    100% {
+      opacity:1;
+      left: 30%;
+    }
+  }
+  @keyframes first-load-for-parent {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  @keyframes last-load {
+    0% {
+      opacity:1;
+      left: 30%;
+    }
+    40% {
+      left: 60%;
+    }
+    60% {
+      left: 80%;
+    }
+    80% {
+      left: 100%;
+      opacity:1;
+    }
+    90% {
+      opacity:0;
+      left: 100%;
+    }
+    100% {
+      opacity:0;
+      left: 0%;
+    }
+  }
+  @keyframes last-load-for-parent {
+    0% {
+      opacity:1;
+    }
+    80% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  @keyframes shining-bar {
+    0% {
+      left: -20%;
+      transform: scaleX(1);
+    }    
+    33% {
+      left: 40%;
+      transform: scaleX(1.5);
+    }    
+    66% {
+      left: 70%;
+      transform: scaleX(1);
+    }    
+    100% {
+      left: 120%;
+      transform: scaleX(1.5);
+    }    
+    }
+
+  /* progress bar */
+}

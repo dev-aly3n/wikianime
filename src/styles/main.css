@@ -1,0 +1,64 @@
+@layer components {
+    html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Lato", sans-serif;
+      }
+    
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Open Sans", sans-serif;
+      }
+
+      .all-grid-container {
+        display: grid;
+        grid-template-areas:
+          "nav"
+          "main"
+          "footer";
+      }
+      .all-nav {
+        grid-area: nav;
+      }
+      .all-main {
+        grid-area: main;
+      }
+      .all-footer {
+        grid-area: footer;
+      }
+
+
+      
+      .hover-card-num-1 {
+        @apply transform  hover:-translate-y-1 hover:shadow-2xl  hover:scale-105 active:scale-100 active:shadow-none transition-transform duration-500;
+      }
+
+
+      *::-webkit-scrollbar {
+        width: 0.5rem;
+      }
+      *::-webkit-scrollbar-thumb {
+        background-color: darkgray;
+      }
+
+
+
+
+.stream-show-more-btn {
+  @apply text-2xl bg-gray-200 hover:bg-gray-400 active:bg-gray-600 active:text-white
+  rounded-2xl px-5 py-1 block mx-auto shadow-xl hover:shadow-3xl border-collapse ring-2 ring-gray-400 focus:outline-none
+   focus:ring-offset-gray-600 active:shadow-inner mt-5
+   transform  hover:-translate-y-1  hover:scale-105 active:scale-100  transition-transform duration-500;
+}
+
+
+.show-more-btn {
+  @apply absolute text-blue-600 bottom-0 left-0 bg-gradient-to-b from-transparent w-full pt-10 pb-3 font-semibold
+ focus:outline-none;
+}
+}

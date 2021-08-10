@@ -1,0 +1,27 @@
+@layer components {
+    .anime-list-container {
+        @apply px-0 py-5 w-11/12 mx-auto;
+      }
+    
+      .anime-list-container h2 {
+        @apply py-5 text-3xl font-medium;
+      }
+    
+      .anime-list {
+        gap: 10px;
+        @apply grid gap-y-7;
+      }
+    
+      .anime-card-container {
+        min-height: 30vh;
+        @apply text-center relative cursor-pointer rounded-md overflow-hidden;
+      }
+    
+      .anime-card-container img {
+        @apply w-full h-56 object-cover rounded-md;
+      }
+      .anime-card-container h3 {
+        @apply text-white absolute bottom-0 leading-tight
+          bg-gray-800 bg-opacity-80 w-full;
+      }
+}
