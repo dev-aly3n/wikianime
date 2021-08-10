@@ -5,7 +5,7 @@ const HomeRecom = ({allRecom, keyParam}) => {
     
 
     return(
-        <div className="flex flex-col justify-around items-center home-rec">
+        <div className="home-rec">
         {
             allRecom.map((rec, index)=> {
                 if(index<=1){
@@ -18,4 +18,4 @@ const HomeRecom = ({allRecom, keyParam}) => {
 }
 
 
-export default HomeRecom
+export default HomeRecom;

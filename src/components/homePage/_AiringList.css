@@ -1,0 +1,8 @@
+@layer components {
+    .airing-list-container {
+        @apply pb-10;
+        >div {
+            @apply flex flex-col justify-start items-center;
+        }
+    }
+}

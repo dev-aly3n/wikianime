@@ -1,0 +1,5 @@
+@layer components {
+    .home-rec {
+        @apply flex flex-col justify-around items-center;
+    }
+}

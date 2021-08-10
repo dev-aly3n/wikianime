@@ -1,0 +1,8 @@
+@layer components {
+  .airing-slider-container {
+    @apply flex flex-col justify-start items-center relative bg-indigo-900;
+    > button {
+      @apply absolute top-0 h-full w-12 focus:outline-none;
+    }
+  }
+}

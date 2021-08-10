@@ -1,0 +1,5 @@
+@layer components {
+    .top-list-container {
+        @apply pb-10;
+    }
+}

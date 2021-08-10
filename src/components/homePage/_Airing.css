@@ -1,0 +1,24 @@
+@layer components {
+  .airing-container {
+    @apply cursor-pointer;
+    > div {
+      @apply flex flex-col relative h-24 justify-center items-center
+            overflow-hidden max-w-sm;
+
+      > img {
+        @apply h-full w-full object-cover transition-all duration-1500;
+      }
+      > div {
+        @apply absolute bg-gray-900 bg-opacity-75 w-full h-full flex flex-col justify-evenly items-center
+                text-white;
+
+        > h3 {
+          @apply mx-2 line-clamp-1 text-base font-semibold text-yellow-400;
+        }
+        > p {
+          @apply flex justify-around w-full text-sm;
+        }
+      }
+    }
+  }
+}
