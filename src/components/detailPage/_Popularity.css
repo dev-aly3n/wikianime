@@ -1,0 +1,14 @@
+@layer components {
+  .popularity-container {
+    @apply relative w-10/12 ssm:w-6/12 sm:w-11/12 block mx-auto;
+    div:first-child {
+      @apply bg-gray-600 rounded-2xl pr-3 h-3 relative overflow-hidden shadow-3xl;
+      > div {
+        @apply bg-gradient-to-tr from-yellow-400 to-red-500 font-semibold absolute w-full h-full;
+      }
+    }
+    .font-icon-pop {
+      @apply absolute text-yellow-400 text-2xl -top-2;
+    }
+  }
+}

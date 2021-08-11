@@ -1,9 +1,5 @@
 import React,{useEffect, useRef} from "react";
-import { useLazyQuery } from "@apollo/client";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { selectedCharActions } from "../../store/selectedCharSlice";
 import { unKnownPng } from "../../chooks/simples";
 import { useApolloClient,gql } from '@apollo/client';
 
@@ -44,30 +40,29 @@ const Character = ({ char, animeID, mangaStaffID }) => {
   return (
     <Link ref={linkRef}
       to={`/anime/${animeID}/character/${charID}/actor/${staffID}`}
-      className="flex flex-row justify-around bg-indigo-50 h-16 my-1 mx-2 rounded-md shadow-md overflow-hidden
-       cursor-pointer w-full hover:scale-105 active:scale-100 active:shadow-inner hover-card-num-1"
+      className="char-container"
     >
-      <div className="overflow-hidden w-16">
-        <img src={char.node.image.medium} alt="" className="w-full h-full" />
+      <div className="char-image">
+        <img src={char.node.image.medium} alt=""/>
       </div>
       <div
-        className="w-2/3  flex flex-col font-bold"
+        className="char-staff-info"
         style={{ fontSize: "9px" }}
       >
-        <div className="flex justify-between w-full h-full">
-          <div className="m-1">{char.node.name.full}</div>
-          <div className="m-1 text-right">
+        <div className="char-name">
+          <span>{char.node.name.full}</span>
+          <span>
             {staffID !== mangaStaffID ? char.voiceActors[0].name.full : ""}
-          </div>
+          </span>
         </div>
-        <div className="flex justify-between  w-full h-full items-end">
-          <div className="m-1">{char.role.toLowerCase()}</div>
-          <div className="m-1 text-right">
+        <div className="char-role">
+          <span>{char.role.toLowerCase()}</span>
+          <span>
             {staffID !== mangaStaffID ? char.voiceActors[0].languageV2 : ""}
-          </div>
+          </span>
         </div>
       </div>
-      <div className="overflow-hidden w-16">
+      <div className="staff-image">
         <img
           src={
             staffID !== mangaStaffID
@@ -75,7 +70,6 @@ const Character = ({ char, animeID, mangaStaffID }) => {
               : unKnownPng
           }
           alt=""
-          className="w-full h-full"
         />
       </div>
     </Link>

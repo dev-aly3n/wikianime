@@ -59,6 +59,6 @@
 
 .show-more-btn {
   @apply absolute text-blue-600 bottom-0 left-0 bg-gradient-to-b from-transparent w-full pt-10 pb-3 font-semibold
- focus:outline-none;
+ focus:outline-none ;
 }
 }

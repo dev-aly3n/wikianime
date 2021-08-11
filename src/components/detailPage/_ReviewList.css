@@ -1,0 +1,11 @@
+@layer components {
+  .review-list-container {
+    @apply pb-10;
+    > div {
+      @apply w-full ssm:w-11/12 sm:w-full md:w-11/12;
+      > div {
+        @apply flex flex-col;
+      }
+    }
+  }
+}

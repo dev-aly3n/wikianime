@@ -1,0 +1,30 @@
+@layer components {
+  .recom-container {
+    @apply flex flex-col bg-purple-50 overflow-hidden rounded shadow-xl cursor-pointer
+        transform  hover:-translate-y-1 hover:shadow-2xl hover:scale-105 transition-all duration-500 relative;
+    .recom-detail {
+      @apply flex flex-row;
+      > img {
+        @apply h-56 w-40 object-fill rounded;
+      }
+      .recom-info {
+        @apply flex flex-col items-start justify-between ml-1 text-sm h-56 pt-2 break-words;
+        p:first-child {
+          @apply line-clamp-4 break-words;
+        }
+      }
+    }
+    .recom-desc {
+      @apply flex flex-row line-clamp-5 text-sm mx-2 my-2 break-words;
+    }
+    .recom-rating {
+      @apply absolute top-0 left-0;
+      .red-rate {
+        @apply bg-red-500 text-white text-base px-1 rounded-br-md;
+      }
+      .green-rate {
+        @apply bg-green-500 text-white text-base px-1 rounded-br-md;
+      }
+    }
+  }
+}

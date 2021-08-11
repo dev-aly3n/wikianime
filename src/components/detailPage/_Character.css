@@ -1,0 +1,41 @@
+@layer components {
+    .char-container {
+        @apply flex flex-row justify-around bg-indigo-50 h-16 my-1 mx-2 rounded-md shadow-md overflow-hidden
+        cursor-pointer w-full hover:scale-105  active:shadow-inner hover-card-num-1;
+
+        .char-image {
+            @apply overflow-hidden w-16;
+            >img {
+                @apply w-full h-full;
+            }
+        }
+        .char-staff-info {
+            @apply w-2/3  flex flex-col font-bold;
+
+        }
+        .char-name {
+            @apply flex justify-between w-full h-full;
+            :first-child {
+                @apply m-1;
+            }
+            :last-child {
+                @apply m-1 text-right;
+            }
+        }
+        .char-role {
+            @apply flex justify-between  w-full h-full items-end;
+            :first-child {
+                @apply m-1;
+            }
+            :last-child {
+                @apply m-1 text-right;
+            }
+        }
+        .staff-image {
+            @apply overflow-hidden w-16;
+            >img {
+                @apply w-full h-full;
+            }
+        }
+    }
+}

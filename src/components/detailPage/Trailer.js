@@ -1,4 +1,3 @@
-import React from "react";
 
 const Trailer = ({ embedId }) => (
   <div className="video-responsive">

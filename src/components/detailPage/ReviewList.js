@@ -20,18 +20,21 @@ const ReviewList = ({ allReviewData, initialQuantity, keyParam }) => {
   };
 
   return (
-    <motion.div className="pb-10">
-      <div className="anime-list-container w-full ssm:w-11/12 sm:w-full md:w-11/12">
-        <motion.div className={`flex flex-col`}>
+    <motion.div className="review-list-container">
+      <div className="anime-list-container">
+        <div>
           {allReviewData.map((review, index) => {
             //check where the data come from node or media
             if (index <= showMore.review - 1) {
               return (
-                <Review key={`${keyParam}-${review.node.id}`} review={review.node} />
+                <Review
+                  key={`${keyParam}-${review.node.id}`}
+                  review={review.node}
+                />
               );
             }
           })}
-        </motion.div>
+        </div>
       </div>
 
       {allReviewData.length > initialQuantity && (

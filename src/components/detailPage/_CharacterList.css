@@ -1,0 +1,8 @@
+@layer components {
+    .char-list-container {
+        @apply pb-10;
+        >div {
+            @apply flex flex-row flex-wrap;
+        }
+    }
+}

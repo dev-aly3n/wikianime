@@ -2,8 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const Stream = ({ episode }) => {
-
-
   return (
     <motion.a
       href={episode.url}

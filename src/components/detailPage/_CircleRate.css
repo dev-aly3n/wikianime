@@ -1,0 +1,17 @@
+@layer components {
+  .circle-rate-container {
+    @apply relative flex justify-center items-center m-0 hover:animate-reversecycler;
+    > div {
+      @apply select-none bg-white flex flex-col justify-center items-center text-xl font-semibold;
+      .rate-symbol {
+        @apply relative -mb-1;
+      }
+      .score-num {
+        @apply flex flex-col justify-center items-center;
+        :first-child {
+          @apply text-xs font-thin h-2 text-gray-400;
+        }
+      }
+    }
+  }
+}

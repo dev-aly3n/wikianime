@@ -20,8 +20,8 @@ const CharacterList = ({ characters, animeID, mangaStaffID }) => {
   };
 
   return (
-    <div className="pb-10">
-      <motion.div className="flex flex-row flex-wrap">
+    <div className="char-list-container">
+      <motion.div>
         {characters.map((char, index) => {
           if (index < showMore.stream) {
             return (

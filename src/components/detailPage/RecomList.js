@@ -115,72 +115,57 @@ const RecomList = ({ allRecom, initialQuantity, keyParam }) => {
     });
     recSlider.addEventListener("mouseleave", () => {
       isDown = false;
-      wastefulCover.current.style.display="none";
-
+      wastefulCover.current.style.display = "none";
     });
     recSlider.addEventListener("mouseup", () => {
       isDown = false;
 
-          
-      
-      wastefulCover.current.style.display="none";
-      
+      wastefulCover.current.style.display = "none";
+
       setShowMore({ recommend: allRecom.length });
     });
     recSlider.addEventListener("mousemove", (e) => {
       if (!isDown) return;
       e.preventDefault();
       const x = e.pageX - recSlider.offsetLeft;
-      const walk = (x - startx)*1.5;
+      const walk = (x - startx) * 1.5;
       recSlider.scrollLeft = scrollLeft - walk;
-      wastefulCover.current.style.display="block";
-      
-
+      wastefulCover.current.style.display = "block";
     });
   }, [rightLeftScroll.current]);
-  
 
   return (
-    
-      <div className=" recommendation-parent relative block mx-auto overflow-hidden rounded-md">
-        <div
-          className="recommendation flex justify-between items-center h-96  overflow-x-auto"
-          ref={rightLeftScroll}
-          onTouchEnd={recTouchHandler}
-        >
-          <div className="flex flex-row mx-5 md:mx-10 relative">
-            {allRecom.map((recom, index) => {
-              if (index <= showMore.recommend - 1) {
-                const id = (recom.node ? recom.node.mediaRecommendation.id : recom.media.id);
-                return <Recom key={keyParam + id + index} recom={recom} />;
-              }
-            })}
-            <div ref={wastefulCover} className="wasteful-cover absolute top-0 left-0 h-full w-full opacity-0 hidden cursor-pointer"></div>
-
-          </div>
+    <div className="recommendation-parent">
+      <div
+        className="recommendation"
+        ref={rightLeftScroll}
+        onTouchEnd={recTouchHandler}
+      >
+        <div>
+          {allRecom.map((recom, index) => {
+            if (index <= showMore.recommend - 1) {
+              const id = recom.node
+                ? recom.node.mediaRecommendation.id
+                : recom.media.id;
+              return <Recom key={keyParam + id + index} recom={recom} />;
+            }
+          })}
+          <div ref={wastefulCover} className="wasteful-cover"></div>
         </div>
-        <button
-          onClick={leftScrollHandler}
-          className="absolute left-0 top-0 h-full w-12 bg-gradient-to-l from-transparent to-gray-200 hover:to-gray-400
-        focus:outline-none group"
-        >
-          <FontAwesomeIcon
-            className=" text-4xl transform rotate-180 text-gray-600 active:scale-y-95"
-            icon={faChevronCircleRight}
-          />
-        </button>
-        <button
-          onClick={rightScrollHandler}
-          className="absolute right-0 top-0 h-full w-12 bg-gradient-to-r from-transparent to-gray-200 hover:to-gray-400
-        focus:outline-none"
-        >
-          <FontAwesomeIcon
-            className="text-4xl text-gray-600 transform active:scale-y-95"
-            icon={faChevronCircleRight}
-          />
-        </button>
       </div>
-    
+      <button onClick={leftScrollHandler} className="left-0 bg-gradient-to-l">
+        <FontAwesomeIcon
+          className="font-icon-recom-list rotate-180"
+          icon={faChevronCircleRight}
+        />
+      </button>
+      <button onClick={rightScrollHandler} className="right-0 bg-gradient-to-r">
+        <FontAwesomeIcon
+          className="font-icon-recom-list"
+          icon={faChevronCircleRight}
+        />
+      </button>
+    </div>
   );
 };
 

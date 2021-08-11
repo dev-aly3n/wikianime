@@ -1,5 +1,25 @@
 @layer components {
-    .recommendation::-webkit-scrollbar {
-        display: none;
+  .recommendation::-webkit-scrollbar {
+    display: none;
+  }
+
+  .recommendation-parent {
+    @apply relative block mx-auto overflow-hidden rounded-md;
+    .recommendation {
+      @apply flex justify-between items-center h-96  overflow-x-auto;
+      > div {
+        @apply flex flex-row mx-5 md:mx-10 relative;
+        .wasteful-cover {
+          @apply absolute top-0 left-0 h-full w-full opacity-0 hidden cursor-pointer;
+        }
       }
+    }
+    > button {
+      @apply absolute top-0 h-full w-12 from-transparent to-gray-200 hover:to-gray-400
+          focus:outline-none;
+      .font-icon-recom-list {
+        @apply text-4xl transform text-gray-600 active:scale-y-95;
+      }
+    }
+  }
 }
