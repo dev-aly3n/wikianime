@@ -1,0 +1,26 @@
+@layer components {
+  .anime-card-container {
+    min-height: 30vh;
+    @apply text-center relative cursor-pointer rounded-md overflow-hidden shadow-xl;
+
+    > img {
+      @apply w-full h-56 object-cover rounded-md;
+    }
+    > h3 {
+      @apply text-white absolute bottom-0 leading-tight
+      bg-gray-800 bg-opacity-70 w-full text-lg h-11 backdrop-filter backdrop-blur-sm;
+    }
+
+    .anime-circle-rate {
+      @apply absolute top-0 right-0 transition-transform duration-500;
+    }
+
+    .anime-info {
+      font-size: 9px;
+      @apply absolute top-0 left-0 rounded-md font-medium flex flex-col;
+      > div {
+        @apply text-black px-0.5 rounded-r-md my-px max-w-min;
+      }
+    }
+  }
+}

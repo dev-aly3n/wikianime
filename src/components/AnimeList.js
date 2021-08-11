@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 const AnimeList = ({ allAnimeData, initialQuantity, colsInRow, keyParam }) => {
   const [showMore, setShowMore] = useState({
-    stream: (initialQuantity),
-    });
+    stream: initialQuantity,
+  });
 
   let gridColsTemp = `grid-cols-2 ssm:grid-cols-${colsInRow - 1} lg:grid-cols-${
     colsInRow - 1
@@ -13,28 +13,27 @@ const AnimeList = ({ allAnimeData, initialQuantity, colsInRow, keyParam }) => {
 
   const streamShowMoreHandler = (e) => {
     if (showMore.stream > 30) {
-      setShowMore({...showMore, stream: showMore.stream + 999 });
+      setShowMore({ ...showMore, stream: showMore.stream + 999 });
       e.target.style.display = "none";
     } else {
-      setShowMore({...showMore, stream: showMore.stream + 10 });
+      setShowMore({ ...showMore, stream: showMore.stream + 10 });
     }
     if (showMore.stream + 10 >= allAnimeData.length) {
       e.target.style.display = "none";
     }
   };
 
-
   // maintain the array for duplicate elements
-  let counterAnime =[];
-  let trimedAllAnimeData = allAnimeData.filter(anime => {
-   let anim = anime.id !== undefined ? anime : anime.node;
-    if(!counterAnime.includes(anim.id)){
+  let counterAnime = [];
+  let trimedAllAnimeData = allAnimeData.filter((anime) => {
+    let anim = anime.id !== undefined ? anime : anime.node;
+    if (!counterAnime.includes(anim.id)) {
       counterAnime.push(anim.id);
-      if(anime!==undefined){
-      return anime;
+      if (anime !== undefined) {
+        return anime;
       }
     }
-  })
+  });
 
   return (
     <motion.div className="pb-10">
