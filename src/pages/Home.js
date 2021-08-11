@@ -1,40 +1,41 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import { useQuery } from "@apollo/client";
 import { homeQuery } from "../chooks/queries";
 import AnimeList from "../components/AnimeList";
 import AiringList from "../components/homePage/AiringList";
-import HomeRec from '../components/homePage/HomeRec';
-import TopList from '../components/homePage/TopList';
-import RecomList from '../components/detailPage/RecomList'
+import HomeRec from "../components/homePage/HomeRec";
+import TopList from "../components/homePage/TopList";
+import RecomList from "../components/detailPage/RecomList";
 import AiringSlider from "../components/homePage/AiringSlider";
 import Loading from "./Loading";
-import {useApolloClient, gql} from '@apollo/client'
+import { useApolloClient, gql } from "@apollo/client";
 
-
-const Home = ({gridRef}) => {
+const Home = ({ gridRef }) => {
   const client = useApolloClient();
   client.writeQuery({
     query: gql`
-    query WriteIsLoading {
-      loadingbar {
-        isLoading
+      query WriteIsLoading {
+        loadingbar {
+          isLoading
+        }
       }
-    }`,
-    data: { // Contains the data to write
+    `,
+    data: {
+      // Contains the data to write
       loadingbar: {
-        __typename: 'LoadingBar',
-        isLoading: 80
+        __typename: "LoadingBar",
+        isLoading: 80,
       },
-    }
+    },
   });
-
 
   const hQuery = homeQuery;
   const { loading, error, data } = useQuery(hQuery);
 
   if (loading) {
     console.log("loading");
-    return <Loading />  }
+    return <Loading />;
+  }
 
   if (error) {
     console.log(error.message);
@@ -47,69 +48,83 @@ const Home = ({gridRef}) => {
 
   const ioio = () => {
     // console.log(gridRef.current.offsetParent.scrollTop);
-  }
+  };
 
   return (
     <React.Fragment>
-      <div ref={gridRef} onWheel={ioio} className=" home-grid-container" >
-      <div className="h-header">
+      <div ref={gridRef} onWheel={ioio} className=" home-grid-container">
+        <div className="h-header">
+          {airing[0] && (
+            <div>
+              <AiringSlider allAiring={airing} keyParam={"airingSlider"} />
+            </div>
+          )}
 
-      {airing[0] && 
-      <div>
-        <AiringSlider allAiring={airing} keyParam={"airingSlider"} />
-      </div>}
-
-
-      { data.homeRecom.recommendations[0] && 
-      <div>
-      <div className="text-left text-2xl text-gray-700 font-semibold py-1 mt-5 mx-2 ml-5 ssm:ml-20">Suggestions</div>
-      <RecomList allRecom={data.homeRecom.recommendations} initialQuantity={7} keyParam={"recSlider"} />
-      </div>
-      }
-      </div>
-
-      <div className="h-sidebar bg-indigo-50 rounded shadow-lg">
-      { data.homeRecom.recommendations[0] && 
-      <div>
-      <div className="text-center text-xl font-semibold py-3 mx-2">Top Recommendations</div>
-      <HomeRec allRecom={data.homeRecom.recommendations} keyParam={"topRec"} />
-      </div>
-      }
-      
-      {airing[0] && 
-      <div className="mx-1">
-      <div className="text-center text-xl font-semibold py-3 mx-2">Airing Schedules</div>
-        <AiringList allAiring={airing} keyParam={"airing"} />
-      </div>}
-
-      </div>
-      <div className="h-trending bg-indigo-50 shadow-lg rounded">
-      <div className="text-left text-2xl font-semibold py-3 mx-3">Trending</div>
-        <AnimeList
-          allAnimeData={trending}
-          colsInRow={4}
-          initialQuantity={8}
-          keyParam={"homeTrending"}
-        />
-        </div>
-      <div className="h-alltime bg-indigo-50 shadow-lg rounded">
-      <div className="text-left text-2xl font-semibold py-3 mx-3">Popular All Time</div>
-        <AnimeList
-          allAnimeData={allTime}
-          colsInRow={4}
-          initialQuantity={8}
-          keyParam={"homepopAllTime"}
-        />
-        </div>
-      <div className="h-top100 bg-indigo-50 shadow-lg rounded">
-      <div className="text-left text-2xl font-semibold py-3 mx-3">Top 100</div>
-        <TopList
-          allAnimeData={top100}
-          initialQuantity={8}
-          keyParam={"top100"}
-        />
+          {data.homeRecom.recommendations[0] && (
+            <div>
+              <RecomList
+                allRecom={data.homeRecom.recommendations}
+                initialQuantity={7}
+                keyParam={"recSlider"}
+              />
+            </div>
+          )}
         </div>
 
+        <div className="h-sidebar bg-indigo-50 rounded shadow-lg">
+          {data.homeRecom.recommendations[0] && (
+            <div>
+              <div className="text-center text-xl font-semibold py-3 mx-2">
+                Top Recommendations
+              </div>
+              <HomeRec
+                allRecom={data.homeRecom.recommendations}
+                keyParam={"topRec"}
+              />
+            </div>
+          )}
+
+          {airing[0] && (
+            <div className="mx-1">
+              <div className="text-center text-xl font-semibold py-3 mx-2">
+                Airing Schedules
+              </div>
+              <AiringList allAiring={airing} keyParam={"airing"} />
+            </div>
+          )}
+        </div>
+        <div className="h-trending bg-indigo-50 shadow-lg rounded">
+          <div className="text-left text-2xl font-semibold py-3 mx-3">
+            Trending
+          </div>
+          <AnimeList
+            allAnimeData={trending}
+            colsInRow={4}
+            initialQuantity={8}
+            keyParam={"homeTrending"}
+          />
+        </div>
+        <div className="h-alltime bg-indigo-50 shadow-lg rounded">
+          <div className="text-left text-2xl font-semibold py-3 mx-3">
+            Popular All Time
+          </div>
+          <AnimeList
+            allAnimeData={allTime}
+            colsInRow={4}
+            initialQuantity={8}
+            keyParam={"homepopAllTime"}
+          />
+        </div>
+        <div className="h-top100 bg-indigo-50 shadow-lg rounded">
+          <div className="text-left text-2xl font-semibold py-3 mx-3">
+            Top 100
+          </div>
+          <TopList
+            allAnimeData={top100}
+            initialQuantity={8}
+            keyParam={"top100"}
+          />
+        </div>
       </div>
     </React.Fragment>
   );

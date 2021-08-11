@@ -2,8 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import Recom from "./Recom";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { recomListQuery } from "../../chooks/queries";
+import { useQuery } from "@apollo/client";
 
-const RecomList = ({ allRecom, initialQuantity, keyParam }) => {
+const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
   const isSmallDevice = document.documentElement.clientWidth <= 768;
   const magicNum1 = 250;
   const magicNum2 = isSmallDevice ? 264 : 264 * 2;
@@ -14,6 +16,66 @@ const RecomList = ({ allRecom, initialQuantity, keyParam }) => {
   const [showMore, setShowMore] = useState({
     recommend: initialQuantity,
   });
+
+  let id;
+  if (animeID) {
+    id = animeID;
+  } else {
+    id = 16498;
+  }
+  const { loading, error, data } = useQuery(recomListQuery, {
+    variables: {
+      id: id,
+    },
+  });
+
+  if (loading) {
+    return null;
+  }
+
+  if (error) {
+    console.log(error.message);
+    return `Error! ${error}`;
+  }
+
+  let allRecomData;
+  if (allRecom) {
+    allRecomData = allRecom;
+  } else {
+    allRecomData = data.Media.recommendations.edges;
+  }
+
+  let isDown = false;
+  let startx, scrollLeft;
+
+  const recSliderMouseDownHandler = (e) => {
+    e.preventDefault();
+    isDown = true;
+    startx = e.pageX - rightLeftScroll.current.offsetLeft;
+    scrollLeft = rightLeftScroll.current.scrollLeft;
+  };
+
+  const recSliderMouseLeaveHandler = () => {
+    isDown = false;
+    wastefulCover.current.style.display = "none";
+  };
+
+  const recSliderMouseUpHandler = () => {
+    isDown = false;
+
+    wastefulCover.current.style.display = "none";
+
+    setShowMore({ recommend: allRecomData.length });
+  };
+
+  const recSliderMouseMoveHandler = (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - rightLeftScroll.current.offsetLeft;
+    const walk = (x - startx) * 1.5;
+    rightLeftScroll.current.scrollLeft = scrollLeft - walk;
+    wastefulCover.current.style.display = "block";
+  };
 
   const rightScrollHandler = () => {
     let recLeft = rightLeftScroll.current.scrollLeft;
@@ -29,8 +91,8 @@ const RecomList = ({ allRecom, initialQuantity, keyParam }) => {
       });
       if (
         isSmallDevice
-          ? showMore.recommend < allRecom.length + 1
-          : showMore.recommend < allRecom.length + 3
+          ? showMore.recommend < allRecomData.length + 1
+          : showMore.recommend < allRecomData.length + 3
       ) {
         const newRecommend = isSmallDevice
           ? showMore.recommend + 1
@@ -46,8 +108,8 @@ const RecomList = ({ allRecom, initialQuantity, keyParam }) => {
 
       if (
         isSmallDevice
-          ? showMore.recommend < allRecom.length + 1
-          : showMore.recommend < allRecom.length + 3
+          ? showMore.recommend < allRecomData.length + 1
+          : showMore.recommend < allRecomData.length + 3
       ) {
         const newRecommend = isSmallDevice
           ? showMore.recommend + 1
@@ -83,13 +145,10 @@ const RecomList = ({ allRecom, initialQuantity, keyParam }) => {
     if (recLeft / recWidth < 0.5) {
       if (
         isSmallDevice
-          ? showMore.recommend < allRecom.length + 1
-          : showMore.recommend < allRecom.length + 3
+          ? showMore.recommend < allRecomData.length + 1
+          : showMore.recommend < allRecomData.length + 3
       ) {
-        // const newRecommend = isSmallDevice
-        //   ? showMore.recommend + 1
-        //   : showMore.recommend + 3;
-        setShowMore({ recommend: allRecom.length });
+        setShowMore({ recommend: allRecomData.length });
       }
     }
     if ((Math.round(recLeft) - magicNum1) % magicNum2 !== 0 && recLeft !== 0) {
@@ -103,69 +162,55 @@ const RecomList = ({ allRecom, initialQuantity, keyParam }) => {
     }
   };
 
-  useEffect(() => {
-    const recSlider = rightLeftScroll.current;
-    let isDown = false;
-    let startx, scrollLeft;
-    recSlider.addEventListener("mousedown", (e) => {
-      e.preventDefault();
-      isDown = true;
-      startx = e.pageX - recSlider.offsetLeft;
-      scrollLeft = recSlider.scrollLeft;
-    });
-    recSlider.addEventListener("mouseleave", () => {
-      isDown = false;
-      wastefulCover.current.style.display = "none";
-    });
-    recSlider.addEventListener("mouseup", () => {
-      isDown = false;
-
-      wastefulCover.current.style.display = "none";
-
-      setShowMore({ recommend: allRecom.length });
-    });
-    recSlider.addEventListener("mousemove", (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - recSlider.offsetLeft;
-      const walk = (x - startx) * 1.5;
-      recSlider.scrollLeft = scrollLeft - walk;
-      wastefulCover.current.style.display = "block";
-    });
-  }, [rightLeftScroll.current]);
-
   return (
-    <div className="recommendation-parent">
-      <div
-        className="recommendation"
-        ref={rightLeftScroll}
-        onTouchEnd={recTouchHandler}
-      >
+    <React.Fragment>
+      {allRecomData.length > 0 && (
         <div>
-          {allRecom.map((recom, index) => {
-            if (index <= showMore.recommend - 1) {
-              const id = recom.node
-                ? recom.node.mediaRecommendation.id
-                : recom.media.id;
-              return <Recom key={keyParam + id + index} recom={recom} />;
-            }
-          })}
-          <div ref={wastefulCover} className="wasteful-cover"></div>
+          <h4 className="recom-list-title">Recommendations</h4>
+          <div className="recommendation-parent">
+            <div
+              className="recommendation"
+              ref={rightLeftScroll}
+              onTouchEnd={recTouchHandler}
+              onMouseDown={recSliderMouseDownHandler}
+              onMouseLeave={recSliderMouseLeaveHandler}
+              onMouseUp={recSliderMouseUpHandler}
+              onMouseMove={recSliderMouseMoveHandler}
+            >
+              <div>
+                {allRecomData.map((recom, index) => {
+                  if (index <= showMore.recommend - 1) {
+                    const id = recom.node
+                      ? recom.node.mediaRecommendation.id
+                      : recom.media.id;
+                    return <Recom key={keyParam + id + index} recom={recom} />;
+                  }
+                })}
+                <div ref={wastefulCover} className="wasteful-cover"></div>
+              </div>
+            </div>
+            <button
+              onClick={leftScrollHandler}
+              className="left-0 bg-gradient-to-l"
+            >
+              <FontAwesomeIcon
+                className="font-icon-recom-list rotate-180"
+                icon={faChevronCircleRight}
+              />
+            </button>
+            <button
+              onClick={rightScrollHandler}
+              className="right-0 bg-gradient-to-r"
+            >
+              <FontAwesomeIcon
+                className="font-icon-recom-list"
+                icon={faChevronCircleRight}
+              />
+            </button>
+          </div>
         </div>
-      </div>
-      <button onClick={leftScrollHandler} className="left-0 bg-gradient-to-l">
-        <FontAwesomeIcon
-          className="font-icon-recom-list rotate-180"
-          icon={faChevronCircleRight}
-        />
-      </button>
-      <button onClick={rightScrollHandler} className="right-0 bg-gradient-to-r">
-        <FontAwesomeIcon
-          className="font-icon-recom-list"
-          icon={faChevronCircleRight}
-        />
-      </button>
-    </div>
+      )}
+    </React.Fragment>
   );
 };
 

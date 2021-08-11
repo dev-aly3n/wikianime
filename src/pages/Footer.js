@@ -11,7 +11,7 @@ const Footer = () => {
             time beside working on my application <br />
             anyway thank you to visiting my app and a big thanks to anilist
             graphQL server <br />
-            <p className="text-red-400">if you think there is something wrong, then please open the application with chrome browser.</p>
+            <span className="text-red-400">if you think there is something wrong, then please open the application with chrome browser.</span>
           </p>
         </div>
 

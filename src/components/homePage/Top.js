@@ -88,8 +88,7 @@ const Top = ({ anime, rank }) => {
                 symbol={faHeart}
               />
               <p
-                className="absolute top-4 left-3 text-white"
-                style={{ fontSize: "9px" }}
+                className="top-rate-pop-text"
               >
                 popularity
               </p>

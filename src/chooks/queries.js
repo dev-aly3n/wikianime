@@ -192,7 +192,14 @@ export const detailQuery = gql`
           }
         }
       }
-      recommendations {
+    }
+  }
+`;
+
+export const recomListQuery = gql`
+  query rEcOmLiStQuErY($id: Int) {
+    Media(id: $id) {
+      recommendations(sort:RATING_DESC) {
         edges {
           node {
             rating
@@ -214,8 +221,8 @@ export const detailQuery = gql`
         }
       }
     }
-  }
-`;
+  }`;
+
 
 export const homeQuery = gql`
   query HoMeAnImE {

@@ -17,7 +17,7 @@ import CharacterList from "../components/detailPage/CharacterList";
 import CharacterDetail from "./CharacterDetail";
 import ReviewList from "../components/detailPage/ReviewList";
 import RecomList from "../components/detailPage/RecomList";
-import {useApolloClient, gql} from '@apollo/client'
+import {useApolloClient, gql} from '@apollo/client';
 import Loading from "./Loading";
 
 const AnimeDetail = () => {
@@ -63,7 +63,7 @@ const AnimeDetail = () => {
     console.log(error.message);
     return `Error! ${error}`;
   }
-
+console.log(data);
 
   const aData = data.Media;
   const title = aData.title.english ? aData.title.english : aData.title.romaji;
@@ -84,7 +84,6 @@ const AnimeDetail = () => {
   const studios = aData.studios.edges;
   const tags = aData.tags;
   const nextAiringEpisode = aData.nextAiringEpisode;
-  const recommendations = aData.recommendations.edges;
   let favouritesRange = ((aData.favourites / 30000) * 100).toFixed(0);
   if (favouritesRange > 100) {
     favouritesRange = 100;
@@ -294,7 +293,7 @@ const AnimeDetail = () => {
                 if (index < 6) {
                   return (
                     <div
-                      className="tag-names"
+                      className="bg-purple-100 p-1 rounded-2xl m-1 shadow-inner  text-xs"
                       key={tag.name}
                     >
                       <span className="float-left mr-4">{tag.name}</span>
@@ -350,18 +349,13 @@ const AnimeDetail = () => {
             </div>
           )}
         </div>
-        {recommendations[0] && (
           <div className="d-recom">
-            <div className="text-left text-2xl font-semibold ml-5 mt-5 py-5">
-              Recommendations
-            </div>
             <RecomList
-              allRecom={recommendations}
+            animeID={id}
               keyParam={"recom"}
               initialQuantity={7}
             />
           </div>
-        )}
       </div>
     </React.Fragment>
   );

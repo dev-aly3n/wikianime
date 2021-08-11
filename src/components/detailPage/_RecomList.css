@@ -2,6 +2,9 @@
   .recommendation::-webkit-scrollbar {
     display: none;
   }
+  .recom-list-title {
+    @apply text-left text-2xl font-semibold ml-5 mt-5 py-5 text-gray-700 ssm:ml-12;
+  }
 
   .recommendation-parent {
     @apply relative block mx-auto overflow-hidden rounded-md;

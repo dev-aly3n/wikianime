@@ -17,7 +17,7 @@
           .top-information {
             @apply flex flex-wrap justify-between text-sm text-gray-700;
           }
-          .tag-container {
+          .top-tag-container {
             @apply flex flex-wrap;
             > span {
               @apply bg-purple-100 p-1 rounded-2xl m-1 shadow-inner  text-xs;
@@ -32,6 +32,10 @@
         }
         .top-rate-popularity {
           @apply hidden ssm:block absolute right-0 bottom-0 transition-all duration-1000;
+          .top-rate-pop-text {
+            font-size: 9px;
+            @apply absolute top-4 left-3 text-white;
+          }
         }
       }
     }
