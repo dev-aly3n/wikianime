@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from 'react';
 import { useQuery } from "@apollo/client";
 import { homeQuery } from "../chooks/queries";
 import AnimeList from "../components/AnimeList";
@@ -52,7 +52,11 @@ const Home = ({ gridRef }) => {
 
   return (
     <React.Fragment>
-      <div ref={gridRef} onWheel={ioio} className=" home-grid-container">
+      <div
+        ref={gridRef}
+        onWheel={ioio}
+        className=" home-grid-container home-page-container"
+      >
         <div className="h-header">
           {airing[0] && (
             <div>
@@ -71,12 +75,10 @@ const Home = ({ gridRef }) => {
           )}
         </div>
 
-        <div className="h-sidebar bg-indigo-50 rounded shadow-lg">
+        <div className="h-sidebar ">
           {data.homeRecom.recommendations[0] && (
             <div>
-              <div className="text-center text-xl font-semibold py-3 mx-2">
-                Top Recommendations
-              </div>
+              <h3>Top Recommendations</h3>
               <HomeRec
                 allRecom={data.homeRecom.recommendations}
                 keyParam={"topRec"}
@@ -85,18 +87,14 @@ const Home = ({ gridRef }) => {
           )}
 
           {airing[0] && (
-            <div className="mx-1">
-              <div className="text-center text-xl font-semibold py-3 mx-2">
-                Airing Schedules
-              </div>
+            <div>
+              <h3>Airing Schedules</h3>
               <AiringList allAiring={airing} keyParam={"airing"} />
             </div>
           )}
         </div>
-        <div className="h-trending bg-indigo-50 shadow-lg rounded">
-          <div className="text-left text-2xl font-semibold py-3 mx-3">
-            Trending
-          </div>
+        <div className="h-trending">
+          <h3>Trending</h3>
           <AnimeList
             allAnimeData={trending}
             colsInRow={4}
@@ -104,10 +102,8 @@ const Home = ({ gridRef }) => {
             keyParam={"homeTrending"}
           />
         </div>
-        <div className="h-alltime bg-indigo-50 shadow-lg rounded">
-          <div className="text-left text-2xl font-semibold py-3 mx-3">
-            Popular All Time
-          </div>
+        <div className="h-alltime">
+          <h3>Popular All Time</h3>
           <AnimeList
             allAnimeData={allTime}
             colsInRow={4}
@@ -115,10 +111,8 @@ const Home = ({ gridRef }) => {
             keyParam={"homepopAllTime"}
           />
         </div>
-        <div className="h-top100 bg-indigo-50 shadow-lg rounded">
-          <div className="text-left text-2xl font-semibold py-3 mx-3">
-            Top 100
-          </div>
+        <div className="h-top100">
+          <h3>Top 100</h3>
           <TopList
             allAnimeData={top100}
             initialQuantity={8}
