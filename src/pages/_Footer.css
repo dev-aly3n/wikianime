@@ -1,6 +1,40 @@
 @layer components {
-    .footer-container {
-        @apply pt-14 bg-indigo-900 text-indigo-50 w-full ;
+  .footer-container {
+    @apply pt-14 bg-indigo-900 text-indigo-50 w-full;
+    > div:first-child {
+      @apply h-full flex flex-col md:flex-row justify-center md:justify-evenly items-center pb-10;
+      .footer-thank {
+        @apply w-10/12 ssm:w-1/2 md:w-1/4 text-base my-5;
+        > span {
+          @apply text-red-400;
+        }
+      }
+      .footer-logo {
+        @apply flex justify-around items-center my-5;
+        > h1 {
+          @apply text-white text-7xl font-bold select-none;
+        }
+        > span {
+          @apply self-end text-purple-50 font-bold  ml-px;
+        }
+      }
     }
-
+    .footer-links {
+      @apply flex flex-col justify-between items-center w-10/12 ssm:w-1/2 md:w-1/4 my-5;
+      > h4 {
+        @apply text-2xl font-bold;
+      }
+      > ul {
+        > li {
+          @apply flex hover:text-yellow-500 my-1;
+          > img {
+            @apply w-5 mx-1;
+          }
+        }
+      }
+    }
+    > div:last-child {
+      @apply text-center bg-indigo-900;
+    }
+  }
 }
