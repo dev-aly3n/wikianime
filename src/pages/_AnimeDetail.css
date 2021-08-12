@@ -1,6 +1,4 @@
 @layer components {
-      
-
   .detail-grid-container {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1.4fr 1fr;
@@ -17,7 +15,6 @@
   }
 
   @media screen and (max-width: 1024px) {
-
     .detail-grid-container {
       grid-template-columns: 0.3fr 10fr 10fr 7fr 0.3fr;
       grid-template-areas:
@@ -40,56 +37,146 @@
         "..... relate  ....."
         "..... watch   ....."
         "recom recom recom";
-
     }
   }
 
-  .d-header {
-    grid-area: header;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    @apply bg-gray-400 text-center overflow-hidden h-60 sm:h-44 md:h-60 lg:h-72 xl:h-96;
-  }
-  .d-sidebar {
-    grid-area: sidebar;
-    min-width: 260px;
-    @apply flex flex-col ssm:mx-16 sm:-mx-0;
-  }
-  .d-main {
-    font-family: "Lato", sans-serif;
-    font-weight: 300;
-    grid-area: main;
-    @apply text-base text-gray-700 p-3 md:p-10;
-  }
-  .d-relate {
-    font-size: 10px;
-    grid-area: relate;
-  }
-  .d-watch {
-    font-size: 10px;
-    grid-area: watch;
-  }
-  .d-recom {
-    font-size: 10px;
-    grid-area: recom;
-  }
+  .detail-page-container {
+    .d-header {
+      grid-area: header;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      @apply bg-gray-400 text-center overflow-hidden h-60 sm:h-44 md:h-60 lg:h-72 xl:h-96;
+    }
+    .d-sidebar {
+      grid-area: sidebar;
+      min-width: 260px;
+      @apply flex flex-col ssm:mx-16 sm:-mx-0 px-2 bg-gray-100 shadow-inner;
+      h4 {
+        @apply text-center font-bold my-1;
+      }
+      > h2 {
+        @apply block mx-auto py-2 text-xl font-semibold text-center;
+      }
+      .format-side-detail {
+        @apply w-max px-3 block mx-auto py-1 font-semibold rounded-2xl bg-gray-100 shadow-inner;
+      }
+      .detail-side-info {
+        @apply w-max px-3 py-1 font-semibold rounded-2xl block mx-auto text-xs;
+      }
+      .detail-side-genres-container {
+        @apply flex flex-wrap justify-start my-1;
+        > div {
+          @apply bg-purple-100 p-1 rounded-2xl m-1 shadow-inner text-sm;
+        }
+      }
+      .detail-side-date {
+        @apply flex justify-evenly font-medium text-gray-700 my-2;
+        > span {
+          @apply bg-gray-200 p-1 rounded-xl;
+        }
+      }
+      .detail-side-airing {
+        @apply text-blue-400;
+        > div {
+          @apply px-2 py-1 font-medium;
+          > span {
+            @apply float-right;
+          }
+        }
+      }
+      .detail-side-pop {
+        @apply mb-3;
+      }
+      .detail-side-studios {
+        @apply flex flex-wrap justify-center py-2;
+        > span {
+          @apply bg-purple-100 p-1 rounded-2xl m-1 shadow-inner text-sm;
+        }
+      }
+      .detail-side-producers {
+        > div {
+          @apply flex flex-wrap justify-center py-2;
+          > span {
+            @apply bg-purple-100 p-1 rounded-2xl my-1 mx-0.5 shadow-inner text-sm;
+          }
+        }
+      }
+      .detail-side-source {
+        @apply bg-purple-100 p-1 rounded-2xl m-1 shadow-inner text-xs mx-auto max-w-min;
+      }
+    }
+    .d-main {
+      font-family: "Lato", sans-serif;
+      font-weight: 300;
+      grid-area: main;
+      @apply text-base text-gray-700 p-3 md:p-10  relative shadow-sm;
+      .detail-main-score {
+        @apply absolute right-0 top-0 -mt-16;
+      }
+      .detail-main-fav {
+        @apply absolute right-24 top-0 -mt-16;
+      }
+      .detail-main-desc {
+        @apply mt-5;
+      }
+      .detail-main-tag {
+        @apply flex flex-wrap;
+        > span {
+          @apply bg-purple-100 p-1 rounded-2xl m-1 shadow-inner  text-xs;
+          > span:first-child {
+            @apply float-left mr-4;
+          }
+          > span:last-child {
+            @apply float-right;
+          }
+        }
+      }
+    }
+    .d-relate {
+      font-size: 10px;
+      grid-area: relate;
+      @apply rounded-lg my-3  bg-purple-50  md:p-10 shadow-md;
+      > h4 {
+        @apply text-left text-2xl font-semibold p-4 md:p-0;
+      }
+    }
+    .d-watch {
+      font-size: 10px;
+      grid-area: watch;
 
+      .detail-watch-stream {
+        @apply bg-purple-50 ssm:p-10 rounded-lg shadow-md;
+        > h4 {
+          @apply text-left text-2xl font-semibold py-5 pl-4;
+        }
+      }
+      .detail-watch-reviews {
+        @apply bg-purple-50 md:p-5 rounded-lg shadow-md my-5;
+        > h4 {
+          @apply text-left text-2xl font-semibold ml-5 mt-5 py-5;
+        }
+      }
+    }
+    .d-recom {
+      font-size: 10px;
+      grid-area: recom;
+    }
 
-  .banner-inside {
-    background-color: rgba(0, 0, 0, 0.2);
-    @apply h-full flex flex-col content-center justify-center;
-  }
+    .banner-inside {
+      background-color: rgba(0, 0, 0, 0.2);
+      @apply h-full flex flex-col content-center justify-center;
+    }
 
-  .detail-title {
-    border-radius: 50% 20% / 10% 40%;
-    @apply text-red-100 text-xl font-semibold  m-auto bg-opacity-20 py-2 px-6
-    sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl line-clamp-1;
-  }
+    .detail-title {
+      border-radius: 50% 20% / 10% 40%;
+      @apply text-red-100 text-xl font-semibold  m-auto bg-opacity-20 py-2 px-6
+    sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl line-clamp-1 leading-normal;
+    }
 
-  .detail-cover-image {
-    @apply w-full  sm:-mt-20  lg:-mt-28 shadow-3xl border-4 rounded-sm
+    .detail-cover-image {
+      @apply w-full  sm:-mt-20  lg:-mt-28 shadow-3xl border-4 rounded-sm
     border-dashed;
+    }
   }
-
 }

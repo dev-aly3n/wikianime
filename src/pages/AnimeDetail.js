@@ -17,28 +17,27 @@ import CharacterList from "../components/detailPage/CharacterList";
 import CharacterDetail from "./CharacterDetail";
 import ReviewList from "../components/detailPage/ReviewList";
 import RecomList from "../components/detailPage/RecomList";
-import {useApolloClient, gql} from '@apollo/client';
+import { useApolloClient, gql } from "@apollo/client";
 import Loading from "./Loading";
 
 const AnimeDetail = () => {
   const client = useApolloClient();
   client.writeQuery({
     query: gql`
-    query WriteIsLoading {
-      loadingbar {
-        isLoading
+      query WriteIsLoading {
+        loadingbar {
+          isLoading
+        }
       }
-    }`,
-    data: { // Contains the data to write
+    `,
+    data: {
+      // Contains the data to write
       loadingbar: {
-        __typename: 'LoadingBar',
-        isLoading: 80
+        __typename: "LoadingBar",
+        isLoading: 80,
       },
-    }
+    },
   });
-
-
-
 
   document.body.style.overflow = "auto";
 
@@ -56,14 +55,14 @@ const AnimeDetail = () => {
   });
 
   if (loading) {
-    return <Loading />
+    return <Loading />;
   }
 
   if (error) {
     console.log(error.message);
     return `Error! ${error}`;
   }
-console.log(data);
+  console.log(data);
 
   const aData = data.Media;
   const title = aData.title.english ? aData.title.english : aData.title.romaji;
@@ -107,28 +106,26 @@ console.log(data);
         />
       )}
 
-      <div className="detail-grid-container">
+      <div className="detail-grid-container detail-page-container">
         <div className="d-header" style={{ backgroundImage: `url(${banner})` }}>
           <div className="banner-inside">
             <h1
-              className="detail-title leading-normal"
+              className="detail-title"
               style={{ backgroundColor: `${animeColor50}` }}
             >
               {title}
             </h1>
           </div>
         </div>
-        <div className="d-sidebar px-2 bg-gray-100 shadow-inner">
+        <div className="d-sidebar">
           <img
             className="detail-cover-image"
             style={{ borderColor: `${animeColor30}` }}
             src={coverImage.large}
-          ></img>
-          <h2 className="block mx-auto py-2 text-xl font-semibold">{title}</h2>
-          <div className="w-max px-3 block mx-auto py-1 font-semibold rounded-2xl bg-gray-100 shadow-inner">
-            {aData.format}
-          </div>
-          <div className="w-max px-3 py-1 font-semibold rounded-2xl block mx-auto text-xs">
+          />
+          <h2>{title}</h2>
+          <div className="format-side-detail">{aData.format}</div>
+          <div className="detail-side-info">
             {aData.season && aData.season.toLowerCase()}{" "}
             {aData.seasonYear && aData.seasonYear}
             {aData.episodes && ` | ${aData.episodes} Episodes `}
@@ -137,21 +134,14 @@ console.log(data);
             {aData.volumes && `${aData.volumes} Volumes | `}
             {aData.chapters && `${aData.chapters} Chapters`}
           </div>
-          <div className="flex flex-wrap justify-start my-1">
+          <div className="detail-side-genres-container">
             {genres.map((gen) => {
-              return (
-                <div
-                  key={gen}
-                  className="bg-purple-100 p-1 rounded-2xl m-1 shadow-inner text-sm"
-                >
-                  #{gen}
-                </div>
-              );
+              return <div key={gen}>#{gen}</div>;
             })}
           </div>
-          <div className="text-center font-bold my-1">Date</div> <hr />
-          <div className="flex justify-evenly font-medium text-gray-700 my-2">
-            <span className="bg-gray-200 p-1 rounded-xl">
+          <h4>Date</h4> <hr />
+          <div className="detail-side-date">
+            <span>
               {" "}
               {`${startDate.year}${
                 startDate.month
@@ -159,9 +149,9 @@ console.log(data);
                   : ""
               }`}
             </span>
-            {!isOneDate && <span className="p-1 text">-</span>}
+            {!isOneDate && <div>-</div>}
             {!isOneDate && (
-              <span className="bg-gray-200 p-1 rounded-xl">
+              <span>
                 {endDate.year
                   ? endDate.year +
                     (endDate.month
@@ -172,28 +162,25 @@ console.log(data);
             )}
           </div>
           {nextAiringEpisode && (
-            <div>
-              <div className="text-center font-bold my-1 text-blue-400">
-                Airing
-              </div>{" "}
-              <hr />
-              <div className="px-2 py-1 text-blue-400 font-medium">
+            <div className="detail-side-airing">
+              <h4>Airing</h4> <hr />
+              <div>
                 Episode {nextAiringEpisode.episode}
-                <span className="float-right">
+                <span>
                   <FontAwesomeIcon icon={faClock} />{" "}
                   {secondsToDhms(nextAiringEpisode.timeUntilAiring, "dhm")}
                 </span>
               </div>
             </div>
           )}
-          {popularity!==undefined && (
-            <div className="mb-3">
-              <div className="text-center font-bold my-1">Popularity</div>
+          {popularity !== undefined && (
+            <div className="detail-side-pop">
+              <h4>Popularity</h4>
               <Popularity popularity={popularity} />
             </div>
           )}
           <div className="d-ranking ">
-            <div className="text-center font-bold">Ranking</div>
+            <h4>Ranking</h4>
             <hr />
             <ul>
               {rankings.map((rank) => {
@@ -203,54 +190,36 @@ console.log(data);
           </div>
           {studios[0] && (
             <div>
-              <div className="text-center font-bold mt-2">Studios</div>
+              <h4>Studios</h4>
               <hr />
-              <div className="flex flex-wrap justify-center py-2">
+              <div className="detail-side-studios">
                 {studios.map((st) => {
                   if (st.isMain) {
-                    return (
-                      <div
-                        key={st.node.id}
-                        className="bg-purple-100 p-1 rounded-2xl m-1 shadow-inner text-sm"
-                      >
-                        {st.node.name}
-                      </div>
-                    );
+                    return <span key={st.node.id}>{st.node.name}</span>;
                   }
                 })}
               </div>
             </div>
           )}
           {studios[0] && (
-            <div>
-              <div className="text-center font-bold mt-2">Producers</div>
+            <div className="detail-side-producers">
+              <h4>Producers</h4>
               <hr />
-              <div className="flex flex-wrap justify-center py-2">
+              <div>
                 {studios.map((st) => {
                   if (!st.isMain) {
-                    return (
-                      <div
-                        key={st.node.id}
-                        className="bg-purple-100 p-1 rounded-2xl my-1 mx-0.5 shadow-inner text-sm"
-                      >
-                        {st.node.name}
-                      </div>
-                    );
+                    return <span key={st.node.id}>{st.node.name}</span>;
                   }
                 })}
               </div>
             </div>
           )}
-          <div className="text-center font-bold mt-2">Source</div>
+          <h4>Source</h4>
           <hr />
-          <div className="bg-purple-100 p-1 rounded-2xl m-1 shadow-inner text-xs mx-auto max-w-min">
-            {aData.source}
-          </div>
+          <div className="detail-side-source">{aData.source}</div>
           {characters && (
-            <div className="d-relate  rounded-lg my-3">
-              <div className="text-center font-bold mt-2 text-lg">
-                Characters
-              </div>
+            <div className="d-relate">
+              <h4>Characters</h4>
 
               <hr />
               <CharacterList
@@ -262,7 +231,7 @@ console.log(data);
           )}
           {externalLinks[0] && (
             <div>
-              <div className="text-center font-bold mt-2">Links</div>
+              <h4>Links</h4>
               <hr />
               <ul>
                 {externalLinks.map((link) => {
@@ -273,32 +242,29 @@ console.log(data);
           )}
         </div>
 
-        <div className="d-main relative shadow-sm">
-          <div className="absolute right-0 top-0 -mt-16">
+        <div className="d-main">
+          <div className="detail-main-score">
             <CircleRate rate={aData.meanScore} size={5} />
           </div>
-          <div className="absolute right-24 top-0 -mt-16">
+          <div className="detail-main-fav">
             <CircleRate rate={favouritesRange} symbol={faHeart} size={5} />
           </div>
-          <div className="mt-5 ">
+          <div className="detail-main-desc">
             <Markup content={description} />
           </div>
           <br />
           <br />
           {aData.trailer && <Trailer embedId={aData.trailer.id} />} <br />
-          <div>tags:</div>
-          <div className="flex flex-wrap">
+          <h4>tags:</h4>
+          <div className="detail-main-tag">
             {tags &&
               tags.map((tag, index) => {
                 if (index < 6) {
                   return (
-                    <div
-                      className="bg-purple-100 p-1 rounded-2xl m-1 shadow-inner  text-xs"
-                      key={tag.name}
-                    >
-                      <span className="float-left mr-4">{tag.name}</span>
-                      <span className="float-right">{tag.rank}%</span>
-                    </div>
+                    <span key={tag.name}>
+                      <span>{tag.name}</span>
+                      <span>{tag.rank}%</span>
+                    </span>
                   );
                 }
               })}
@@ -306,10 +272,8 @@ console.log(data);
         </div>
 
         {relations[0] && (
-          <div className="d-relate bg-purple-50  md:p-10 rounded-lg shadow-md">
-            <div className="text-left  text-2xl font-semibold p-4 md:p-0">
-              Relations
-            </div>
+          <div className="d-relate">
+            <h4>Relations</h4>
             <hr />
             <AnimeList
               allAnimeData={relations}
@@ -321,10 +285,8 @@ console.log(data);
         )}
         <div className="d-watch ">
           {streamingEpisodes[0] && (
-            <div className="bg-purple-50 ssm:p-10 rounded-lg shadow-md">
-              <div className="text-left text-2xl font-semibold py-5 pl-4">
-                Stream Watch
-              </div>
+            <div className="detail-watch-stream">
+              <h4>Stream Watch</h4>
               <hr />
               <StreamList
                 allEpisode={streamingEpisodes}
@@ -336,10 +298,8 @@ console.log(data);
           )}
 
           {reviews[0] && (
-            <div className="bg-purple-50 md:p-5 rounded-lg shadow-md my-5">
-              <div className="text-left text-2xl font-semibold ml-5 mt-5 py-5">
-                Reviews
-              </div>
+            <div className="detail-watch-reviews">
+              <h4>Reviews</h4>
               <hr />
               <ReviewList
                 allReviewData={reviews}
@@ -349,17 +309,12 @@ console.log(data);
             </div>
           )}
         </div>
-          <div className="d-recom">
-            <RecomList
-            animeID={id}
-              keyParam={"recom"}
-              initialQuantity={7}
-            />
-          </div>
+        <div className="d-recom">
+          <RecomList animeID={id} keyParam={"recom"} initialQuantity={7} />
+        </div>
       </div>
     </React.Fragment>
   );
-        
 };
 
 export default AnimeDetail;
