@@ -13,6 +13,7 @@ export default function ScrollToTop() {
       document.getElementById("navigation").style.top = "0";
     }
     setPervPath(pathname);
+    // eslint-disable-next-line
   }, [pathname]);
 
   return null;

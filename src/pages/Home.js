@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useQuery } from "@apollo/client";
 import { homeQuery } from "../utils/queries";
 import AnimeList from "../components/AnimeList";
@@ -33,7 +33,6 @@ const Home = ({ gridRef }) => {
   const { loading, error, data } = useQuery(hQuery);
 
   if (loading) {
-    console.log("loading");
     return <Loading />;
   }
 
@@ -46,15 +45,12 @@ const Home = ({ gridRef }) => {
   const allTime = data.allTime.media;
   const top100 = data.top100.media;
 
-  const ioio = () => {
-    // console.log(gridRef.current.offsetParent.scrollTop);
-  };
+
 
   return (
     <React.Fragment>
       <div
         ref={gridRef}
-        onWheel={ioio}
         className=" home-grid-container home-page-container"
       >
         <div className="h-header">

@@ -62,7 +62,6 @@ const AnimeDetail = () => {
     console.log(error.message);
     return `Error! ${error}`;
   }
-  console.log(data);
 
   const aData = data.Media;
   const title = aData.title.english ? aData.title.english : aData.title.romaji;
@@ -72,7 +71,6 @@ const AnimeDetail = () => {
   const banner = aData.bannerImage;
   const characters = aData.characters.edges;
   const coverImage = aData.coverImage;
-  const animeColor50 = hexToRgbA(coverImage.color, 0.5);
   const animeColor30 = hexToRgbA(coverImage.color, 0.3);
   const externalLinks = aData.externalLinks;
   const genres = aData.genres;
@@ -119,7 +117,8 @@ const AnimeDetail = () => {
         </div>
         <div className="d-sidebar">
           <img
-            className="detail-cover-image"
+            alt=""
+            className="detail-cover-image "
             style={{ borderColor: `${animeColor30}` }}
             src={coverImage.large}
           />
@@ -193,11 +192,11 @@ const AnimeDetail = () => {
               <h4>Studios</h4>
               <hr />
               <div className="detail-side-studios">
-                {studios.map((st) => {
-                  if (st.isMain) {
+                {studios
+                  .filter((e) => e.isMain)
+                  .map((st) => {
                     return <span key={st.node.id}>{st.node.name}</span>;
-                  }
-                })}
+                  })}
               </div>
             </div>
           )}
@@ -206,11 +205,11 @@ const AnimeDetail = () => {
               <h4>Producers</h4>
               <hr />
               <div>
-                {studios.map((st) => {
-                  if (!st.isMain) {
+                {studios
+                  .filter((e) => !e.isMain)
+                  .map((st) => {
                     return <span key={st.node.id}>{st.node.name}</span>;
-                  }
-                })}
+                  })}
               </div>
             </div>
           )}
@@ -257,16 +256,16 @@ const AnimeDetail = () => {
           <h4>tags:</h4>
           <div className="detail-main-tag">
             {tags &&
-              tags.map((tag, index) => {
-                if (index < 6) {
+              tags
+                .filter((_, index) => index < 6)
+                .map((tag) => {
                   return (
                     <span key={tag.name}>
                       <span>{tag.name}</span>
                       <span>{tag.rank}%</span>
                     </span>
                   );
-                }
-              })}
+                })}
           </div>
         </div>
 

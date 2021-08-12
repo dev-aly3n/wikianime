@@ -18,6 +18,7 @@ const Character = ({ char, animeID, mangaStaffID }) => {
   useEffect(() => {
     
     linkRef.current.addEventListener('click', charClickHandler)
+    // eslint-disable-next-line
   }, []);
   
   const charClickHandler = () => {

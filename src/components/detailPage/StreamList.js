@@ -27,16 +27,16 @@ const StreamList = ({ allEpisode, colsInRow, initialQuantity, keyParam }) => {
     <motion.div className="pb-10">
       <div className="anime-list-container">
         <div className={`anime-list ${gridColsTemp}`}>
-          {allEpisode.map((episode, index) => {
-            if (index <= showMore.stream - 1) {
+          {allEpisode
+            .filter((_, index) => index <= showMore.stream - 1)
+            .map((episode) => {
               return (
                 <Stream
                   key={`${keyParam}-${episode.title}`}
                   episode={episode}
                 />
               );
-            }
-          })}
+            })}
         </div>
       </div>
       {allEpisode.length > initialQuantity && (

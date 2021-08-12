@@ -31,6 +31,7 @@ const Footer = () => {
           <ul>
             <li>
               <img
+                alt=""
                 src={
                   "https://img.pngio.com/github-logo-icon-of-glyph-style-available-in-svg-png-eps-ai-github-icon-png-256_256.png"
                 }
@@ -46,6 +47,7 @@ const Footer = () => {
             </li>
             <li>
               <img
+                alt=""
                 src={
                   "https://www.strategy-works.com/wp-content/uploads/2017/12/Icon-LinkedIn.png"
                 }
@@ -60,7 +62,7 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <img src={"https://telegram.org/img/td_icon.png"} />
+              <img alt="" src={"https://telegram.org/img/td_icon.png"} />
               <a
                 href="https://telegram.me/aly3n"
                 target="_blank"

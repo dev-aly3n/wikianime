@@ -33,21 +33,22 @@ const AnimeList = ({ allAnimeData, initialQuantity, colsInRow, keyParam }) => {
         return anime;
       }
     }
+    return false;
   });
 
   return (
     <motion.div className="pb-10">
       <div className="anime-list-container">
         <motion.div className={`anime-list ${gridColsTemp}`}>
-          {trimedAllAnimeData.map((anime, index) => {
-            //check where the data come from node or media
-            const animeData = anime.id !== undefined ? anime : anime.node;
-            if (index <= showMore.stream - 1) {
+          {trimedAllAnimeData
+            .filter((_, index) => index <= showMore.stream - 1)
+            .map((anime) => {
+              //check where the data come from node or media
+              const animeData = anime.id !== undefined ? anime : anime.node;
               return (
                 <Anime key={`${keyParam}-${animeData.id}`} anime={animeData} />
               );
-            }
-          })}
+            })}
         </motion.div>
       </div>
       {allAnimeData.length > initialQuantity && (

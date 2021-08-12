@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Recom from "./Recom";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -178,13 +178,11 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
               onMouseMove={recSliderMouseMoveHandler}
             >
               <div>
-                {allRecomData.map((recom, index) => {
-                  if (index <= showMore.recommend - 1) {
+                {allRecomData.slice(0, showMore.recommend - 1).map((recom, index) => {
                     const id = recom.node
                       ? recom.node.mediaRecommendation.id
                       : recom.media.id;
                     return <Recom key={keyParam + id + index} recom={recom} />;
-                  }
                 })}
                 <div ref={wastefulCover} className="wasteful-cover"></div>
               </div>

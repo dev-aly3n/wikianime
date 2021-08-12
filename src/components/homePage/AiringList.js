@@ -12,22 +12,23 @@ const AiringList = ({ allAiring, keyParam }) => {
         return anime;
       }
     }
+    return false;
   });
 
   return (
     <motion.div className="airing-list-container">
       <div>
         <div>
-          {trimedallAiring.map((airing, index) => {
-            if (index <= 7) {
+          {trimedallAiring
+            .filter((_, index) => index <= 7)
+            .map((airing) => {
               return (
                 <Airing
                   key={`${keyParam}-${airing.media.id}`}
                   airing={airing.media}
                 />
               );
-            }
-          })}
+            })}
         </div>
       </div>
     </motion.div>

@@ -22,8 +22,9 @@ const CharacterList = ({ characters, animeID, mangaStaffID }) => {
   return (
     <div className="char-list-container">
       <motion.div>
-        {characters.map((char, index) => {
-          if (index < showMore.stream) {
+        {characters
+          .filter((_, index) => index < showMore.stream)
+          .map((char) => {
             return (
               <Character
                 key={char.node.id}
@@ -32,8 +33,7 @@ const CharacterList = ({ characters, animeID, mangaStaffID }) => {
                 mangaStaffID={mangaStaffID}
               />
             );
-          }
-        })}
+          })}
       </motion.div>
       {characters.length > 4 && (
         <button

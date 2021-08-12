@@ -42,13 +42,14 @@ const AirSlide = ({ airing, onGrabbingSlider }) => {
       onTouchStart={() => onGrabbingSlider()}
     >
       <img
+        alt=""
         className="transform group-hover:scale-110 "
         src={airing.bannerImage}
       />
       <div className="group-hover:bg-opacity-80">
         <div className="air-slide-cover-image transform group-hover:scale-95 ">
           <a onClick={animeCardClickHandler} href={`/anime/${airing.id}`}>
-            <img src={airing.coverImage.large} />
+            <img alt="" src={airing.coverImage.large} />
           </a>
         </div>
         <div className="air-slide-info">
@@ -75,18 +76,15 @@ const AirSlide = ({ airing, onGrabbingSlider }) => {
             <p>
               <b>Genres:</b>
               <br />{" "}
-              {airing.genres.map((genre, index) => {
-                if (index <= 2) {
+              {airing.genres
+                .filter((_, index) => index <= 2)
+                .map((genre) => {
                   return (
-                    <span
-                      key={genre}
-                      className="air-slide-genres"
-                    >
+                    <span key={genre} className="air-slide-genres">
                       {genre}
                     </span>
                   );
-                }
-              })}
+                })}
             </p>
           )}
           <p className="text-indigo-200">

@@ -52,6 +52,7 @@ const SearchList = () => {
     return () => {
       clearTimeout(searchTimer);
     };
+    // eslint-disable-next-line
   }, [searchValue]);
 
   const [getSearchAnime, { error, data }] = useLazyQuery(menuSearchQuery);
@@ -101,14 +102,14 @@ const SearchList = () => {
                       transition: { duration: 0.1, delay: 2 },
                     }}
                     initial={{ opacity: 0 }}
-                    class="search-click"
+                    className="search-click"
                   >
                     Sorry! We couldn't find what looking for!
                   </motion.span>
                 )}
               </p>
             )}
-            {isLoading && <div class="search-click lds-dual-ring"></div>}
+            {isLoading && <div className="search-click lds-dual-ring"></div>}
             {!isLoading && (
               <div className="searchbox-result">
                 {searchData.length > 0 && (

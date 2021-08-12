@@ -50,7 +50,7 @@ const Anime = ({ anime }) => {
         </div>
       )}
 
-      <img src={anime.coverImage.large}></img>
+      <img alt="" src={anime.coverImage.large}></img>
       <div
         className="anime-info
        "

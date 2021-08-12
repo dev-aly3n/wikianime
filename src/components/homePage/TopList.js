@@ -29,16 +29,18 @@ const TopList = ({ allAnimeData, initialQuantity, keyParam }) => {
         return anime;
       }
     }
+    return false;
   });
 
   return (
     <motion.div className="top-list-container">
       <div className="anime-list-container">
         <motion.div className="anime-list">
-          {trimedAllAnimeData.map((anime, index) => {
-            //check where the data come from node or media
-            const animeData = anime.id !== undefined ? anime : anime.node;
-            if (index <= showMore.stream - 1) {
+          {trimedAllAnimeData
+            .filter((_, index) => index <= showMore.stream - 1)
+            .map((anime, index) => {
+              //check where the data come from node or media
+              const animeData = anime.id !== undefined ? anime : anime.node;
               return (
                 <Top
                   key={`${keyParam}-${animeData.id}`}
@@ -46,8 +48,7 @@ const TopList = ({ allAnimeData, initialQuantity, keyParam }) => {
                   rank={index + 1}
                 />
               );
-            }
-          })}
+            })}
         </motion.div>
       </div>
       {allAnimeData.length > initialQuantity && (

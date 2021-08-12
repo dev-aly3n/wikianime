@@ -1,19 +1,53 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-  purge: [
-    "src/**/*.js",
-    "src/**/*.jsx",
-    "src/**/**/*.js",
-    "src/**/**/*.jsx",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "public/**/*.html",
-  ],
+  purge: {
+    content: [
+      "src/**/*.js",
+      "src/**/*.jsx",
+      "src/**/**/*.js",
+      "src/**/**/*.jsx",
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "public/**/*.html",
+    ],
+    safelist: [
+      "grid-cols-2",
+      "ssm:grid-cols-3",
+      "lg:grid-cols-3",
+      "xl:grid-cols-4",
+      "bg-blue-300",
+      "bg-green-300",
+      "bg-red-300",
+      "bg-purple-300",
+      "bg-yellow-300",
+      "bg-red-300",
+      "bg-gray-300",
+      "bg-blue-500",
+      "bg-green-500",
+      "bg-red-500",
+      "bg-purple-500",
+      "bg-yellow-500",
+      "bg-red-500",
+      "bg-gray-500",
+      "bg-blue-600",
+      "bg-green-600",
+      "bg-red-600",
+      "bg-purple-600",
+      "bg-yellow-600",
+      "bg-red-600",
+      "bg-gray-600",
+      "show-more-btn",
+      "to-indigo-50",
+      "hover:bg-indigo-50",
+      "hover:bg-opacity-60",
+      
+    ],
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
-      ssm:"490px",
+      ssm: "490px",
       sm: "640px",
       md: "768px",
       lg: "1024px",
@@ -513,31 +547,32 @@ module.exports = {
         },
       },
       reversecycler: {
-
         to: {
           transform: "rotate(-1080deg)",
         },
       },
-       textShadowPopTr: {
+      textShadowPopTr: {
         "0%": {
-          textShadow:" 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555",
-          transform: "translateX(0) translateY(0)"
+          textShadow: " 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555",
+          transform: "translateX(0) translateY(0)",
         },
         "100%": {
-          textShadow: "1px -1px #555555, 2px -2px #555555, 3px -3px #555555, 4px -4px #555555",
-          transform: "translateX(-4px) translateY(4px)"
-        }
+          textShadow:
+            "1px -1px #555555, 2px -2px #555555, 3px -3px #555555, 4px -4px #555555",
+          transform: "translateX(-4px) translateY(4px)",
+        },
       },
-       textShadowPopTl: {
+      textShadowPopTl: {
         "0%": {
-          textShadow:"0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555",
-          transform: "translateX(0) translateY(0)"
+          textShadow: "0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555",
+          transform: "translateX(0) translateY(0)",
         },
         "100%": {
-          textShadow: "-1px -1px #555555, -2px -2px #555555, -3px -3px #555555, -4px -4px #555555",
-          transform: "translateX(4px) translateY(4px)"
-        }
-      }
+          textShadow:
+            "-1px -1px #555555, -2px -2px #555555, -3px -3px #555555, -4px -4px #555555",
+          transform: "translateX(4px) translateY(4px)",
+        },
+      },
     },
     letterSpacing: {
       tighter: "-0.05em",
@@ -868,12 +903,12 @@ module.exports = {
     },
     extend: {
       transitionDuration: {
-        "1500": "1500ms",
-        "2000": "2000ms",
-        "2500": "2500ms",
-        "3000": "3000ms",
-       }
-    }
+        1500: "1500ms",
+        2000: "2000ms",
+        2500: "2500ms",
+        3000: "3000ms",
+      },
+    },
   },
   variantOrder: [
     "first",
@@ -1042,7 +1077,7 @@ module.exports = {
     ringWidth: ["responsive", "focus-within", "focus"],
     rotate: ["responsive", "hover", "focus"],
     saturate: ["responsive"],
-    scale: ["responsive", "hover", "focus", "group-hover",  ],
+    scale: ["responsive", "hover", "focus", "group-hover"],
     sepia: ["responsive"],
     skew: ["responsive", "hover", "focus"],
     space: ["responsive"],
@@ -1096,13 +1131,11 @@ module.exports = {
       textColor: ["active", "group-focus"],
       translate: ["active", "group-hover"],
       display: ["hover", "group-hover"],
-      scale: ["group-hover","active"],
+      scale: ["group-hover", "active"],
       animation: ["group-hover", "hover"],
       cursor: ["active", "group-focus"],
-      width: ["focus","focus-within"],
+      width: ["focus", "focus-within"],
     },
   },
-  plugins: [
-    require('@tailwindcss/line-clamp')
-  ],
+  plugins: [require("@tailwindcss/line-clamp")],
 };

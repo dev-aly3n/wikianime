@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { useApolloClient } from "@apollo/client";
 import { gql } from "@apollo/client";
 
@@ -20,13 +19,13 @@ const ProgressBar = () => {
   useEffect(() => {
     const bar = progressRef.current.firstElementChild;
     const shining = progressRef.current.children[1];
-    const watchLoadingBar = client
-      .watchQuery({
+     client.watchQuery({
         query: READ_ISLOADING,
         fetchPolicy: "cache-only",
       })
       .subscribe({
         next: ({ data }) => {
+          // eslint-disable-next-line
           loadingParam = data.loadingbar.isLoading;
           if (loadingParam < 50) {
             bar.classList.add("first-load-animate");
@@ -48,6 +47,7 @@ const ProgressBar = () => {
               shining.classList.remove("shining-bar-animate");
             }, 1000);
           }
+          // eslint-disable-next-line
           isChanged = !isChanged;
         },
         error: (e) => console.error(e),

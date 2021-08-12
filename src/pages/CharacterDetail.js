@@ -94,7 +94,7 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
         <div className="character-info">
           <div>
             <div className="character-image">
-              <img
+              <img alt=""
                 src={character.image.large ? character.image.large : unKnownPng}
               />
               <div>
@@ -191,7 +191,7 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
               )}
             </div>
             <div className="staff-image">
-              <img src={staff.image.large ? staff.image.large : unKnownPng} />
+              <img alt="" src={staff.image.large ? staff.image.large : unKnownPng} />
               <div>
                 <CircleRate
                   rate={actorFavouritesRange}

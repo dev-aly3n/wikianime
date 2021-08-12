@@ -44,7 +44,7 @@ const Airing = ({ airing }) => {
       initial={{ opacity: 0 }}
     >
       <div>
-        <img
+        <img alt=""
           className="transform group-hover:scale-110"
           src={airing.bannerImage}
         />

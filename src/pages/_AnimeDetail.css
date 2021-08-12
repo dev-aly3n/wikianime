@@ -175,7 +175,7 @@
     }
 
     .detail-cover-image {
-      @apply w-full  sm:-mt-20  lg:-mt-28 shadow-3xl border-4 rounded-sm
+      @apply sm:-mt-20  lg:-mt-28 shadow-3xl border-4 rounded-sm w-10/12 mx-auto
     border-dashed;
     }
   }

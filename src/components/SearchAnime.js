@@ -37,7 +37,7 @@ const SearchAnime = ({ anime, emptySearchValue }) => {
       onClick={animeCardClickHandler}
       className=" search-anime-container"
     >
-      <img src={anime.coverImage.medium} />
+      <img alt="" src={anime.coverImage.medium} />
       <h4 className="line-clamp-2 mx-2">
         {anime.title.english ? anime.title.english : anime.title.romaji}
       </h4>

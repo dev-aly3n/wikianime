@@ -47,7 +47,7 @@ const Recom = ({ recom, widthParam }) => {
       }  recom-container`}
     >
       <div className="recom-detail">
-        <img src={recMedia.coverImage.large} />
+        <img alt="" src={recMedia.coverImage.large} />
         <div className="recom-info">
           <p className="line-clamp-4">
             <b>Title:</b>

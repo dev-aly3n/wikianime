@@ -46,7 +46,7 @@ const Top = ({ anime, rank }) => {
         animate={{ opacity: 1, transition: { duration: 1 } }}
         initial={{ opacity: 0 }}
       >
-        <img src={anime.coverImage.large} />
+        <img alt="" src={anime.coverImage.large} />
 
         <div className="top-info-container">
           <div className="top-status">
@@ -63,11 +63,11 @@ const Top = ({ anime, rank }) => {
               </p>
             </div>
             <div className="top-tag-container">
-              {anime.tags.map((tag, index) => {
-                if (index <= 2) {
+              {anime.tags
+                .filter((_, index) => index<=3)
+                .map((tag) => {
                   return <span key={tag.name}>{tag.name}</span>;
-                }
-              })}
+                })}
             </div>
           </div>
           <div className="top-desc">
@@ -87,11 +87,7 @@ const Top = ({ anime, rank }) => {
                 rate={((anime.popularity / 300000) * 100).toFixed(0)}
                 symbol={faHeart}
               />
-              <p
-                className="top-rate-pop-text"
-              >
-                popularity
-              </p>
+              <p className="top-rate-pop-text">popularity</p>
             </div>
           </div>
         </div>

@@ -11,6 +11,7 @@ const AiringSlider = ({ allAiring, keyParam }) => {
   const onGrabbingSlider = useCallback(() => {
     setIsAutoPlayOn(false);
     clearTimeout(autoSlidePlay);
+    // eslint-disable-next-line
   }, [setIsAutoPlayOn]);
 
   // maintain the array for duplicate elements
@@ -22,6 +23,7 @@ const AiringSlider = ({ allAiring, keyParam }) => {
         return anime;
       }
     }
+    return false;
   });
 
   const rightHandler = () => {
@@ -49,6 +51,7 @@ const AiringSlider = ({ allAiring, keyParam }) => {
 
   useEffect(() => {
     if (isAutoPlayOn) {
+      // eslint-disable-next-line
       autoSlidePlay = setTimeout(() => {
         if (slideNum === 7) {
           setSlideNum(0);
@@ -63,8 +66,9 @@ const AiringSlider = ({ allAiring, keyParam }) => {
   }, [slideNum, isAutoPlayOn]);
   return (
     <div className="airing-slider-container">
-      {trimedallAiring.map((airing, index) => {
-        if (index === slideNum) {
+      {trimedallAiring
+        .filter((_, index) => index === slideNum)
+        .map((airing) => {
           return (
             <AirSlide
               onGrabbingSlider={onGrabbingSlider}
@@ -72,8 +76,7 @@ const AiringSlider = ({ allAiring, keyParam }) => {
               airing={airing.media}
             />
           );
-        }
-      })}
+        })}
 
       <button onClick={leftHandler} className="left-0">
         <FontAwesomeIcon

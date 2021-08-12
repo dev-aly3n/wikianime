@@ -23,17 +23,16 @@ const ReviewList = ({ allReviewData, initialQuantity, keyParam }) => {
     <motion.div className="review-list-container">
       <div className="anime-list-container">
         <div>
-          {allReviewData.map((review, index) => {
-            //check where the data come from node or media
-            if (index <= showMore.review - 1) {
+          {allReviewData
+            .filter((_, index) => index <= showMore.review - 1)
+            .map((review) => {
               return (
                 <Review
                   key={`${keyParam}-${review.node.id}`}
                   review={review.node}
                 />
               );
-            }
-          })}
+            })}
         </div>
       </div>
 

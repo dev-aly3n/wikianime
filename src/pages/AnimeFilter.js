@@ -55,10 +55,12 @@ const AnimeFilter = () => {
     return () => {
       clearTimeout(searchTimer);
     };
+    // eslint-disable-next-line
   }, [searchValue]);
 
   useEffect(() => {
     if (path === "") {
+      // eslint-disable-next-line
       path = "attack on titan";
     }
     setTimeout(() => {
@@ -69,6 +71,7 @@ const AnimeFilter = () => {
 
       setIsLoading(false);
     }, 1500);
+    
   }, []);
 
   const [getSearchAnime, { error, data }] = useLazyQuery(filterQuery);
@@ -78,7 +81,6 @@ const AnimeFilter = () => {
   }
 
   if (data) {
-    console.log(data);
     searchData = data.filter.media;
   }
 
@@ -125,7 +127,7 @@ const AnimeFilter = () => {
               )}
             </div>
           )}
-          {isLoading && <div class=" lds-dual-ring"></div>}
+          {isLoading && <div className=" lds-dual-ring"></div>}
           {!isLoading && (
             <div className="filter-anime-top-list-container">
               <TopList

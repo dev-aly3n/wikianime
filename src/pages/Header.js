@@ -83,6 +83,7 @@ const Header = () => {
     navLinks.forEach((link) => {
       link.addEventListener("click", LinkClickHandler);
     });
+    // eslint-disable-next-line
   }, []);
 
   const LinkClickHandler = () => {

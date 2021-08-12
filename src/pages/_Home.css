@@ -39,7 +39,13 @@
   .home-page-container {
     .h-header {
       grid-area: header;
+   
+    }
+    .h-sidebar {
+      grid-area: sidebar;
+      min-width: 260px;
       @apply bg-indigo-50 rounded shadow-lg;
+
       > div:first-child {
         > h3 {
           @apply text-center text-xl font-semibold py-3 mx-2;
@@ -51,10 +57,6 @@
           @apply text-center text-xl font-semibold py-3 mx-2;
         }
       }
-    }
-    .h-sidebar {
-      grid-area: sidebar;
-      min-width: 260px;
     }
     .h-trending {
       grid-area: trending;
