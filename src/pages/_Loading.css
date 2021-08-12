@@ -1,4 +1,9 @@
 @layer components {
+
+  .main-loading-container{
+    @apply  flex justify-center items-center h-130;
+  }
+
   /* loading page */
 
   .lds-ripple {
@@ -6,6 +11,9 @@
     position: relative;
     width: 80px;
     height: 80px;
+    margin-right:72px;
+    margib-bottom:72px;
+    @apply mx-auto;
   }
   .lds-ripple div {
     position: absolute;

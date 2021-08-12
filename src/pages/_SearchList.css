@@ -1,0 +1,37 @@
+@layer components {
+  .searchbox-container {
+    @apply relative z-50 h-10 w-28 ssm:w-48 focus-within:w-64 flex-shrink
+        transition-all duration-1000 flex justify-center items-center border-0 rounded-3xl bg-indigo-800;
+    > form {
+      @apply w-full h-full flex justify-between items-center z-50;
+      > span {
+        @apply text-gray-500 cursor-pointer hover:text-indigo-200 bg-indigo-800 rounded-l-3xl
+                text-2xl h-full w-10 pl-3 pr-2 pt-px flex justify-center items-center;
+      }
+      > input {
+        @apply bg-indigo-800 h-full w-full focus:outline-none focus:bg-indigo-200 px-1 rounded-r-3xl
+                text-indigo-50 focus:text-indigo-900;
+      }
+    }
+    .expanded-search-results {
+      min-height: 120px;
+      @apply absolute w-full left-0 top-5 bg-indigo-900 z-40 rounded-b-xl overflow-hidden;
+      > div:first-child {
+        @apply flex flex-col items-start justify-start mt-7 text-white;
+        > p:first-child {
+          @apply px-2 mx-auto text-sm mt-5;
+          > span {
+            @apply m-auto text-sm;
+          }
+        }
+      }
+      .searchbox-result {
+        @apply flex flex-col w-full;
+        .searchbox-result-link {
+          @apply mx-auto px-5 py-2 my-3 bg-indigo-600 hover:bg-indigo-200
+                    hover:text-indigo-900 rounded-3xl text-lg font-medium border-r-2 border-b-2 border-green-500;
+        }
+      }
+    }
+  }
+}
