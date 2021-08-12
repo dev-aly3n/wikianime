@@ -70,14 +70,14 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
   // staff description
   showMoreLessBtn(
     staffContentShowLess,
-    "show-more-btn to-blue-50 hover:bg-blue-50 hover:bg-opacity-60",
+    "show-more-btn staff-show-more-desc-btn",
     250
   );
 
   //character desciption
   showMoreLessBtn(
     charContentShowLess,
-    "show-more-btn to-red-50 hover:bg-red-50 hover:bg-opacity-60",
+    "show-more-btn staff-show-more-desc-btn",
     250
   );
 
@@ -85,28 +85,27 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
   document.body.style.overflow = "hidden";
 
   return (
-    <div
-      className="character-page-shadow flex justify-center overflow-y-scroll z-40"
-      onClick={modalCloseHandler}
-    >
-      <div className="character-page-container z-50 absolute rounded-md flex flex-col md:flex-row w-full
-       ssm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-7/12 bg-yellow-50  overscroll-contain ">
-        <span className="modal-close absolute top-2 right-14 text-5xl text-gray-500 hover:text-gray-900 cursor-pointer z-50">
+    <div className="character-page-shadow" onClick={modalCloseHandler}>
+      <div className="character-page-container">
+        <span className="modal-close ">
           <FontAwesomeIcon className="fixed modal-close" icon={faTimesCircle} />
         </span>
 
-        <div className="w-full md:w-1/2 flex flex-col h-full ">
-          <div className="flex">
-            <div className="w-80 h-64 border-2 border-red-100 ml-2 mt-2 rounded-lg shadow-md relative overflow-hidden">
+        <div className="character-info">
+          <div>
+            <div className="character-image">
               <img
                 src={character.image.large ? character.image.large : unKnownPng}
-                className="w-full h-full object-cover block"
               />
-              <div className="absolute bottom-0 left-0">
-                <CircleRate rate={charFavouritesRange} symbol={faHeart} size={5} />
+              <div>
+                <CircleRate
+                  rate={charFavouritesRange}
+                  symbol={faHeart}
+                  size={5}
+                />
               </div>
             </div>
-            <div className="flex flex-col mx-1 mt-2 justify-around text-base rounded-lg bg-red-50 w-full p-2 shadow-lg">
+            <div className="character-desc">
               <h1>
                 <strong> Name:</strong> <br />
                 {character.name.full}
@@ -139,15 +138,15 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
           <div>
             {character.description && (
               <div
-                className="description-character-markup text-base mx-1 my-2 rounded-lg bg-red-50 px-3 pt-3 shadow-lg"
+                className="description-character-markup"
                 ref={charContentShowLess}
               >
                 <Markup content={character.description} />
               </div>
             )}
             {charAnimeList[0] && (
-              <div className="text-base mx-1 my-2 rounded-lg bg-red-50 p-3 shadow-lg ssm:px-20 md:p-1">
-                <h3 className="font-semibold text-xl">Character media</h3>
+              <div className="character-media-list">
+                <h3>Character media</h3>
                 {
                   <AnimeList
                     allAnimeData={charAnimeList}
@@ -161,9 +160,9 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
           </div>
         </div>
 
-        <div className="w-full md:w-1/2 flex flex-col h-full">
-          <div className="flex justify-between">
-            <div className="flex flex-col mx-1 mt-2 justify-around text-base rounded-lg bg-blue-50 w-full p-2 shadow-lg">
+        <div className="staff-info">
+          <div>
+            <div className="staff-desc">
               <h1>
                 <strong> Name:</strong> <br />
                 {staff.name.full}
@@ -191,28 +190,29 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
                 </p>
               )}
             </div>
-            <div className="w-80 h-64 border-2 border-red-100 mr-2 mt-2 rounded-lg shadow-md relative overflow-hidden">
-              <img
-                src={staff.image.large ? staff.image.large : unKnownPng}
-                className="w-full h-full object-cover block"
-              />
-              <div className="absolute bottom-0 right-0">
-                <CircleRate rate={actorFavouritesRange} symbol={faHeart} size={5} />
+            <div className="staff-image">
+              <img src={staff.image.large ? staff.image.large : unKnownPng} />
+              <div>
+                <CircleRate
+                  rate={actorFavouritesRange}
+                  symbol={faHeart}
+                  size={5}
+                />
               </div>
             </div>
           </div>
           <div>
             {staff.description && (
               <div
-                className="description-character-markup text-base mx-1 my-2 rounded-lg bg-blue-50 px-3 pt-3 shadow-lg"
+                className="description-staff-markup"
                 ref={staffContentShowLess}
               >
                 <Markup content={staff.description} />
               </div>
             )}
             {staffAnimeList[0] && (
-              <div className=" text-base mx-1 my-2 rounded-lg bg-blue-50 p-3 shadow-lg ssm:px-20 md:p-1">
-                <h3 className="font-semibold text-xl ">Staff media</h3>
+              <div className="staff-media-list">
+                <h3>Staff media</h3>
                 {
                   <AnimeList
                     allAnimeData={staffAnimeList}

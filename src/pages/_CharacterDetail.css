@@ -1,26 +1,95 @@
 @layer components {
-    .character-page-shadow {
-        background-color: rgba(0, 0, 0, 0.65);
-        height: 100vh;
-        @apply fixed w-full left-0 top-0 z-10;
+  .character-page-shadow {
+    background-color: rgba(0, 0, 0, 0.65);
+    height: 100vh;
+    @apply fixed w-full left-0 top-0 flex justify-center overflow-y-scroll z-40;
+    ::-webkit-scrollbar-thumb {
+      @apply bg-yellow-50;
+    }
+  }
+
+  .character-page-container {
+    @apply z-50 absolute rounded-md flex flex-col md:flex-row w-full
+        ssm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-7/12 bg-yellow-50  overscroll-contain;
+    > span {
+      @apply absolute top-2 right-14 text-5xl text-gray-500 hover:text-gray-900 cursor-pointer z-50;
+    }
+
+    .character-info {
+      @apply w-full md:w-1/2 flex flex-col h-full;
+      > div:first-child {
+        @apply flex;
+        .character-image {
+          @apply w-80 h-64 border-2 border-red-100 ml-2 mt-2 rounded-lg shadow-md relative overflow-hidden;
+          > img {
+            @apply w-full h-full object-cover block;
+          }
+          > div {
+            @apply absolute bottom-0 left-0;
+          }
+        }
+        .character-desc {
+          @apply flex flex-col mx-1 mt-2 justify-around text-base rounded-lg bg-red-50 w-full p-2 shadow-lg;
+        }
       }
-      .character-page-container {
+      .character-media-list {
+        @apply text-base mx-1 my-2 rounded-lg bg-red-50 p-3 shadow-lg ssm:px-20 md:p-1;
+        > h3 {
+          @apply font-semibold text-xl;
+        }
       }
-    
-  .description-character-markup {
-    @apply pb-5 px-2;
-  }
+    }
+    .staff-info {
+      @apply w-full md:w-1/2 flex flex-col h-full;
+      > div:first-child {
+        @apply flex justify-between;
+        .staff-desc {
+          @apply flex flex-col mx-1 mt-2 justify-around text-base rounded-lg bg-blue-50 w-full p-2 shadow-lg;
+        }
+        .staff-image {
+          @apply w-80 h-64 border-2 border-red-100 mr-2 mt-2 rounded-lg shadow-md relative overflow-hidden;
+          > img {
+            @apply w-full h-full object-cover block;
+          }
+          > div {
+            @apply absolute bottom-0 right-0;
+          }
+        }
+      }
+      .staff-media-list {
+        @apply text-base mx-1 my-2 rounded-lg bg-blue-50 p-3 shadow-lg ssm:px-20 md:p-1;
+        > h3 {
+          @apply font-semibold text-xl;
+        }
+      }
+    }
 
-  .description-character-markup a {
-    @apply text-blue-600 font-medium italic hover:text-blue-900 cursor-pointer;
-  }
+    .description-character-markup {
+      @apply pb-5 px-4 text-base mx-1 my-2 rounded-lg bg-red-50 pt-3 shadow-lg;
+      a {
+        @apply text-blue-600 font-medium italic hover:text-blue-900 cursor-pointer;
+      }
+      img {
+        width: 100% !important;
+        @apply block mx-auto;
+      }
+    }
+    .description-staff-markup {
+      @apply pb-5 px-4 text-base mx-1 my-2 rounded-lg bg-blue-50 pt-3 shadow-lg;
+      a {
+        @apply text-blue-600 font-medium italic hover:text-blue-900 cursor-pointer;
+      }
+      img {
+        width: 100% !important;
+        @apply block mx-auto;
+      }
+    }
 
-  .description-character-markup img {
-    width: 100% !important;
-    @apply block mx-auto;
-  }
-
-  .character-page-shadow::-webkit-scrollbar-thumb {
-    @apply bg-yellow-50;
+    .staff-show-more-desc-btn {
+      @apply to-blue-50 hover:bg-blue-50 hover:bg-opacity-60;
+    }
+    .character-show-more-desc-btn {
+      @apply to-red-50 hover:bg-red-50 hover:bg-opacity-60;
+    }
   }
 }

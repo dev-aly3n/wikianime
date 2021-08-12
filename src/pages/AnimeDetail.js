@@ -218,9 +218,8 @@ const AnimeDetail = () => {
           <hr />
           <div className="detail-side-source">{aData.source}</div>
           {characters && (
-            <div className="d-relate">
+            <div>
               <h4>Characters</h4>
-
               <hr />
               <CharacterList
                 characters={characters}

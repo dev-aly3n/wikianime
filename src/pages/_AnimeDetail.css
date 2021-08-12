@@ -51,9 +51,9 @@
     .d-sidebar {
       grid-area: sidebar;
       min-width: 260px;
-      @apply flex flex-col ssm:mx-16 sm:-mx-0 px-2 bg-gray-100 shadow-inner;
+      @apply flex flex-col ssm:mx-16 sm:-mx-0 px-2 bg-gray-100 shadow-inner rounded-md;
       h4 {
-        @apply text-center font-bold my-1;
+        @apply text-center font-bold mb-1 mt-4;
       }
       > h2 {
         @apply block mx-auto py-2 text-xl font-semibold text-center;
