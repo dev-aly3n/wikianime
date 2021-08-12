@@ -5,7 +5,7 @@
       @apply h-full flex flex-col md:flex-row justify-center md:justify-evenly items-center pb-10;
       .footer-thank {
         @apply w-10/12 ssm:w-1/2 md:w-1/4 text-base my-5;
-        > span {
+        > p > span {
           @apply text-red-400;
         }
       }
