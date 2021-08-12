@@ -17,12 +17,10 @@ export const menuSearchQuery = gql`
   }
 `;
 
-
-
 export const filterQuery = gql`
-  query FiLtErPaGe($search:String) {
+  query FiLtErPaGe($search: String) {
     filter: Page(perPage: 50, page: 1) {
-      media(search:$search) {
+      media(search: $search) {
         id
         title {
           english
@@ -44,9 +42,8 @@ export const filterQuery = gql`
         description(asHtml: true)
       }
     }
-  }`;
-
-
+  }
+`;
 
 export const detailQuery = gql`
   query SelectedAnImE($id: Int) {
@@ -199,7 +196,7 @@ export const detailQuery = gql`
 export const recomListQuery = gql`
   query rEcOmLiStQuErY($id: Int) {
     Media(id: $id) {
-      recommendations(sort:RATING_DESC) {
+      recommendations(sort: RATING_DESC) {
         edges {
           node {
             rating
@@ -221,8 +218,8 @@ export const recomListQuery = gql`
         }
       }
     }
-  }`;
-
+  }
+`;
 
 export const homeQuery = gql`
   query HoMeAnImE {

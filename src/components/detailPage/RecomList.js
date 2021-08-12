@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Recom from "./Recom";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { recomListQuery } from "../../chooks/queries";
+import { recomListQuery } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
 
 const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {

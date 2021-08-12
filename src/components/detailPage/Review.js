@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Markup } from "interweave";
 import CircleRate from "./CircleRate";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { showMoreLessBtn } from "../../chooks/simples";
+import { showMoreLessBtn } from "../../utils/helpers";
 import { decode } from "html-entities";
 
 const Review = ({ review }) => {

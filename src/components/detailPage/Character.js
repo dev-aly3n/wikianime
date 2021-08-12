@@ -1,6 +1,6 @@
 import React,{useEffect, useRef} from "react";
 import { Link } from "react-router-dom";
-import { unKnownPng } from "../../chooks/simples";
+import { unKnownPng } from "../../utils/helpers";
 import { useApolloClient,gql } from '@apollo/client';
 
 

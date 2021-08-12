@@ -1,7 +1,7 @@
 import { useApolloClient, gql } from "@apollo/client";
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { filterQuery } from "../chooks/queries";
+import { filterQuery } from "../utils/queries";
 import { useLazyQuery } from "@apollo/client";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { menuSearchQuery } from "../chooks/queries";
+import { menuSearchQuery } from "../utils/queries";
 import { useLazyQuery } from "@apollo/client";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

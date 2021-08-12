@@ -1,10 +1,10 @@
 import { useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { charQuery } from "../chooks/queries";
+import { charQuery } from "../utils/queries";
 import { Markup } from "interweave";
 import AnimeList from "../components/AnimeList";
-import { showMoreLessBtn, unKnownPng } from "../chooks/simples";
+import { showMoreLessBtn, unKnownPng } from "../utils/helpers";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CircleRate from "../components/detailPage/CircleRate";

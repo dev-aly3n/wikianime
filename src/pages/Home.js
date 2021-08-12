@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from "@apollo/client";
-import { homeQuery } from "../chooks/queries";
+import { homeQuery } from "../utils/queries";
 import AnimeList from "../components/AnimeList";
 import AiringList from "../components/homePage/AiringList";
 import HomeRec from "../components/homePage/HomeRec";

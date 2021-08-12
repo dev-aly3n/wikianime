@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Home from "./pages/Home";
 import AnimeDetail from "./pages/AnimeDetail";
 import Header from "./pages/Header";
@@ -45,7 +45,7 @@ function App() {
           <Route path={"/anime/:animeID"}>
             <AnimeDetail />
           </Route>
-          <Route path={"/search/"} >
+          <Route path={"/search/"}>
             <AnimeFilter />
           </Route>
           <Route path={"/anime/:animeID/character/:charID/actor/:actorID"}>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { secondsToDhms } from "../../chooks/simples";
+import { secondsToDhms } from "../../utils/helpers";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Markup } from "interweave";
