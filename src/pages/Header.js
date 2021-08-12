@@ -4,7 +4,7 @@ import { useApolloClient } from "@apollo/client";
 import { gql } from "@apollo/client";
 import SearchList from "./SearchList";
 
-const Header = ( ) => {
+const Header = () => {
   const client = useApolloClient();
   const navRef = useRef(null);
   const burgerRef = useRef(null);
@@ -13,8 +13,7 @@ const Header = ( ) => {
   const animeLinkRef = useRef(null);
 
   // modern Navigation bar code start here
-  const scrollerContainer = document.getElementById('root');
-
+  const scrollerContainer = document.getElementById("root");
 
   useEffect(() => {
     const burger = burgerRef.current;
@@ -52,17 +51,9 @@ const Header = ( ) => {
     navSlide();
     // modern Navigation bar code stop here
 
-    let prevScrollpos = Number(
-      scrollerContainer.scrollTop.toFixed(
-        2
-      )
-    );
+    let prevScrollpos = Number(scrollerContainer.scrollTop.toFixed(2));
     scrollerContainer.addEventListener("scroll", () => {
-      let currentScrollPos = Number(
-        scrollerContainer.scrollTop.toFixed(
-          2
-        )
-      );
+      let currentScrollPos = Number(scrollerContainer.scrollTop.toFixed(2));
       if (prevScrollpos > currentScrollPos && currentScrollPos > 300) {
         navRef.current.style.top = "0";
         navRef.current.style.backgroundColor = "rgba(49,46,129,1)";
@@ -76,11 +67,7 @@ const Header = ( ) => {
     });
 
     window.addEventListener("touchmove", () => {
-      let currentScrollPos = Number(
-        scrollerContainer.scrollTop.toFixed(
-          2
-        )
-      );
+      let currentScrollPos = Number(scrollerContainer.scrollTop.toFixed(2));
       if (prevScrollpos > currentScrollPos && currentScrollPos > 300) {
         navRef.current.style.top = "0";
         navRef.current.style.backgroundColor = "rgba(49,46,129,1)";
@@ -132,19 +119,13 @@ const Header = ( ) => {
     },
   ];
 
-
   return (
-    <nav
-      ref={navRef}
-      id="navigation"
-      className="navigation bg-indigo-900 fixed top-0 w-full z-30 transition-all duration-700 bg-opacity-70"
-    >
-      <div className="logo relative flex justify-between items-center group w-40">
-        <h1 className="text-white text-5xl font-bold select-none animate-textShadowPopTl group-hover:animate-none">
-          WA
-        </h1>
-        <span className="self-end text-purple-50 font-bold animate-textShadowPopTl
-         group-hover:animate-none -mb-px ml-px whitespace-nowrap absolute bottom-0" style={{left:"75px"}}>
+    <nav ref={navRef} id="navigation" className="navigation navigation-container">
+      <div className="logo group">
+        <h1 className=" group-hover:animate-none">WA</h1>
+        <span
+          className="group-hover:animate-none"
+        >
           Wiki Anime
         </span>
       </div>
@@ -161,7 +142,7 @@ const Header = ( ) => {
       </ul>
       <SearchList />
 
-      <div ref={burgerRef} className="navigation burger cursor-pointer">
+      <div ref={burgerRef} className="navigation burger">
         <div className="navigation line1"></div>
         <div className="navigation line2"></div>
         <div className="navigation line3"></div>
