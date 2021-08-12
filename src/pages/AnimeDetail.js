@@ -111,7 +111,7 @@ const AnimeDetail = () => {
           <div className="banner-inside">
             <h1
               className="detail-title"
-              style={{ backgroundColor: `${animeColor50}` }}
+              style={{ backgroundColor: `${animeColor30}` }}
             >
               {title}
             </h1>

@@ -171,7 +171,7 @@
     .detail-title {
       border-radius: 50% 20% / 10% 40%;
       @apply text-red-100 text-xl font-semibold  m-auto bg-opacity-20 py-2 px-6
-    sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl line-clamp-1 leading-normal;
+    sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl line-clamp-1 leading-normal backdrop-filter backdrop-blur-sm;
     }
 
     .detail-cover-image {

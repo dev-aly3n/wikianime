@@ -1,0 +1,35 @@
+@layer components {
+  .anime-filter-container {
+    @apply flex flex-col justify-center items-center pt-24 mx-auto bg-indigo-50 w-full;
+    .anime-filter-form {
+      @apply flex justify-center items-center h-14 w-full;
+      > form {
+        @apply w-full ssm:w-10/12 xl:w-8/12 mx-1 ssm:mx-auto h-full flex justify-between items-center;
+        > span {
+          @apply text-gray-500 cursor-pointer hover:text-indigo-200 bg-indigo-900 rounded-l-3xl
+                    text-2xl h-full w-10 pl-3 pr-2 pt-px flex justify-center items-center;
+        }
+        input {
+          @apply bg-indigo-800 h-full w-full focus:outline-none focus:bg-indigo-200 px-1 rounded-r-3xl
+                    text-indigo-50 focus:text-indigo-900;
+        }
+      }
+    }
+    .filter-result-container {
+      min-height: 700px;
+      @apply w-full top-5 rounded-b-xl;
+      > div {
+        @apply w-full flex flex-col items-start justify-start mt-7;
+        > div {
+          @apply px-2 mx-auto text-sm mt-5;
+          > p {
+            @apply m-auto text-2xl text-indigo-900 text-center;
+          }
+        }
+      }
+    }
+    .filter-anime-top-list-container {
+        @apply w-full ssm:w-10/12 xl:w-8/12 mx-auto;
+    }
+  }
+}
