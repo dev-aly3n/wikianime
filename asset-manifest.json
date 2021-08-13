@@ -2,9 +2,9 @@
   "files": {
     "static/js/0.2b45f8ff.chunk.js": "/wikianime/static/js/0.2b45f8ff.chunk.js",
     "static/js/0.2b45f8ff.chunk.js.map": "/wikianime/static/js/0.2b45f8ff.chunk.js.map",
-    "main.css": "/wikianime/static/css/main.73b493a6.chunk.css",
-    "main.js": "/wikianime/static/js/main.b44a27a4.chunk.js",
-    "main.js.map": "/wikianime/static/js/main.b44a27a4.chunk.js.map",
+    "main.css": "/wikianime/static/css/main.115ccbe3.chunk.css",
+    "main.js": "/wikianime/static/js/main.662de99a.chunk.js",
+    "main.js.map": "/wikianime/static/js/main.662de99a.chunk.js.map",
     "runtime-main.js": "/wikianime/static/js/runtime-main.33f7274d.js",
     "runtime-main.js.map": "/wikianime/static/js/runtime-main.33f7274d.js.map",
     "static/js/3.19246c17.chunk.js": "/wikianime/static/js/3.19246c17.chunk.js",
@@ -20,7 +20,7 @@
     "static/js/8.912230d9.chunk.js": "/wikianime/static/js/8.912230d9.chunk.js",
     "static/js/8.912230d9.chunk.js.map": "/wikianime/static/js/8.912230d9.chunk.js.map",
     "index.html": "/wikianime/index.html",
-    "static/css/main.73b493a6.chunk.css.map": "/wikianime/static/css/main.73b493a6.chunk.css.map",
+    "static/css/main.115ccbe3.chunk.css.map": "/wikianime/static/css/main.115ccbe3.chunk.css.map",
     "static/js/0.2b45f8ff.chunk.js.LICENSE.txt": "/wikianime/static/js/0.2b45f8ff.chunk.js.LICENSE.txt",
     "static/js/3.19246c17.chunk.js.LICENSE.txt": "/wikianime/static/js/3.19246c17.chunk.js.LICENSE.txt",
     "static/js/6.73fe81da.chunk.js.LICENSE.txt": "/wikianime/static/js/6.73fe81da.chunk.js.LICENSE.txt"
@@ -28,7 +28,7 @@
   "entrypoints": [
     "static/js/runtime-main.33f7274d.js",
     "static/js/3.19246c17.chunk.js",
-    "static/css/main.73b493a6.chunk.css",
-    "static/js/main.b44a27a4.chunk.js"
+    "static/css/main.115ccbe3.chunk.css",
+    "static/js/main.662de99a.chunk.js"
   ]
 }
