@@ -1,15 +1,17 @@
-import React from "react";
-import Home from "./pages/Home";
-import AnimeDetail from "./pages/AnimeDetail";
-import Header from "./pages/Header";
+import React, { Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
+import { useApolloClient } from "@apollo/client";
+import { gql } from "@apollo/client";
+
+import Header from "./pages/Header";
 import ScrollToTop from "./pages/ScrollToTop";
 import Footer from "./pages/Footer";
 import ProgressBar from "./pages/ProgressBar";
-import { useApolloClient } from "@apollo/client";
-import { gql } from "@apollo/client";
-import AnimeFilter from "./pages/AnimeFilter";
-import Error404 from "./pages/Error404";
+import Loading from "./pages/Loading";
+const Home = React.lazy(() => import("./pages/Home"));
+const AnimeDetail = React.lazy(() => import("./pages/AnimeDetail"));
+const AnimeFilter = React.lazy(() => import("./pages/AnimeFilter"));
+const Error404 = React.lazy(() => import("./pages/Error404"));
 
 function App() {
   const client = useApolloClient();
@@ -39,23 +41,25 @@ function App() {
       </header>
       <ScrollToTop />
       <main className="all-main">
-        <Switch>
-          <Route path={["/", "/wikianime"]} exact>
-            <Home />
-          </Route>
-          <Route path={"/anime/:animeID"}>
-            <AnimeDetail />
-          </Route>
-          <Route path={"/search/"}>
-            <AnimeFilter />
-          </Route>
-          <Route path={"/anime/:animeID/character/:charID/actor/:actorID"}>
-            <AnimeDetail />
-          </Route>
-          <Route path="*">
-            <Error404 />
-          </Route>
-        </Switch>
+        <Suspense fallback={<Loading />}>
+          <Switch>
+            <Route path={["/", "/wikianime"]} exact>
+              <Home />
+            </Route>
+            <Route path={"/anime/:animeID"}>
+              <AnimeDetail />
+            </Route>
+            <Route path={"/search/"}>
+              <AnimeFilter />
+            </Route>
+            <Route path={"/anime/:animeID/character/:charID/actor/:actorID"}>
+              <AnimeDetail />
+            </Route>
+            <Route path="*">
+              <Error404 />
+            </Route>
+          </Switch>
+        </Suspense>
       </main>
       <footer className="all-footer">
         <Footer />
