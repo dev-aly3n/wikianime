@@ -13,7 +13,6 @@
     height: 80px;
     margin-right:72px;
     margib-bottom:72px;
-    @apply mx-auto;
   }
   .lds-ripple div {
     position: absolute;
