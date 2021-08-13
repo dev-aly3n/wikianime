@@ -36,7 +36,6 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
   });
 
   if (loading) {
-    console.log("loading");
     return null;
   }
 

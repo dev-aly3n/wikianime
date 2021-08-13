@@ -9,6 +9,7 @@ import ProgressBar from "./pages/ProgressBar";
 import { useApolloClient } from "@apollo/client";
 import { gql } from "@apollo/client";
 import AnimeFilter from "./pages/AnimeFilter";
+import Error404 from "./pages/Error404";
 
 function App() {
   const client = useApolloClient();
@@ -50,6 +51,9 @@ function App() {
           </Route>
           <Route path={"/anime/:animeID/character/:charID/actor/:actorID"}>
             <AnimeDetail />
+          </Route>
+          <Route path="*">
+            <Error404 />
           </Route>
         </Switch>
       </main>

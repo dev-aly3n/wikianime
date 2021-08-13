@@ -1,0 +1,15 @@
+@layer components {
+    .error-404-container {
+        height:600px;
+        @apply bg-indigo-100 w-full flex flex-col md:flex-row justify-center items-center;
+        >img {
+            @apply w-72 h-72;
+        }
+        >p {
+            @apply text-2xl md:text-4xl font-black text-gray-600 text-center;
+        }
+        .go-back-link {
+            @apply text-indigo-300 hover:text-indigo-700 transition-colors;
+        }
+    }
+}

@@ -58,7 +58,7 @@ const SearchList = () => {
   const [getSearchAnime, { error, data }] = useLazyQuery(menuSearchQuery);
 
   if (error) {
-    return error.message;
+    console.log(error)
   }
 
   if (data) {

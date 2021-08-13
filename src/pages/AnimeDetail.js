@@ -178,15 +178,17 @@ const AnimeDetail = () => {
               <Popularity popularity={popularity} />
             </div>
           )}
-          <div className="d-ranking ">
-            <h4>Ranking</h4>
-            <hr />
-            <ul>
-              {rankings.map((rank) => {
-                return <Rank key={rank.id} rank={rank} />;
-              })}
-            </ul>
-          </div>
+          {rankings[0] && (
+            <div className="d-ranking ">
+              <h4>Ranking</h4>
+              <hr />
+              <ul>
+                {rankings.map((rank) => {
+                  return <Rank key={rank.id} rank={rank} />;
+                })}
+              </ul>
+            </div>
+          )}
           {studios[0] && (
             <div>
               <h4>Studios</h4>
@@ -213,10 +215,14 @@ const AnimeDetail = () => {
               </div>
             </div>
           )}
-          <h4>Source</h4>
-          <hr />
-          <div className="detail-side-source">{aData.source}</div>
-          {characters && (
+          {aData.source && (
+            <div>
+              <h4>Source</h4>
+              <hr />
+              <div className="detail-side-source">{aData.source}</div>
+            </div>
+          )}
+          {characters[0] && (
             <div>
               <h4>Characters</h4>
               <hr />
