@@ -50,7 +50,7 @@ const Anime = ({ anime }) => {
         </div>
       )}
 
-      <img alt="" src={anime.coverImage.large}></img>
+      <img loading="lazy" height={224} alt="" src={anime.coverImage.large} style={{backgroundColor:anime.coverImage.color}} />
       <div
         className="anime-info
        "

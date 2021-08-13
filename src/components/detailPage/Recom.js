@@ -47,7 +47,7 @@ const Recom = ({ recom, widthParam }) => {
       }  recom-container`}
     >
       <div className="recom-detail">
-        <img alt="" src={recMedia.coverImage.large} />
+        <img loading="lazy" width={160} height={224} alt="" src={recMedia.coverImage.large} style={{backgroundColor:recMedia.coverImage.color}} />
         <div className="recom-info">
           <p className="line-clamp-4">
             <b>Title:</b>

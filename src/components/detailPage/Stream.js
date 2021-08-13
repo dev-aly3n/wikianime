@@ -11,7 +11,7 @@ const Stream = ({ episode }) => {
       animate={{ opacity: 1, transition: { duration: 2 } }}
       initial={{ opacity: 0 }}
     >
-      <img alt="" src={episode.thumbnail}></img>
+      <img loading="lazy" height={224} alt="" src={episode.thumbnail} />
       <h3 className="text-sm line-clamp-2 px-2">{episode.title}</h3>
     </motion.a>
   );

@@ -46,7 +46,7 @@ const Top = ({ anime, rank }) => {
         animate={{ opacity: 1, transition: { duration: 1 } }}
         initial={{ opacity: 0 }}
       >
-        <img alt="" src={anime.coverImage.large} />
+        <img loading="lazy" width={96} height={160} alt="" src={anime.coverImage.large} />
 
         <div className="top-info-container">
           <div className="top-status">

@@ -41,7 +41,7 @@ const AirSlide = ({ airing, onGrabbingSlider }) => {
       onMouseDown={() => onGrabbingSlider()}
       onTouchStart={() => onGrabbingSlider()}
     >
-      <img
+      <img loading="lazy" width={"100%"}
         alt=""
         className="transform group-hover:scale-110 "
         src={airing.bannerImage}
@@ -49,7 +49,7 @@ const AirSlide = ({ airing, onGrabbingSlider }) => {
       <div className="group-hover:bg-opacity-80">
         <div className="air-slide-cover-image transform group-hover:scale-95 ">
           <a onClick={animeCardClickHandler} href={`/anime/${airing.id}`}>
-            <img alt="" src={airing.coverImage.large} />
+            <img loading="lazy" width={160} height={224} alt="" src={airing.coverImage.large} style={{backgroundColor:airing.coverImage.color}} />
           </a>
         </div>
         <div className="air-slide-info">

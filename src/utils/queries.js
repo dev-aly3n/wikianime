@@ -7,6 +7,7 @@ export const menuSearchQuery = gql`
         id
         coverImage {
           medium
+          color
         }
         title {
           english
@@ -28,6 +29,7 @@ export const filterQuery = gql`
         }
         coverImage {
           large
+          color
         }
         source
         format
@@ -211,6 +213,7 @@ export const recomListQuery = gql`
               }
               coverImage {
                 large
+                color
               }
               description
             }
@@ -232,6 +235,7 @@ export const homeQuery = gql`
         }
         coverImage {
           large
+          color
         }
         source
         format
@@ -264,6 +268,7 @@ export const homeQuery = gql`
           genres
           coverImage {
             large
+            color
           }
           description(asHtml: true)
         }
@@ -274,6 +279,7 @@ export const homeQuery = gql`
         id
         coverImage {
           large
+          color
         }
         title {
           english
@@ -301,6 +307,7 @@ export const homeQuery = gql`
           source
           coverImage {
             large
+            color
           }
         }
       }
@@ -314,6 +321,7 @@ export const homeQuery = gql`
         }
         coverImage {
           large
+          color
         }
         source
         format
@@ -350,6 +358,7 @@ export const charQuery = gql`
             id
             coverImage {
               large
+              color
             }
             format
             source
@@ -394,6 +403,7 @@ export const charQuery = gql`
             id
             coverImage {
               large
+              color
             }
             format
             source

@@ -11,6 +11,7 @@ const Header = () => {
   const navLinksRef = useRef(null);
   const homeLinkRef = useRef(null);
   const animeLinkRef = useRef(null);
+  const Error404Ref = useRef(null);
 
   // modern Navigation bar code start here
   const scrollerContainer = document.getElementById("root");
@@ -18,7 +19,7 @@ const Header = () => {
   useEffect(() => {
     const burger = burgerRef.current;
     const nav = navLinksRef.current;
-    const navLinks = [homeLinkRef.current, animeLinkRef.current];
+    const navLinks = [homeLinkRef.current, animeLinkRef.current, Error404Ref.current];
 
     const navSlide = () => {
       //toggle nav
@@ -117,6 +118,12 @@ const Header = () => {
       text: "Anime",
       activeStyle: { backgroundColor: "#EEF2FF", color: "#312E81" },
       ref: animeLinkRef,
+    },
+    {
+      to: "/404sadjh234oi21j3lkj/",
+      text: "Error404",
+      activeStyle: { backgroundColor: "#EEF2FF", color: "#312E81" },
+      ref: Error404Ref,
     },
   ];
 

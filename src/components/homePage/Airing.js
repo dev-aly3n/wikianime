@@ -44,13 +44,14 @@ const Airing = ({ airing }) => {
       initial={{ opacity: 0 }}
     >
       <div>
-        <img alt=""
+        <img
+          loading="lazy"
+          height={96}
+          alt=""
           className="transform group-hover:scale-110"
           src={airing.bannerImage}
         />
-        <div
-          className="group-hover:bg-opacity-60"
-        >
+        <div className="group-hover:bg-opacity-60">
           <h3>
             {airing.title.english ? airing.title.english : airing.title.romaji}
           </h3>

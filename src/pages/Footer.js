@@ -1,3 +1,5 @@
+const { Link } = require("react-router-dom")
+
 const Footer = () => {
   return (
     <div className="footer-container">
@@ -30,7 +32,7 @@ const Footer = () => {
           <h4> Links</h4>
           <ul>
             <li>
-              <img
+              <img loading="lazy" width={20} height={20}
                 alt=""
                 src={
                   "https://img.pngio.com/github-logo-icon-of-glyph-style-available-in-svg-png-eps-ai-github-icon-png-256_256.png"
@@ -46,7 +48,7 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <img
+              <img loading="lazy" width={20} height={20}
                 alt=""
                 src={
                   "https://www.strategy-works.com/wp-content/uploads/2017/12/Icon-LinkedIn.png"
@@ -62,7 +64,7 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <img alt="" src={"https://telegram.org/img/td_icon.png"} />
+              <img loading="lazy" width={20} height={20} alt="" src={"https://telegram.org/img/td_icon.png"} />
               <a
                 href="https://telegram.me/aly3n"
                 target="_blank"

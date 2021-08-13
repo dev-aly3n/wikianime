@@ -1,8 +1,7 @@
-import React,{useEffect, useRef} from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { unKnownPng } from "../../utils/helpers";
-import { useApolloClient,gql } from '@apollo/client';
-
+import { useApolloClient, gql } from "@apollo/client";
 
 const Character = ({ char, animeID, mangaStaffID }) => {
   const client = useApolloClient();
@@ -16,40 +15,45 @@ const Character = ({ char, animeID, mangaStaffID }) => {
   }
 
   useEffect(() => {
-    
-    linkRef.current.addEventListener('click', charClickHandler)
+    linkRef.current.addEventListener("click", charClickHandler);
     // eslint-disable-next-line
   }, []);
-  
+
   const charClickHandler = () => {
     client.writeQuery({
       query: gql`
-      query WriteIsLoading {
-        loadingbar {
-          isLoading
+        query WriteIsLoading {
+          loadingbar {
+            isLoading
+          }
         }
-      }`,
-      data: { // Contains the data to write
+      `,
+      data: {
+        // Contains the data to write
         loadingbar: {
-          __typename: 'LoadingBar',
-          isLoading: 30
+          __typename: "LoadingBar",
+          isLoading: 30,
         },
-      }
+      },
     });
-  }
+  };
 
   return (
-    <Link ref={linkRef}
+    <Link
+      ref={linkRef}
       to={`/anime/${animeID}/character/${charID}/actor/${staffID}`}
       className="char-container"
     >
       <div className="char-image">
-        <img src={char.node.image.medium} alt=""/>
+        <img
+          loading="lazy"
+          width={64}
+          height={64}
+          src={char.node.image.medium}
+          alt=""
+        />
       </div>
-      <div
-        className="char-staff-info"
-        style={{ fontSize: "9px" }}
-      >
+      <div className="char-staff-info" style={{ fontSize: "9px" }}>
         <div className="char-name">
           <span>{char.node.name.full}</span>
           <span>
@@ -65,6 +69,9 @@ const Character = ({ char, animeID, mangaStaffID }) => {
       </div>
       <div className="staff-image">
         <img
+          loading="lazy"
+          width={64}
+          height={64}
           src={
             staffID !== mangaStaffID
               ? char.voiceActors[0].image.medium

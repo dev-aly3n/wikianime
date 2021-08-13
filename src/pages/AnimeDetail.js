@@ -119,7 +119,7 @@ const AnimeDetail = () => {
           <img
             alt=""
             className="detail-cover-image "
-            style={{ borderColor: `${animeColor30}` }}
+            style={{ borderColor: `${animeColor30}` , backgroundColor:coverImage.color}}
             src={coverImage.large}
           />
           <h2>{title}</h2>

@@ -50,7 +50,7 @@ const Review = ({ review }) => {
       <div className="reviewer-container">
         <div>
           <div className="review-user-info">
-            <img alt="" src={review.user.avatar.medium} />
+            <img loading="lazy" width={80} height={80} alt="" src={review.user.avatar.medium} />
             <h4>{review.user.name}</h4>
           </div>
           <div className="review-rate">
