@@ -1,8 +1,24 @@
-import useProgressBar from '../utils/useProgressBar';
+import { useApolloClient, gql } from "@apollo/client";
 
 const Errors = ({ errMsg }) => {
-useProgressBar(80);
-
+  const client = useApolloClient();
+  client.writeQuery({
+    query: gql`
+      query WriteIsLoading {
+        loadingbar {
+          isLoading
+        }
+      }
+    `,
+    data: {
+      // Contains the data to write
+      loadingbar: {
+        __typename: "LoadingBar",
+        isLoading: 80,
+      },
+    },
+  });
+  
   let failedToFetch, mediaNotFound, tooManyRequest, wtfError;
 
   switch (errMsg) {

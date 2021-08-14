@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { useApolloClient } from "@apollo/client";
-import { gql } from "@apollo/client";
+import { useApolloClient, gql } from "@apollo/client";
 import SearchList from "./SearchList";
 
 const Header = () => {
@@ -12,6 +11,7 @@ const Header = () => {
   const homeLinkRef = useRef(null);
   const animeLinkRef = useRef(null);
   const Error404Ref = useRef(null);
+  const ErrorsRef = useRef(null);
 
   // modern Navigation bar code start here
   const scrollerContainer = document.getElementById("root");
@@ -19,7 +19,12 @@ const Header = () => {
   useEffect(() => {
     const burger = burgerRef.current;
     const nav = navLinksRef.current;
-    const navLinks = [homeLinkRef.current, animeLinkRef.current, Error404Ref.current];
+    const navLinks = [
+      homeLinkRef.current,
+      animeLinkRef.current,
+      ErrorsRef.current,
+      Error404Ref.current,
+    ];
 
     const navSlide = () => {
       //toggle nav
@@ -120,6 +125,12 @@ const Header = () => {
       ref: animeLinkRef,
     },
     {
+      to: "/anime/575gjjhg67",
+      text: "Errors",
+      activeStyle: { backgroundColor: "#EEF2FF", color: "#312E81" },
+      ref: ErrorsRef,
+    },
+    {
       to: "/404sadjh234oi21j3lkj/",
       text: "Error404",
       activeStyle: { backgroundColor: "#EEF2FF", color: "#312E81" },
@@ -128,14 +139,14 @@ const Header = () => {
   ];
 
   return (
-    <nav ref={navRef} id="navigation" className="navigation navigation-container">
+    <nav
+      ref={navRef}
+      id="navigation"
+      className="navigation navigation-container"
+    >
       <div className="logo group">
         <h1 className=" group-hover:animate-none">WA</h1>
-        <span
-          className="group-hover:animate-none"
-        >
-          Wiki Anime
-        </span>
+        <span className="group-hover:animate-none">Wiki Anime</span>
       </div>
       <ul ref={navLinksRef} className="nav-links navigation">
         {headerLinks.map((link) => {

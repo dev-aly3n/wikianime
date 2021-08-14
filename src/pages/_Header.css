@@ -15,7 +15,7 @@
     }
 
     .nav-links {
-      width: 25%;
+      width: 35%;
       height: 8vh;
       @apply flex mx-0 justify-center items-center;
     }

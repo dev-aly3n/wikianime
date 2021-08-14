@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
-import useProgressBar from '../../utils/useProgressBar';
+import { useApolloClient, gql } from "@apollo/client";
 
 const Recom = ({ recom, widthParam }) => {
   const recMedia = recom.node ? recom.node.mediaRecommendation : recom.media;
@@ -11,12 +11,27 @@ const Recom = ({ recom, widthParam }) => {
   const rating = recom.node ? recom.node.rating : recom.rating;
 
   const history = useHistory();
+  const client = useApolloClient();
 
   const animeCardClickHandler = (e) => {
     e.preventDefault();
 
-    useProgressBar(30);
-
+    client.writeQuery({
+      query: gql`
+        query WriteIsLoading {
+          loadingbar {
+            isLoading
+          }
+        }
+      `,
+      data: {
+        // Contains the data to write
+        loadingbar: {
+          __typename: "LoadingBar",
+          isLoading: 30,
+        },
+      },
+    });
 
     setTimeout(() => {
       history.push(`/anime/${recMedia.id}`);
