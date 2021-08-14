@@ -4,6 +4,7 @@ import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { recomListQuery } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
+import Errors from '../../pages/Errors';
 
 const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
   const isSmallDevice = document.documentElement.clientWidth <= 768;
@@ -34,8 +35,7 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
   }
 
   if (error) {
-    console.log(error.message);
-    return `Error! ${error}`;
+    return <Errors errMsg={error.message} />;
   }
 
   let allRecomData;

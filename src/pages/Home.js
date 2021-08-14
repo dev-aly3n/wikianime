@@ -9,6 +9,8 @@ import RecomList from "../components/detailPage/RecomList";
 import AiringSlider from "../components/homePage/AiringSlider";
 import Loading from "./Loading";
 import { useApolloClient, gql } from "@apollo/client";
+import Errors from './Errors';
+
 
 const Home = ({ gridRef }) => {
   const client = useApolloClient();
@@ -37,8 +39,7 @@ const Home = ({ gridRef }) => {
   }
 
   if (error) {
-    console.log(error.message);
-    return `Error! ${error}`;
+    return <Errors errMsg={error.message} />;
   }
   const trending = data.trending.media;
   const airing = data.airing.airingSchedules;

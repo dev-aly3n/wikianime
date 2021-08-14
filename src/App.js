@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
-import { useApolloClient } from "@apollo/client";
-import { gql } from "@apollo/client";
+import useProgressBar from './utils/useProgressBar';
+
 
 import Header from "./pages/Header";
 import ScrollToTop from "./pages/ScrollToTop";
@@ -15,23 +15,8 @@ const AnimeFilter = React.lazy(() => import("./pages/AnimeFilter"));
 const Error404 = React.lazy(() => import("./pages/Error404"));
 
 function App() {
-  const client = useApolloClient();
-  client.writeQuery({
-    query: gql`
-      query WriteIsLoading {
-        loadingbar {
-          isLoading
-        }
-      }
-    `,
-    data: {
-      // Contains the data to write
-      loadingbar: {
-        __typename: "LoadingBar",
-        isLoading: 0,
-      },
-    },
-  });
+  useProgressBar(0);
+
 
   //// jsx
   return (

@@ -1,29 +1,14 @@
-import { useApolloClient, gql } from "@apollo/client";
+import useProgressBar from '../utils/useProgressBar';
 import { useHistory } from "react-router-dom";
 
 const SearchAnime = ({ anime, emptySearchValue }) => {
   const history = useHistory();
-  const client = useApolloClient();
 
   const animeCardClickHandler = (e) => {
     e.preventDefault();
 
-    client.writeQuery({
-      query: gql`
-        query WriteIsLoading {
-          loadingbar {
-            isLoading
-          }
-        }
-      `,
-      data: {
-        // Contains the data to write
-        loadingbar: {
-          __typename: "LoadingBar",
-          isLoading: 30,
-        },
-      },
-    });
+    useProgressBar(30);
+
 
     setTimeout(() => {
       emptySearchValue();

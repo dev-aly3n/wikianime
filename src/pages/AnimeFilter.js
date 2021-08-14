@@ -7,6 +7,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TopList from "../components/homePage/TopList";
 import { useHistory } from "react-router-dom";
+import Errors from './Errors';
 
 const AnimeFilter = () => {
   const client = useApolloClient();
@@ -77,7 +78,7 @@ const AnimeFilter = () => {
   const [getSearchAnime, { error, data }] = useLazyQuery(filterQuery);
 
   if (error) {
-    return error.message;
+    return <Errors errMsg={error.message} />;
   }
 
   if (data) {

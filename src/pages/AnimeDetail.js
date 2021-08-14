@@ -19,6 +19,7 @@ import ReviewList from "../components/detailPage/ReviewList";
 import RecomList from "../components/detailPage/RecomList";
 import { useApolloClient, gql } from "@apollo/client";
 import Loading from "./Loading";
+import Errors from './Errors';
 
 const AnimeDetail = () => {
   const client = useApolloClient();
@@ -59,8 +60,7 @@ const AnimeDetail = () => {
   }
 
   if (error) {
-    console.log(error.message);
-    return `Error! ${error}`;
+    return <Errors errMsg={error.message} />
   }
 
   const aData = data.Media;

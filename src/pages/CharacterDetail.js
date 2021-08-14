@@ -9,6 +9,7 @@ import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CircleRate from "../components/detailPage/CircleRate";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import Errors from './Errors';
 
 const CharacterDetail = ({ animeID, characterID, actorID }) => {
   const staffContentShowLess = useRef(null);
@@ -40,8 +41,7 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
   }
 
   if (error) {
-    console.log(error.message);
-    return `Error! ${error}`;
+    return <Errors errMsg={error.message} /> ;
   }
   const character = data.Character;
   const staff = data.Staff;

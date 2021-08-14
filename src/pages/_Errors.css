@@ -1,31 +1,34 @@
 @layer components {
-    /* adding dash to progressbar */
-    .hihihi::after {
-        content: "";
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  background-image: linear-gradient(
-    -45deg, 
-    rgba(255, 255, 255, .2) 25%, 
-    transparent 25%, 
-    transparent 50%, 
-    rgba(255, 255, 255, .2) 50%, 
-    rgba(255, 255, 255, .2) 75%, 
-    transparent 75%, 
-    transparent
-  );
-  z-index: 1;
-  background-size: 50px 50px;
-  animation: move 2s linear infinite;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  overflow: hidden;
-  /* animation: progressMove 2s linear infinite; */
-}
+  /* adding dash to progressbar */
+  .error-pos-dash-style::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.2) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.2) 75%,
+      transparent 75%,
+      transparent
+    );
+    z-index: 1;
+    background-size: 50px 50px;
+    animation: move 2s linear infinite;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    overflow: hidden;
+    /* animation: progressMove 2s linear infinite; */
+  }
 
-/* @keyframes progressMove {
+  /* @keyframes progressMove {
   0% {
     background-position: 0 0;
   }
@@ -33,4 +36,34 @@
     background-position: 50px 50px;
   }
 } */
+
+  .error-page-container {
+    min-height: 700px;
+    @apply bg-indigo-100 flex flex-col;
+    > p {
+      @apply m-auto pt-24  w-11/12 xl:w-7/12 text-center text-xl;
+    }
+    > div {
+      @apply flex flex-wrap justify-around items-center py-3 m-auto md:w-11/12 xl:w-7/12;
+      > div {
+        min-height: 384px;
+        max-width: 384px;
+        @apply rounded-2xl shadow-2xl bg-opacity-90 my-8 py-16 px-7
+      font-medium text-justify relative overflow-hidden mx-3;
+      }
+    }
+    .error-possibility {
+      @apply absolute top-0 left-0 w-full h-8 p-1 rounded-2xl shadow-inner bg-gray-300 overflow-hidden;
+      > div {
+        @apply w-full h-full relative;
+        > div {
+          @apply absolute left-0 w-6/12 bg-red-500 h-full rounded-l-2xl drop-shadow-xl
+        rounded-r-md;
+        }
+        > span {
+          @apply absolute ml-2;
+        }
+      }
+    }
+  }
 }
