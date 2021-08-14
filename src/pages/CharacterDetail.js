@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 import { charQuery } from "../utils/queries";
 import { Markup } from "interweave";
 import AnimeList from "../components/AnimeList";
-import { showMoreLessBtn, unKnownPng } from "../utils/helpers";
+import { showMoreLessBtn, unKnownPng, monthNames } from "../utils/helpers";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CircleRate from "../components/detailPage/CircleRate";
@@ -51,20 +51,6 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
   let charFavouritesRange = ((character.favourites / 30000) * 100).toFixed(0);
   let actorFavouritesRange = ((staff.favourites / 10000) * 100).toFixed(0);
 
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
 
   // staff description
   showMoreLessBtn(
@@ -76,7 +62,7 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
   //character desciption
   showMoreLessBtn(
     charContentShowLess,
-    "show-more-btn staff-show-more-desc-btn",
+    "show-more-btn character-show-more-desc-btn",
     250
   );
 

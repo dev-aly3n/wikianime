@@ -8,6 +8,7 @@ import ScrollToTop from "./pages/ScrollToTop";
 import Footer from "./pages/Footer";
 import ProgressBar from "./pages/ProgressBar";
 import Loading from "./pages/Loading";
+import Errors from "./pages/Errors";
 const Home = React.lazy(() => import("./pages/Home"));
 const AnimeDetail = React.lazy(() => import("./pages/AnimeDetail"));
 const AnimeFilter = React.lazy(() => import("./pages/AnimeFilter"));
@@ -54,6 +55,9 @@ function App() {
             </Route>
             <Route path={"/anime/:animeID/character/:charID/actor/:actorID"}>
               <AnimeDetail />
+            </Route>
+            <Route path="/error">
+            <Errors />
             </Route>
             <Route path="*">
               <Error404 />

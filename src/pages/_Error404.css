@@ -1,7 +1,7 @@
 @layer components {
     .error-404-container {
         height:600px;
-        @apply bg-indigo-100 w-full flex flex-col md:flex-row justify-center items-center;
+        @apply bg-indigo-100 w-full flex flex-col md:flex-row justify-center items-center px-5;
         >img {
             @apply w-72 h-72;
         }

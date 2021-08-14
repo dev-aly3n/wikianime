@@ -60,3 +60,20 @@ export const showMoreLessBtn = (refElement, extraClassName, height) => {
 
 export const unKnownPng =
   "https://png.pngitem.com/pimgs/s/52-526033_unknown-person-icon-png-transparent-png.png";
+
+
+
+  export const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
