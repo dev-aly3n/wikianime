@@ -11,12 +11,15 @@ const Review = ({ review }) => {
 
   let reg1 = /\[(.*?)\]\((.*?)\)/g;
   reviewText = reviewText.replace(reg1, "<a href='$2'>$1</a>");
+  let reg3 = /src='(.*?)'|src="(.*?)"/g;
+  reviewText = reviewText.replace(reg3, " src='$1' loading='lazy' height='270' ");
 
   let reg2 = /<pre>/;
   if (reg2.test(reviewText)) {
     reviewText = decode(reviewText);
     reviewText = reviewText.replaceAll(/__|\*|<\/?code>|<\/?pre>/g, "");
   }
+
 
   const reviewContentShowLess = useRef(null);
 
