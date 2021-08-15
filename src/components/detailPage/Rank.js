@@ -1,4 +1,5 @@
 const Rank = ({ rank }) => {
+  //there is diferent rank types that we need to add specific color for any of them
   let bgRank, bgBorder, rankRound;
   if (rank.context.includes("most popular")) {
     bgRank = "bg-green-200";
@@ -12,19 +13,13 @@ const Rank = ({ rank }) => {
 
   return (
     <li
-      className={`rank ${bgRank} ${
+      className={`rank rank-container ${bgRank} ${
         rank.allTime ? `border-r-4 border-l-4 ${bgBorder} ` : ""
-      } min-w-max rounded-2xl pr-3 py-1  my-1 overflow-hidden`}
+      } `}
     >
-      <span className={`${rankRound} pr-1 py-7 pl-7 font-semibold -ml-6`}>
-        #{rank.rank}
-      </span>
+      <span className={`${rankRound} `}>#{rank.rank}</span>
       {" " + rank.context}
-      <span
-        className={`bg-gray-200 ${
-          rank.year ? "p-1" : ""
-        } text-gray-800 rounded-xl text-xs font-bold float-right`}
-      >
+      <span className={` ${rank.year ? "p-1" : ""} `}>
         {rank.year
           ? `${rank.season ? rank.season.toLowerCase() : ""} ${rank.year}`
           : ""}

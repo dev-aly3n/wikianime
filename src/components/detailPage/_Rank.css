@@ -1,3 +1,12 @@
 @layer components {
+    .rank-container {
+        @apply min-w-max rounded-2xl pr-3 py-1  my-1 overflow-hidden;
+        >span:first-child {
+            @apply pr-1 py-7 pl-7 font-semibold -ml-6;
+        }
+        >span:last-child {
+            @apply text-gray-800 rounded-xl text-xs font-bold float-right bg-gray-200;
+        }
+    }
     
 }

@@ -1,7 +1,8 @@
-import React from "react";
+//components
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CircleRate = ({ rate, symbol, size }) => {
+  //there is 2 circular div that we handle the percentage with the gradient. we also change the color with percentage
   let grad, bg;
   if (rate === null) {
     rate = 0;

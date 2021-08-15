@@ -1,48 +1,60 @@
+//libs
 import React, { useRef, useEffect } from "react";
+import { decode } from "html-entities";
+//components
 import { motion } from "framer-motion";
 import { Markup } from "interweave";
 import CircleRate from "./CircleRate";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { showMoreLessBtn } from "../../utils/helpers";
-import { decode } from "html-entities";
+//helpers and queries
+import { showMoreLessBtn, unKnownPng } from "../../utils/helpers";
 
 const Review = ({ review }) => {
-  let reviewText = review.body;
+  const reviewContentShowLess = useRef(null);
 
+  //the review's body are a pure shit . so we need to clean it first
+  //...we use reg1 any header like [__header__] to an a tag
+  //...we use reg3 to add lazy loading to images
+  //...we use reg2 to decode markdowns and remove <pre></pre> and <code></code> tags bcs they make problem for page styles
+  let reviewText = review.body;
   let reg1 = /\[(.*?)\]\((.*?)\)/g;
   reviewText = reviewText.replace(reg1, "<a href='$2'>$1</a>");
   let reg3 = /src='(.*?)'|src="(.*?)"/g;
-  reviewText = reviewText.replace(reg3, " src='$1' loading='lazy' height='270' ");
-
+  reviewText = reviewText.replace(
+    reg3,
+    " src='$1' loading='lazy' height='270' "
+  );
   let reg2 = /<pre>/;
   if (reg2.test(reviewText)) {
     reviewText = decode(reviewText);
     reviewText = reviewText.replaceAll(/__|\*|<\/?code>|<\/?pre>/g, "");
   }
 
-
-  const reviewContentShowLess = useRef(null);
-
   let date = new Date(review.createdAt * 1000);
-  let year = date.getFullYear();
-  let month = date.getMonth();
-  let day = date.getDay();
-  date = `${year}/${month}/${day}`;
+  date = `${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`;
 
   useEffect(() => {
     showMoreLessBtn(
       reviewContentShowLess,
-      "show-more-btn to-indigo-50 hover:bg-indigo-50 hover:bg-opacity-60",
+      "show-more-btn showMoreReviewBtn",
       150
     );
   }, [reviewContentShowLess]);
 
+  //bcs we show rate as a percent of 100 so we need to remove anything more than 100
   let rate;
   if (review.rating >= 100) {
     rate = 100;
   } else {
     rate = review.rating;
   }
+
+  // I saw an avatar that it has 404 error.
+  //...so we can use this to see if the avatars have error then we replace the src with our default avatar
+  const avatarErrorHandler = (e) => {
+    e.target.onerror = null;
+    e.target.src = unKnownPng;
+  };
 
   return (
     <motion.div
@@ -53,7 +65,14 @@ const Review = ({ review }) => {
       <div className="reviewer-container">
         <div>
           <div className="review-user-info">
-            <img loading="lazy" width={80} height={80} alt="" src={review.user.avatar.medium} />
+            <img
+              loading="lazy"
+              width={80}
+              height={80}
+              alt=""
+              src={review.user.avatar.medium}
+              onError={avatarErrorHandler}
+            />
             <h4>{review.user.name}</h4>
           </div>
           <div className="review-rate">
@@ -72,9 +91,7 @@ const Review = ({ review }) => {
           </div>
         </div>
 
-        <div className="review-date">
-          {date}
-        </div>
+        <div className="review-date">{date}</div>
       </div>
       {review.body ? (
         <div

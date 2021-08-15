@@ -1,8 +1,7 @@
-
 const Trailer = ({ embedId }) => (
   <div className="video-responsive">
     <iframe
-    loading="lazy"
+      loading="lazy"
       width={853}
       height={480}
       src={`https://www.youtube.com/embed/${embedId}`}

@@ -1,21 +1,25 @@
-import { Markup } from "interweave";
+//libs
 import { useHistory } from "react-router-dom";
-import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion } from "framer-motion";
 import { useApolloClient, gql } from "@apollo/client";
+//components
+import { Markup } from "interweave";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
 
 const Recom = ({ recom, widthParam }) => {
-  const recMedia = recom.node ? recom.node.mediaRecommendation : recom.media;
-
-  const rating = recom.node ? recom.node.rating : recom.rating;
-
   const history = useHistory();
   const client = useApolloClient();
 
+  //check to see that this components render in home page or detail page
+  // optional chaning and nullish coalescing oprator myObj?.prop ?? "default"
+  //... by this way we check if recom.node is undefined or nall and if yes then read data fom recom.media
+  const recMedia = recom.node?.mediaRecommendation ?? recom.media;
+  const rating = recom.node?.rating ?? recom.rating;
+
+  //showing progress bar on click
   const animeCardClickHandler = (e) => {
     e.preventDefault();
-
     client.writeQuery({
       query: gql`
         query WriteIsLoading {
@@ -33,6 +37,7 @@ const Recom = ({ recom, widthParam }) => {
       },
     });
 
+    //we set timeout to show the progressbar before routing , if we push immediately it doesn't show progressbar
     setTimeout(() => {
       history.push(`/anime/${recMedia.id}`);
     }, 500);
@@ -47,7 +52,14 @@ const Recom = ({ recom, widthParam }) => {
       }  recom-container`}
     >
       <div className="recom-detail">
-        <img loading="lazy" width={160} height={224} alt="" src={recMedia.coverImage.large} style={{backgroundColor:recMedia.coverImage.color}} />
+        <img
+          loading="lazy"
+          width={160}
+          height={224}
+          alt=""
+          src={recMedia.coverImage.large}
+          style={{ backgroundColor: recMedia.coverImage.color }}
+        />
         <div className="recom-info">
           <p className="line-clamp-4">
             <b>Title:</b>

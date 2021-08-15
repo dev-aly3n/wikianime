@@ -58,8 +58,7 @@ export const showMoreLessBtn = (refElement, extraClassName, height) => {
   }, 100);
 };
 
-export const unKnownPng =
-  "https://png.pngitem.com/pimgs/s/52-526033_unknown-person-icon-png-transparent-png.png";
+export const unKnownPng = process.env.PUBLIC_URL + "/media/defaultavatar.png";
 
 
 

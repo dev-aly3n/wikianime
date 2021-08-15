@@ -1,28 +1,35 @@
+//libs
 import React, { useState, useRef } from "react";
+import { useQuery } from "@apollo/client";
+//components
 import Recom from "./Recom";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//helpers & queries
 import { recomListQuery } from "../../utils/queries";
-import { useQuery } from "@apollo/client";
 // import Errors from '../../pages/Errors';
 
 const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
-  const isSmallDevice = document.documentElement.clientWidth <= 768;
-  const magicNum1 = 250;
-  const magicNum2 = isSmallDevice ? 264 : 264 * 2;
-  const magicNum3 = 275;
   const rightLeftScroll = useRef(null);
   const wastefulCover = useRef(null);
-
   const [showMore, setShowMore] = useState({
     recommend: initialQuantity,
   });
 
+  //check to see if we are in small device or large one to decide how many data should load
+  const isSmallDevice = document.documentElement.clientWidth <= 768;
+  //this magic numbers manage the scroll in small devices like 320px width
+  const magicNum1 = 250;
+  const magicNum2 = isSmallDevice ? 264 : 264 * 2;
+  const magicNum3 = 275;
+
+  //check to see if we are in home page or detail page and bcs this will throwing error for us, so we mock it
+  //... to get the data of id 7 if we are in home page but we dont show this data
   let id;
   if (animeID) {
     id = animeID;
   } else {
-    id = 16498;
+    id = 7;
   }
   const { loading, error, data } = useQuery(recomListQuery, {
     variables: {
@@ -35,10 +42,12 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
   }
 
   if (error) {
+    //we comented next line bcs it show the Errors page in middle of the oter pages, we just ignore this error if happened
     // return <Errors errMsg={error.message} />;
     return null;
   }
 
+  //we check to see if the data come from the parent or from the graphql request
   let allRecomData;
   if (allRecom) {
     allRecomData = allRecom;
@@ -46,9 +55,11 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
     allRecomData = data.Media.recommendations.edges;
   }
 
+  // START of slider : isdown check the mouse key down , startx is the scrill left at the beggining of mouse key down and scroll left is the current scroll left
   let isDown = false;
   let startx, scrollLeft;
 
+  //on mouse down we set startx and scrollLeft , then we update scrollLeft later but we dont update startx bcs it is constant from a click down to click up
   const recSliderMouseDownHandler = (e) => {
     e.preventDefault();
     isDown = true;
@@ -56,11 +67,16 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
     scrollLeft = rightLeftScroll.current.scrollLeft;
   };
 
+  //we put wastfullCover to avoid triger click action . bcs click happen wen we mouse down and mouse up on the same object
+  //... so this 0 opacity cover help us to don't mouse up at the same object
   const recSliderMouseLeaveHandler = () => {
     isDown = false;
     wastefulCover.current.style.display = "none";
   };
 
+  //we put wastfullCover to avoid triger click action . bcs click happen wen we mouse down and mouse up on the same object
+  //... so this 0 opacity cover help us to don't mouse up at the same object
+  // we also update the state, we load all the data if user dragging the slider
   const recSliderMouseUpHandler = () => {
     isDown = false;
 
@@ -78,6 +94,8 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
     wastefulCover.current.style.display = "block";
   };
 
+  //in scroll handler btn we use our magic number to manage the scroll by using math.round
+  //...we also load more data if user click on the right button. the number of new data is depend on size of the device
   const rightScrollHandler = () => {
     let recLeft = rightLeftScroll.current.scrollLeft;
     let recWidth = rightLeftScroll.current.scrollWidth;
@@ -119,6 +137,8 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
       }
     }
   };
+
+  //like the right handler but we dont load new data as it make sense
   const leftScrollHandler = () => {
     let recLeft = rightLeftScroll.current.scrollLeft;
     let recWidth = rightLeftScroll.current.scrollWidth;
@@ -139,6 +159,10 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
     }
   };
 
+  //in touch handler we do same thing. maybe we need to clean this mess and make another function to use in all event listeners
+  //.
+  //..
+  //...
   const recTouchHandler = () => {
     let recLeft = rightLeftScroll.current.scrollLeft;
     let recWidth = rightLeftScroll.current.scrollWidth;
@@ -179,12 +203,14 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
               onMouseMove={recSliderMouseMoveHandler}
             >
               <div>
-                {allRecomData.filter((_, index)=> showMore.recommend - 1 >= index).map((recom, index) => {
+                {allRecomData
+                  .filter((_, index) => showMore.recommend - 1 >= index)
+                  .map((recom, index) => {
                     const id = recom.node
                       ? recom.node.mediaRecommendation.id
                       : recom.media.id;
                     return <Recom key={keyParam + id + index} recom={recom} />;
-                })}
+                  })}
                 <div ref={wastefulCover} className="wasteful-cover"></div>
               </div>
             </div>

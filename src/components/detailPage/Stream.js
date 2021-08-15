@@ -1,4 +1,4 @@
-import React from "react";
+//components
 import { motion } from "framer-motion";
 
 const Stream = ({ episode }) => {

@@ -1,4 +1,6 @@
+//libs
 import React, { useState } from "react";
+//components
 import Review from "./Review";
 import { motion } from "framer-motion";
 

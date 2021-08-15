@@ -1,4 +1,6 @@
+//libs
 import React, { useState } from "react";
+//components
 import Stream from "./Stream";
 import { motion } from "framer-motion";
 
@@ -7,6 +9,7 @@ const StreamList = ({ allEpisode, colsInRow, initialQuantity, keyParam }) => {
     stream: initialQuantity,
   });
 
+  //manage columns in diferent size (we cant do this in css bcs we change grid templates for mobile and tablet)
   let gridColsTemp = `grid-cols-2 ssm:grid-cols-${colsInRow - 1} lg:grid-cols-${
     colsInRow - 1
   } xl:grid-cols-${colsInRow}`;

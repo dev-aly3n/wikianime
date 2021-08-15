@@ -1,11 +1,15 @@
+//libs
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { unKnownPng } from "../../utils/helpers";
 import { useApolloClient, gql } from "@apollo/client";
+//helpers & queries
+import { unKnownPng } from "../../utils/helpers";
+//components
+import { Link } from "react-router-dom";
 
 const Character = ({ char, animeID, mangaStaffID }) => {
   const client = useApolloClient();
   const linkRef = useRef(null);
+  //bcs manga hasn't any voice actore, we see if it is manga, then we replace the voice actore by the creator of manga
   let charID, staffID;
   charID = char.node.id;
   if (char.voiceActors[0] === undefined) {
@@ -19,6 +23,7 @@ const Character = ({ char, animeID, mangaStaffID }) => {
     // eslint-disable-next-line
   }, []);
 
+  //showing the progress bar for loading new page
   const charClickHandler = () => {
     client.writeQuery({
       query: gql`

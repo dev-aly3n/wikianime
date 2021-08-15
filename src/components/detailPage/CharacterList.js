@@ -1,6 +1,8 @@
+//libs
 import React, { useState } from "react";
-import Character from "./Character";
+//components
 import { motion } from "framer-motion";
+import Character from "./Character";
 
 const CharacterList = ({ characters, animeID, mangaStaffID }) => {
   const [showMore, setShowMore] = useState({
