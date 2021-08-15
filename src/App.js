@@ -1,8 +1,8 @@
+//libs
 import React, { Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
-import { useApolloClient } from "@apollo/client";
-import { gql } from "@apollo/client";
-
+import { useApolloClient, gql } from "@apollo/client";
+// components
 import Header from "./pages/Header";
 import ScrollToTop from "./pages/ScrollToTop";
 import Footer from "./pages/Footer";
@@ -15,6 +15,7 @@ const AnimeFilter = React.lazy(() => import("./pages/AnimeFilter"));
 const Error404 = React.lazy(() => import("./pages/Error404"));
 
 function App() {
+  //for writing the WriteIsLoading query on the cache to use for progressbar
   const client = useApolloClient();
   client.writeQuery({
     query: gql`
@@ -57,7 +58,7 @@ function App() {
               <AnimeDetail />
             </Route>
             <Route path="/error">
-            <Errors />
+              <Errors />
             </Route>
             <Route path="*">
               <Error404 />
