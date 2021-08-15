@@ -33,6 +33,7 @@
         .top-rate-popularity {
           @apply hidden ssm:block absolute right-0 bottom-0 transition-all duration-1000;
           .top-rate-pop-text {
+            line-height:1.7;
             font-size: 9px;
             @apply absolute top-4 left-3 text-white;
           }

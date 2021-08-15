@@ -1,6 +1,7 @@
 @layer components {
 
   .main-loading-container{
+    min-height:400px;
     @apply  flex justify-center items-center h-full;
   }
 

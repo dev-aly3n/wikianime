@@ -52,7 +52,7 @@ const Errors = ({ errMsg }) => {
 
   return (
     <div className="error-page-container text-gray-800">
-    <p><strong>WAIT! There is a problem!</strong> 
+    <p><span>!</span> <strong>WAIT! There is a problem!</strong> 
     <br/> Here is 4 possibilities why you seeing this page by different priority:</p>
       <div>
         <div

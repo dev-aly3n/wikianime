@@ -39,9 +39,12 @@
 
   .error-page-container {
     min-height: 700px;
-    @apply bg-indigo-100 flex flex-col;
+    @apply bg-indigo-100 flex flex-col h-full;
     > p {
-      @apply m-auto pt-24  w-11/12 xl:w-7/12 text-center text-xl;
+      @apply m-auto pt-24  w-11/12 xl:w-7/12 text-center text-xl ;
+      >span {
+        @apply text-white bg-red-500 rounded-full font-black px-2;
+      }
     }
     > div {
       @apply flex flex-wrap justify-around items-center py-3 m-auto md:w-11/12 xl:w-7/12;

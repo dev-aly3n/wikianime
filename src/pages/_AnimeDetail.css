@@ -41,6 +41,8 @@
   }
 
   .detail-page-container {
+    min-height: 700px;
+@apply h-full;
     .d-header {
       grid-area: header;
       background-size: cover;

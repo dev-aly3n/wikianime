@@ -9,7 +9,7 @@ import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CircleRate from "../components/detailPage/CircleRate";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import Errors from './Errors';
+import Errors from "./Errors";
 
 const CharacterDetail = ({ animeID, characterID, actorID }) => {
   const staffContentShowLess = useRef(null);
@@ -41,7 +41,16 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
   }
 
   if (error) {
-    return <Errors errMsg={error.message} /> ;
+    return (
+      <div className="character-page-shadow" onClick={modalCloseHandler}>
+        <div className="character-page-container">
+        <span className="modal-close ">
+          <FontAwesomeIcon className="fixed modal-close" icon={faTimesCircle} />
+        </span>
+          <Errors errMsg={error.message} />
+        </div>
+      </div>
+    );
   }
   const character = data.Character;
   const staff = data.Staff;
@@ -50,7 +59,6 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
 
   let charFavouritesRange = ((character.favourites / 30000) * 100).toFixed(0);
   let actorFavouritesRange = ((staff.favourites / 10000) * 100).toFixed(0);
-
 
   // staff description
   showMoreLessBtn(
@@ -79,7 +87,8 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
         <div className="character-info">
           <div>
             <div className="character-image">
-              <img alt=""
+              <img
+                alt=""
                 src={character.image.large ? character.image.large : unKnownPng}
               />
               <div>
@@ -176,7 +185,10 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
               )}
             </div>
             <div className="staff-image">
-              <img alt="" src={staff.image.large ? staff.image.large : unKnownPng} />
+              <img
+                alt=""
+                src={staff.image.large ? staff.image.large : unKnownPng}
+              />
               <div>
                 <CircleRate
                   rate={actorFavouritesRange}

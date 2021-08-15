@@ -1,6 +1,7 @@
 @layer components {
   .anime-filter-container {
-    @apply flex flex-col justify-center items-center pt-24 mx-auto bg-indigo-50 w-full;
+    min-height: 700px;
+    @apply h-full flex flex-col justify-center items-center pt-24 mx-auto bg-indigo-50 w-full;
     .anime-filter-form {
       @apply flex justify-center items-center h-14 w-full;
       > form {
@@ -16,7 +17,6 @@
       }
     }
     .filter-result-container {
-      min-height: 700px;
       @apply w-full top-5 rounded-b-xl;
       > div {
         @apply w-full flex flex-col items-start justify-start mt-7;
@@ -29,7 +29,7 @@
       }
     }
     .filter-anime-top-list-container {
-        @apply w-full ssm:w-10/12 xl:w-8/12 mx-auto;
+      @apply w-full ssm:w-10/12 xl:w-8/12 mx-auto;
     }
   }
 }
