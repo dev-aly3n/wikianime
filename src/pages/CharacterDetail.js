@@ -1,22 +1,24 @@
+//libs
 import { useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { charQuery } from "../utils/queries";
-import { Markup } from "interweave";
+//components
 import AnimeList from "../components/AnimeList";
-import { showMoreLessBtn, unKnownPng, monthNames } from "../utils/helpers";
-import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CircleRate from "../components/detailPage/CircleRate";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Errors from "./Errors";
+import { Markup } from "interweave";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+//helpers and queries
+import { charQuery } from "../utils/queries";
+import { showMoreLessBtn, unKnownPng, monthNames } from "../utils/helpers";
 
 const CharacterDetail = ({ animeID, characterID, actorID }) => {
   const staffContentShowLess = useRef(null);
   const charContentShowLess = useRef(null);
-  //if character hasn't any actor
-
   const history = useHistory();
+
   const modalCloseHandler = (e) => {
     if (
       e.target.classList.contains("character-page-shadow") ||
@@ -44,9 +46,12 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
     return (
       <div className="character-page-shadow" onClick={modalCloseHandler}>
         <div className="character-page-container">
-        <span className="modal-close ">
-          <FontAwesomeIcon className="fixed modal-close" icon={faTimesCircle} />
-        </span>
+          <span className="modal-close ">
+            <FontAwesomeIcon
+              className="fixed modal-close"
+              icon={faTimesCircle}
+            />
+          </span>
           <Errors errMsg={error.message} />
         </div>
       </div>
@@ -57,6 +62,7 @@ const CharacterDetail = ({ animeID, characterID, actorID }) => {
   const charAnimeList = character.media.edges;
   const staffAnimeList = staff.staffMedia.edges;
 
+  //circular rate components need a number from 0 to 100 so we need to make it first
   let charFavouritesRange = ((character.favourites / 30000) * 100).toFixed(0);
   let actorFavouritesRange = ((staff.favourites / 10000) * 100).toFixed(0);
 

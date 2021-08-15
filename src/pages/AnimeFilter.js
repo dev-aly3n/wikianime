@@ -1,15 +1,26 @@
-import { useApolloClient, gql } from "@apollo/client";
+//libs
 import React, { useRef, useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { filterQuery } from "../utils/queries";
-import { useLazyQuery } from "@apollo/client";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import TopList from "../components/homePage/TopList";
+import { useApolloClient, gql, useLazyQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
-import Errors from './Errors';
+//components
+import TopList from "../components/homePage/TopList";
+import Errors from "./Errors";
+import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+//helpers and queries
+import { filterQuery } from "../utils/queries";
 
 const AnimeFilter = () => {
+  const history = useHistory();
+  const [searchValue, setSearchValue] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const searchBoxRef = useRef(null);
+  let searchData = [];
+  let path = history.location.pathname;
+  path = path.split("/search/")[1];
+
+  //for hiding the progress bar on load
   const client = useApolloClient();
   client.writeQuery({
     query: gql`
@@ -28,14 +39,9 @@ const AnimeFilter = () => {
     },
   });
 
-  const history = useHistory();
-  const searchBoxRef = useRef(null);
-  const [searchValue, setSearchValue] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  let searchData = [];
-  let path = history.location.pathname;
-  path = path.split("/search/")[1];
-
+  //to push the search query in to the address of the page to if someone has a copy of link, then he can see the search results
+  //... and of course if the user click on the backward button of browser then he can see the same result
+  //...we alsoe make the input onder the control of states
   const searchChangeHandler = (e) => {
     history.push(`/search/${e.target.value}`);
     let path = history.location.pathname;
@@ -47,6 +53,7 @@ const AnimeFilter = () => {
     e.preventDefault();
   };
 
+  //to avoid sending request in every key down, we use a timeout, so if user doesn't type anything for 700 milliseconds then we send request
   useEffect(() => {
     setIsLoading(true);
     const searchTimer = setTimeout(() => {
@@ -59,6 +66,7 @@ const AnimeFilter = () => {
     // eslint-disable-next-line
   }, [searchValue]);
 
+  //if we open the filter page the path is "" so we use a default one "attack on titan"
   useEffect(() => {
     if (path === "") {
       // eslint-disable-next-line
@@ -72,7 +80,6 @@ const AnimeFilter = () => {
 
       setIsLoading(false);
     }, 1500);
-    
   }, []);
 
   const [getSearchAnime, { error, data }] = useLazyQuery(filterQuery);
@@ -84,6 +91,11 @@ const AnimeFilter = () => {
   if (data) {
     searchData = data.filter.media;
   }
+  
+//we have unusable rendering here
+//.
+//..
+//...
 
   return (
     <div className="anime-filter-container">

@@ -39,10 +39,10 @@
 
   .error-page-container {
     min-height: 700px;
-    @apply bg-indigo-100 flex flex-col h-full;
+    @apply bg-indigo-100 flex flex-col h-full text-gray-800;
     > p {
-      @apply m-auto pt-24  w-11/12 xl:w-7/12 text-center text-xl ;
-      >span {
+      @apply m-auto pt-24  w-11/12 xl:w-7/12 text-center text-xl;
+      > span {
         @apply text-white bg-red-500 rounded-full font-black px-2;
       }
     }

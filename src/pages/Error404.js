@@ -1,3 +1,4 @@
+//libs
 import { useHistory } from "react-router-dom";
 import { useApolloClient, gql } from "@apollo/client";
 
@@ -5,6 +6,7 @@ const Error404 = () => {
   const history = useHistory();
   const client = useApolloClient();
 
+  //for hiding progress bar on load
   client.writeQuery({
     query: gql`
       query WriteIsLoading {
@@ -21,8 +23,6 @@ const Error404 = () => {
       },
     },
   });
-
-
 
   const goBackHomeHandler = (e) => {
     e.preventDefault();

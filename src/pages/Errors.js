@@ -1,6 +1,8 @@
+//libs
 import { useApolloClient, gql } from "@apollo/client";
 
 const Errors = ({ errMsg }) => {
+  //for hiding progress bar on load
   const client = useApolloClient();
   client.writeQuery({
     query: gql`
@@ -18,7 +20,7 @@ const Errors = ({ errMsg }) => {
       },
     },
   });
-  
+
   let failedToFetch, mediaNotFound, tooManyRequest, wtfError;
 
   switch (errMsg) {
@@ -51,19 +53,23 @@ const Errors = ({ errMsg }) => {
   }
 
   return (
-    <div className="error-page-container text-gray-800">
-    <p><span>!</span> <strong>WAIT! There is a problem!</strong> 
-    <br/> Here are 4 possibilities why you seeing this page by different priority:</p>
+    <div className="error-page-container ">
+      <p>
+        <span>!</span> <strong>WAIT! There is a problem!</strong>
+        <br /> Here are 4 possibilities why you seeing this page by different
+        priority:
+      </p>
       <div>
-        <div
-          className="bg-blue-300" style={{order:-failedToFetch}}
-        >
+        <div className="bg-blue-300" style={{ order: -failedToFetch }}>
           <div className="error-possibility">
             <div>
               <div
-                className="error-pos-dash-style" style={{width:`${failedToFetch}%`,}}
+                className="error-pos-dash-style"
+                style={{ width: `${failedToFetch}%` }}
               ></div>
-              <span style={{left:`${failedToFetch}%`}}>{failedToFetch}% possibility</span>
+              <span style={{ left: `${failedToFetch}%` }}>
+                {failedToFetch}% possibility
+              </span>
             </div>
           </div>
           <strong>
@@ -71,20 +77,29 @@ const Errors = ({ errMsg }) => {
             <br /> here is some reasons for that:
           </strong>{" "}
           <br />
-          1- You are a user from Iran <img alt="" className="inline-block" width={15} height={15} src={process.env.PUBLIC_URL + "/media/iranflag.gif"} /> (or other country with limited internet)
-          and you need to <strong>turn on your VPN</strong> to see the contents! <br /> <br />
+          1- You are a user from Iran{" "}
+          <img
+            alt=""
+            className="inline-block"
+            width={15}
+            height={15}
+            src={process.env.PUBLIC_URL + "/media/iranflag.gif"}
+          />{" "}
+          (or other country with limited internet) and you need to{" "}
+          <strong>turn on your VPN</strong> to see the contents! <br /> <br />
           2- You need to check your connection! maybe it lost. <br /> <br />
           3- The Server is down currently! (Low chance)
         </div>
-        <div
-          className=" bg-yellow-300 " style={{order:-mediaNotFound}}
-        >
-                <div className="error-possibility">
+        <div className=" bg-yellow-300 " style={{ order: -mediaNotFound }}>
+          <div className="error-possibility">
             <div>
               <div
-                className="error-pos-dash-style" style={{width:`${mediaNotFound}%`,}}
+                className="error-pos-dash-style"
+                style={{ width: `${mediaNotFound}%` }}
               ></div>
-              <span style={{left:`${mediaNotFound}%`}}>{mediaNotFound}% possibility</span>
+              <span style={{ left: `${mediaNotFound}%` }}>
+                {mediaNotFound}% possibility
+              </span>
             </div>
           </div>
           <strong>Media not Found! it may happen when:</strong> <br />
@@ -95,15 +110,16 @@ const Errors = ({ errMsg }) => {
           3- The media was deleted from the server but still exist in relation
           of other media! (Low chance)
         </div>
-        <div
-          className=" bg-pink-300" style={{order:-tooManyRequest}}
-        >
-                <div className="error-possibility">
+        <div className=" bg-pink-300" style={{ order: -tooManyRequest }}>
+          <div className="error-possibility">
             <div>
               <div
-                className="error-pos-dash-style" style={{width:`${tooManyRequest}%`,}}
+                className="error-pos-dash-style"
+                style={{ width: `${tooManyRequest}%` }}
               ></div>
-              <span style={{left:`${tooManyRequest}%`}}>{tooManyRequest}% possibility</span>
+              <span style={{ left: `${tooManyRequest}%` }}>
+                {tooManyRequest}% possibility
+              </span>
             </div>
           </div>
           <strong>Toooooooo many Request! it may happen when:</strong> <br />
@@ -113,22 +129,24 @@ const Errors = ({ errMsg }) => {
           2- You are a bot! please get out my site stupid bot! DO NOT come back
           again, or no I will *** *** ***.
         </div>
-        <div
-          className=" bg-red-300 " style={{order:-wtfError}}
-        >
-                <div className="error-possibility">
+        <div className=" bg-red-300 " style={{ order: -wtfError }}>
+          <div className="error-possibility">
             <div>
               <div
-                className="error-pos-dash-style" style={{width:`${wtfError}%`,}}
+                className="error-pos-dash-style"
+                style={{ width: `${wtfError}%` }}
               ></div>
-              <span style={{left:`${wtfError}%`}}>{wtfError}% possibility</span>
+              <span style={{ left: `${wtfError}%` }}>
+                {wtfError}% possibility
+              </span>
             </div>
           </div>
           <strong>We really really dont know WTF is going on!</strong>
           <br /> <br />
           If you know please contact me from links at the footer and report the
           bug! I very appreciate that. <br /> <br />
-          It can be because of changes that may happend on the server! (Low chance)
+          It can be because of changes that may happend on the server! (Low
+          chance)
         </div>
       </div>
     </div>

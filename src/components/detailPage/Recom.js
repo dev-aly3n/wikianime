@@ -42,6 +42,10 @@ const Recom = ({ recom, widthParam }) => {
       history.push(`/anime/${recMedia.id}`);
     }, 500);
   };
+
+  //to remove extra data from description
+  let description = recMedia.description;
+  description = description.substring(0, 300);
   return (
     <motion.a
       draggable={true}
@@ -90,7 +94,7 @@ const Recom = ({ recom, widthParam }) => {
       </div>
       {recMedia.description && (
         <div className="recom-desc line-clamp-5">
-          <b>Description:</b> <Markup content={recMedia.description} />
+          <b>Description:</b> <Markup content={description} />
         </div>
       )}
       <div className="recom-rating">

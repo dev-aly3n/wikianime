@@ -1,7 +1,9 @@
+//libs
 import React, { useRef, useEffect } from "react";
-import { NavLink } from "react-router-dom";
 import { useApolloClient, gql } from "@apollo/client";
+//components
 import SearchList from "./SearchList";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const client = useApolloClient();
@@ -19,6 +21,7 @@ const Header = () => {
   useEffect(() => {
     const burger = burgerRef.current;
     const nav = navLinksRef.current;
+    //for looping through the links
     const navLinks = [
       homeLinkRef.current,
       animeLinkRef.current,
@@ -55,8 +58,9 @@ const Header = () => {
       });
     };
     navSlide();
-    // modern Navigation bar code stop here
+    // modern Navigation bar code finish here
 
+    // hide and show header on scroll
     let prevScrollpos = Number(scrollerContainer.scrollTop.toFixed(2));
     scrollerContainer.addEventListener("scroll", () => {
       let currentScrollPos = Number(scrollerContainer.scrollTop.toFixed(2));
@@ -72,6 +76,7 @@ const Header = () => {
       prevScrollpos = currentScrollPos;
     });
 
+    // hide and show header on scroll by touch
     window.addEventListener("touchmove", () => {
       let currentScrollPos = Number(scrollerContainer.scrollTop.toFixed(2));
       if (prevScrollpos > currentScrollPos && currentScrollPos > 300) {
@@ -92,6 +97,7 @@ const Header = () => {
     // eslint-disable-next-line
   }, []);
 
+  //for showing progress bar on click
   const LinkClickHandler = () => {
     client.writeQuery({
       query: gql`
@@ -111,6 +117,7 @@ const Header = () => {
     });
   };
 
+  //links to map
   const headerLinks = [
     {
       to: "/",

@@ -1,6 +1,6 @@
+//libs
 import React, { useRef, useEffect } from "react";
-import { useApolloClient } from "@apollo/client";
-import { gql } from "@apollo/client";
+import { useApolloClient, gql } from "@apollo/client";
 
 const ProgressBar = () => {
   const progressRef = useRef(null);
@@ -16,10 +16,14 @@ const ProgressBar = () => {
   let loadingParam;
   let isChanged = false;
 
+  //we want to subscribe a cache data (READ_ISLOADING) and run a function when the cache changes
+  //... if the new data is 30, then we sould start a brogress bar to 30%
+  //...if the new data is 80, then we need to complete the progress bar to 80 and then 100% and then hide it
   useEffect(() => {
     const bar = progressRef.current.firstElementChild;
     const shining = progressRef.current.children[1];
-     client.watchQuery({
+    client
+      .watchQuery({
         query: READ_ISLOADING,
         fetchPolicy: "cache-only",
       })
@@ -53,6 +57,7 @@ const ProgressBar = () => {
         error: (e) => console.error(e),
       });
   }, [isChanged]);
+
   return (
     <div ref={progressRef} className="progress-bar-container">
       <div></div>

@@ -1,27 +1,34 @@
+//libs
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { useLocation, useParams } from "react-router-dom";
-import { Markup } from "interweave";
-import { hexToRgbA, secondsToDhms } from "../utils/helpers";
+import { useApolloClient, gql } from "@apollo/client";
+//components
 import AnimeList from "../components/AnimeList";
 import StreamList from "../components/detailPage/StreamList";
 import CircleRate from "../components/detailPage/CircleRate";
 import Popularity from "../components/detailPage/Popularity";
-import { faHeart, faClock } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ExternalLinks from "../components/detailPage/ExternalLinks";
 import Rank from "../components/detailPage/Rank";
-import { detailQuery } from "../utils/queries";
 import Trailer from "../components/detailPage/Trailer";
 import CharacterList from "../components/detailPage/CharacterList";
 import CharacterDetail from "./CharacterDetail";
 import ReviewList from "../components/detailPage/ReviewList";
 import RecomList from "../components/detailPage/RecomList";
-import { useApolloClient, gql } from "@apollo/client";
 import Loading from "./Loading";
-import Errors from './Errors';
+import Errors from "./Errors";
+import { Markup } from "interweave";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faClock } from "@fortawesome/free-solid-svg-icons";
+//helpers and queries
+import { hexToRgbA, secondsToDhms } from "../utils/helpers";
+import { detailQuery } from "../utils/queries";
 
 const AnimeDetail = () => {
+  const params = useParams();
+  const location = useLocation();
+
+  //for cloasing the progress bar on load
   const client = useApolloClient();
   client.writeQuery({
     query: gql`
@@ -40,16 +47,15 @@ const AnimeDetail = () => {
     },
   });
 
+  //bcs of scroll behinde of the modal back to normal when modal close
   document.body.style.overflow = "auto";
 
-  const params = useParams();
+  //check if we are in the character page or not
   const id = Number(params.animeID);
-  const location = useLocation();
   const charID = location.pathname.split("/");
   const isCharacterPage = charID[3] === "character";
 
-  const selectAnimeQuery = detailQuery;
-  const { loading, error, data } = useQuery(selectAnimeQuery, {
+  const { loading, error, data } = useQuery(detailQuery, {
     variables: {
       id: id,
     },
@@ -60,7 +66,7 @@ const AnimeDetail = () => {
   }
 
   if (error) {
-    return <Errors errMsg={error.message} />
+    return <Errors errMsg={error.message} />;
   }
 
   const aData = data.Media;
@@ -81,6 +87,9 @@ const AnimeDetail = () => {
   const studios = aData.studios.edges;
   const tags = aData.tags;
   const nextAiringEpisode = aData.nextAiringEpisode;
+  const popularity = aData.popularity;
+
+  //to passing it to the circular rate component we need to make it a number between 0 to 100
   let favouritesRange = ((aData.favourites / 30000) * 100).toFixed(0);
   if (favouritesRange > 100) {
     favouritesRange = 100;
@@ -88,7 +97,7 @@ const AnimeDetail = () => {
   if (favouritesRange < 1) {
     favouritesRange = 1;
   }
-  const popularity = aData.popularity;
+  //to check it the start date and end date are same or not (for movies we dont need to show both dates)
   const isOneDate =
     endDate.year === startDate.year &&
     endDate.month === startDate.month &&
@@ -105,7 +114,14 @@ const AnimeDetail = () => {
       )}
 
       <div className="detail-grid-container detail-page-container">
-        <div className="d-header" style={{ backgroundImage: `url(${banner ?? process.env.PUBLIC_URL + "/media/defaultheader.png"})` }}>
+        <div
+          className="d-header"
+          style={{
+            backgroundImage: `url(${
+              banner ?? process.env.PUBLIC_URL + "/media/defaultheader.png"
+            })`,
+          }}
+        >
           <div className="banner-inside">
             <h1
               className="detail-title"
@@ -119,7 +135,10 @@ const AnimeDetail = () => {
           <img
             alt=""
             className="detail-cover-image "
-            style={{ borderColor: `${animeColor30}` , backgroundColor:coverImage.color}}
+            style={{
+              borderColor: `${animeColor30}`,
+              backgroundColor: coverImage.color,
+            }}
             src={coverImage.large}
           />
           <h2>{title}</h2>

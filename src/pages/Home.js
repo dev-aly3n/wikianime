@@ -1,6 +1,7 @@
+//libs
 import React from "react";
-import { useQuery } from "@apollo/client";
-import { homeQuery } from "../utils/queries";
+import { useQuery, useApolloClient, gql } from "@apollo/client";
+//components
 import AnimeList from "../components/AnimeList";
 import AiringList from "../components/homePage/AiringList";
 import HomeRec from "../components/homePage/HomeRec";
@@ -8,11 +9,12 @@ import TopList from "../components/homePage/TopList";
 import RecomList from "../components/detailPage/RecomList";
 import AiringSlider from "../components/homePage/AiringSlider";
 import Loading from "./Loading";
-import { useApolloClient, gql } from "@apollo/client";
-import Errors from './Errors';
-
+import Errors from "./Errors";
+//helpers and queries
+import { homeQuery } from "../utils/queries";
 
 const Home = ({ gridRef }) => {
+  //for hiding progress bar on load
   const client = useApolloClient();
   client.writeQuery({
     query: gql`
@@ -31,8 +33,7 @@ const Home = ({ gridRef }) => {
     },
   });
 
-  const hQuery = homeQuery;
-  const { loading, error, data } = useQuery(hQuery);
+  const { loading, error, data } = useQuery(homeQuery);
 
   if (loading) {
     return <Loading />;
@@ -46,14 +47,9 @@ const Home = ({ gridRef }) => {
   const allTime = data.allTime.media;
   const top100 = data.top100.media;
 
-
-
   return (
     <React.Fragment>
-      <div
-        ref={gridRef}
-        className=" home-grid-container home-page-container"
-      >
+      <div ref={gridRef} className=" home-grid-container home-page-container">
         <div className="h-header">
           {airing[0] && (
             <div>

@@ -1,11 +1,14 @@
+//libs
 import React, { useRef, useEffect, useState, useCallback } from "react";
-import { motion } from "framer-motion";
-import { menuSearchQuery } from "../utils/queries";
 import { useLazyQuery } from "@apollo/client";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SearchAnime from "../components/SearchAnime";
 import { Link, useHistory } from "react-router-dom";
+//components
+import SearchAnime from "../components/SearchAnime";
+import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+//helpers and queries
+import { menuSearchQuery } from "../utils/queries";
 
 const SearchList = () => {
   const history = useHistory();
@@ -15,6 +18,7 @@ const SearchList = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   let searchData = [];
 
+  //a callback for child components to set the data to "" when user click on one of the search results
   const emptySearchValue = useCallback(() => {
     setSearchValue("");
   }, [setSearchValue]);
@@ -29,6 +33,7 @@ const SearchList = () => {
     setSearchValue("");
   };
 
+  //to close or expand the search box on click on window or search box
   useEffect(() => {
     const windowClickOutOfSearch = (e) => {
       if (e.target.classList.contains("search-click")) {
@@ -43,6 +48,7 @@ const SearchList = () => {
     };
   }, []);
 
+  //to add a delay for request to avoid request on every key down
   useEffect(() => {
     setIsLoading(true);
     const searchTimer = setTimeout(() => {
@@ -58,7 +64,7 @@ const SearchList = () => {
   const [getSearchAnime, { error, data }] = useLazyQuery(menuSearchQuery);
 
   if (error) {
-    console.log(error)
+    console.log(error);
   }
 
   if (data) {
