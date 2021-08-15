@@ -105,7 +105,7 @@ const AnimeDetail = () => {
       )}
 
       <div className="detail-grid-container detail-page-container">
-        <div className="d-header" style={{ backgroundImage: `url(${banner})` }}>
+        <div className="d-header" style={{ backgroundImage: `url(${banner ?? process.env.PUBLIC_URL + "/media/defaultheader.png"})` }}>
           <div className="banner-inside">
             <h1
               className="detail-title"

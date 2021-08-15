@@ -53,7 +53,7 @@ const Errors = ({ errMsg }) => {
   return (
     <div className="error-page-container text-gray-800">
     <p><span>!</span> <strong>WAIT! There is a problem!</strong> 
-    <br/> Here is 4 possibilities why you seeing this page by different priority:</p>
+    <br/> Here are 4 possibilities why you seeing this page by different priority:</p>
       <div>
         <div
           className="bg-blue-300" style={{order:-failedToFetch}}
