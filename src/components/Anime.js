@@ -59,7 +59,7 @@ const Anime = ({ anime }) => {
         <div className=" bg-green-300 ">{anime.source}</div>
         <div className=" bg-red-300 ">{anime.status}</div>
       </div>
-      <h3 className="line-clamp-2">
+      <h3 className="line-clamp-2 ">
         {anime.title.english !== null
           ? anime.title.english
           : anime.title.romaji}

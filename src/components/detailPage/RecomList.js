@@ -178,7 +178,7 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
               onMouseMove={recSliderMouseMoveHandler}
             >
               <div>
-                {allRecomData.slice(0, showMore.recommend - 1).map((recom, index) => {
+                {allRecomData.filter((_, index)=> showMore.recommend - 1 >= index).map((recom, index) => {
                     const id = recom.node
                       ? recom.node.mediaRecommendation.id
                       : recom.media.id;

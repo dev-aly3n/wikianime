@@ -67,7 +67,7 @@ const Header = () => {
         navRef.current.style.top = "0";
         navRef.current.style.backgroundColor = "rgba(49,46,129,0.7)";
       } else {
-        navRef.current.style.top = "-8vh";
+        navRef.current.style.top = "-72px";
       }
       prevScrollpos = currentScrollPos;
     });
@@ -81,7 +81,7 @@ const Header = () => {
         navRef.current.style.top = "0";
         navRef.current.style.backgroundColor = "rgba(49,46,129,0.7)";
       } else {
-        navRef.current.style.top = "-8vh";
+        navRef.current.style.top = "-72px";
       }
       prevScrollpos = currentScrollPos;
     });

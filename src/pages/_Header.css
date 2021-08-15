@@ -1,7 +1,8 @@
 @layer components {
   /* this is the start of navbar css */
   .navigation-container {
-    min-height: 8vh;
+    max-width: 1920px;
+    min-height: 55px;
     @apply flex justify-around bg-indigo-900 items-center fixed top-0 w-full z-30 transition-all duration-700 bg-opacity-70;
     .logo {
       @apply relative flex justify-between items-center w-40;
@@ -16,7 +17,7 @@
 
     .nav-links {
       width: 35%;
-      height: 8vh;
+      height: 55px;
       @apply flex mx-0 justify-center items-center;
     }
     .nav-links li {
@@ -46,13 +47,13 @@
     @media screen and (max-width: 1024px) {
       .nav-links {
         right: 0px;
-        min-height: 92vh;
-        top: 8vh;
+        min-height: 100vh;
+        top: 55px;
         width: 60%;
         transform: translateX(100%);
         transition: transform 0.5s ease-in;
 
-        @apply bg-indigo-900  absolute flex flex-col justify-start items-center z-30;
+        @apply bg-indigo-900  absolute flex flex-col justify-start items-center z-30 overflow-y-scroll overflow-x-hidden;
       }
 
       .nav-links li {

@@ -4,6 +4,10 @@
       }
       body {
         font-family: "Lato", sans-serif;
+        @apply flex justify-center;
+      }
+      #root {
+        max-width: 1920px;
       }
     
       h1,
@@ -16,7 +20,9 @@
       }
 
       .all-grid-container {
+        min-height:100vh;
         display: grid;
+        grid-template-rows: auto 1fr auto;
         grid-template-areas:
           "nav"
           "main"
@@ -62,3 +68,4 @@
  focus:outline-none ;
 }
 }
+
