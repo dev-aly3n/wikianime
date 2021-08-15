@@ -1,9 +1,9 @@
-import React from "react";
+//components
 import Airing from "./Airing";
 import { motion } from "framer-motion";
 
 const AiringList = ({ allAiring, keyParam }) => {
-  // maintain the array for duplicate elements
+  // maintain the array for duplicate elements and also for those who hasn't banner image
   let counterAnime = [];
   let trimedallAiring = allAiring.filter((anime) => {
     if (!counterAnime.includes(anime.media.id)) {

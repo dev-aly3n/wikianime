@@ -1,3 +1,4 @@
+//libs
 import { useApolloClient, gql } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 
@@ -5,6 +6,7 @@ const SearchAnime = ({ anime, emptySearchValue }) => {
   const history = useHistory();
   const client = useApolloClient();
 
+  //for showing progress bar on click
   const animeCardClickHandler = (e) => {
     e.preventDefault();
 

@@ -3,6 +3,9 @@
     @apply flex flex-col justify-start items-center relative bg-indigo-900;
     > button {
       @apply absolute top-0 h-full w-12 focus:outline-none;
+      .icon-btn {
+        @apply text-4xl text-gray-500;
+      }
     }
   }
 }

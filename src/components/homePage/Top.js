@@ -1,15 +1,17 @@
-import React from "react";
-import { motion } from "framer-motion";
+//libs
 import { useHistory } from "react-router-dom";
+import { useApolloClient, gql } from "@apollo/client";
+//components
+import { motion } from "framer-motion";
 import CircleRate from "../detailPage/CircleRate";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Markup } from "interweave";
-import { useApolloClient, gql } from "@apollo/client";
 
 const Top = ({ anime, rank }) => {
   const history = useHistory();
   const client = useApolloClient();
 
+  //for showing progress bar on click
   const animeCardClickHandler = (e) => {
     e.preventDefault();
 
@@ -35,6 +37,7 @@ const Top = ({ anime, rank }) => {
     }, 500);
   };
 
+  //to remove extra data from description
   let description = anime.description;
   description = description.substring(0, 300);
 
@@ -46,7 +49,14 @@ const Top = ({ anime, rank }) => {
         animate={{ opacity: 1, transition: { duration: 1 } }}
         initial={{ opacity: 0 }}
       >
-        <img loading="lazy" width={96} height={160} alt="" src={anime.coverImage.large} style={{backgroundColor:anime.coverImage.color}} />
+        <img
+          loading="lazy"
+          width={96}
+          height={160}
+          alt=""
+          src={anime.coverImage.large}
+          style={{ backgroundColor: anime.coverImage.color }}
+        />
 
         <div className="top-info-container">
           <div className="top-status">
@@ -64,7 +74,7 @@ const Top = ({ anime, rank }) => {
             </div>
             <div className="top-tag-container">
               {anime.tags
-                .filter((_, index) => index<=3)
+                .filter((_, index) => index <= 3)
                 .map((tag) => {
                   return <span key={tag.name}>{tag.name}</span>;
                 })}
@@ -77,10 +87,7 @@ const Top = ({ anime, rank }) => {
           <div className="top-rate-score transform translate-x-4 -translate-y-4 group-hover:translate-y-0.5 group-hover:-translate-x-0.5">
             <CircleRate size={4} rate={anime.averageScore} />
           </div>
-          <div
-            className="top-rate-popularity transform translate-x-4 translate-y-4 
-    group-hover:-translate-y-0.5 group-hover:-translate-x-0.5"
-          >
+          <div className="top-rate-popularity transform translate-x-4 translate-y-4 group-hover:-translate-y-0.5 group-hover:-translate-x-0.5">
             <div className="relative">
               <CircleRate
                 size={4}

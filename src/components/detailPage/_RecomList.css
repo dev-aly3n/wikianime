@@ -21,7 +21,7 @@
       @apply absolute top-0 h-full w-12 from-transparent to-gray-200 hover:to-gray-400
           focus:outline-none;
       .font-icon-recom-list {
-        @apply text-4xl transform text-gray-600 active:scale-y-95;
+        @apply text-4xl text-gray-600 active:scale-y-95;
       }
     }
   }

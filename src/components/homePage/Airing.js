@@ -1,15 +1,18 @@
-import React from "react";
-import { motion } from "framer-motion";
+//libs
 import { useHistory } from "react-router-dom";
-import { secondsToDhms } from "../../utils/helpers";
-import { faClock } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useApolloClient, gql } from "@apollo/client";
+// components
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
+//helpers and queries
+import { secondsToDhms } from "../../utils/helpers";
 
 const Airing = ({ airing }) => {
   const history = useHistory();
   const client = useApolloClient();
 
+  //showing progress bar on click
   const animeCardClickHandler = (e) => {
     e.preventDefault();
 
@@ -30,6 +33,7 @@ const Airing = ({ airing }) => {
       },
     });
 
+    //to show progress bar first we use timeout
     setTimeout(() => {
       history.push(`/anime/${airing.id}`);
     }, 500);

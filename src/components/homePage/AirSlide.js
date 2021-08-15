@@ -1,15 +1,18 @@
-import React from "react";
+//libs
 import { useHistory } from "react-router-dom";
-import { secondsToDhms } from "../../utils/helpers";
-import { faClock } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Markup } from "interweave";
 import { useApolloClient, gql } from "@apollo/client";
+//components
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
+import { Markup } from "interweave";
+//helpers and quereis
+import { secondsToDhms } from "../../utils/helpers";
 
 const AirSlide = ({ airing, onGrabbingSlider }) => {
   const history = useHistory();
   const client = useApolloClient();
 
+  //for showing progress bar on click
   const animeCardClickHandler = (e) => {
     e.preventDefault();
 

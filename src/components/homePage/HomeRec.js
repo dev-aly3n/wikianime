@@ -1,3 +1,4 @@
+//components
 import Recom from "../detailPage/Recom";
 
 const HomeRecom = ({ allRecom, keyParam }) => {

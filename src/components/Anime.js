@@ -1,13 +1,15 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { useHistory } from "react-router-dom";
-import CircleRate from "./detailPage/CircleRate";
+//libs
 import { useApolloClient, gql } from "@apollo/client";
+import { useHistory } from "react-router-dom";
+//components
+import { motion } from "framer-motion";
+import CircleRate from "./detailPage/CircleRate";
 
 const Anime = ({ anime }) => {
   const client = useApolloClient();
   const history = useHistory();
 
+  //to showing progress bar on click
   const animeCardClickHandler = (e) => {
     e.preventDefault();
 
@@ -50,7 +52,13 @@ const Anime = ({ anime }) => {
         </div>
       )}
 
-      <img loading="lazy" height={224} alt="" src={anime.coverImage.large} style={{backgroundColor:anime.coverImage.color}} />
+      <img
+        loading="lazy"
+        height={224}
+        alt=""
+        src={anime.coverImage.large}
+        style={{ backgroundColor: anime.coverImage.color }}
+      />
       <div
         className="anime-info
        "

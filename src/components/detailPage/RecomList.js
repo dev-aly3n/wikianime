@@ -219,7 +219,7 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
               className="left-0 bg-gradient-to-l"
             >
               <FontAwesomeIcon
-                className="font-icon-recom-list rotate-180"
+                className="font-icon-recom-list transform rotate-180"
                 icon={faChevronCircleRight}
               />
             </button>
@@ -228,7 +228,7 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
               className="right-0 bg-gradient-to-r"
             >
               <FontAwesomeIcon
-                className="font-icon-recom-list"
+                className="font-icon-recom-list transform"
                 icon={faChevronCircleRight}
               />
             </button>

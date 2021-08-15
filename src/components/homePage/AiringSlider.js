@@ -1,20 +1,23 @@
+//libs
 import React, { useState, useEffect, useCallback } from "react";
+//components
 import AirSlide from "./AirSlide";
-import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 
 const AiringSlider = ({ allAiring, keyParam }) => {
-  let autoSlidePlay;
   const [slideNum, setSlideNum] = useState(0);
   const [isAutoPlayOn, setIsAutoPlayOn] = useState(true);
+  let autoSlidePlay;
 
+  //callback for grabbing to stop the autoplay if user grab the slider
   const onGrabbingSlider = useCallback(() => {
     setIsAutoPlayOn(false);
     clearTimeout(autoSlidePlay);
     // eslint-disable-next-line
   }, [setIsAutoPlayOn]);
 
-  // maintain the array for duplicate elements
+  // maintain the array for duplicate elements and also those whose haven't any banner image
   let counterAnime = [];
   let trimedallAiring = allAiring.filter((anime) => {
     if (!counterAnime.includes(anime.media.id)) {
@@ -26,6 +29,7 @@ const AiringSlider = ({ allAiring, keyParam }) => {
     return false;
   });
 
+  //set timeout to make it smoother to change the slide and set the slide to 0 if we are at the last one
   const rightHandler = () => {
     setIsAutoPlayOn(false);
 
@@ -49,6 +53,7 @@ const AiringSlider = ({ allAiring, keyParam }) => {
     }, 200);
   };
 
+  //autoplay for slide, we reset the autoplay if user click on left or right button
   useEffect(() => {
     if (isAutoPlayOn) {
       // eslint-disable-next-line
@@ -58,7 +63,7 @@ const AiringSlider = ({ allAiring, keyParam }) => {
         } else {
           setSlideNum(slideNum + 1);
         }
-      }, 4000);
+      }, 7000);
       return () => {
         clearTimeout(autoSlidePlay);
       };
@@ -80,15 +85,12 @@ const AiringSlider = ({ allAiring, keyParam }) => {
 
       <button onClick={leftHandler} className="left-0">
         <FontAwesomeIcon
-          className="text-4xl transform rotate-180 text-gray-500"
+          className="icon-btn transform rotate-180"
           icon={faChevronCircleRight}
         />
       </button>
       <button onClick={rightHandler} className="right-0">
-        <FontAwesomeIcon
-          className="text-4xl text-gray-500"
-          icon={faChevronCircleRight}
-        />
+        <FontAwesomeIcon className="icon-btn" icon={faChevronCircleRight} />
       </button>
     </div>
   );

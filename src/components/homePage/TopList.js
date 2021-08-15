@@ -1,4 +1,6 @@
+//libs
 import React, { useState } from "react";
+//components
 import Top from "./Top";
 import { motion } from "framer-motion";
 
