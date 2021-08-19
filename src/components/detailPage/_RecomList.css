@@ -9,6 +9,7 @@
   .recommendation-parent {
     @apply relative block mx-auto overflow-hidden rounded-md;
     .recommendation {
+      scrollbar-width:none;
       @apply flex justify-between items-center h-96  overflow-x-auto;
       > div {
         @apply flex flex-row mx-5 md:mx-10 relative;

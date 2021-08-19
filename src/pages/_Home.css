@@ -39,6 +39,7 @@
   .home-page-container {
     .h-header {
       grid-area: header;
+      @apply w-full overflow-hidden;
    
     }
     .h-sidebar {

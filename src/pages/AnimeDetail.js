@@ -133,6 +133,8 @@ const AnimeDetail = () => {
         </div>
         <div className="d-sidebar">
           <img
+          width={270}
+          height={400}
             alt=""
             className="detail-cover-image "
             style={{

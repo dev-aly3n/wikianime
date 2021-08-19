@@ -42,14 +42,18 @@
         @apply transform  hover:-translate-y-1 hover:shadow-2xl  hover:scale-105 active:scale-100 active:shadow-none transition-transform duration-500;
       }
 
-
+/* chrome */
       *::-webkit-scrollbar {
         width: 0.5rem;
       }
       *::-webkit-scrollbar-thumb {
         background-color: darkgray;
       }
-
+/* firefox */
+#root {
+  scrollbar-width:thin;
+  scrollbar-color: darkgray;
+}
 
 
 

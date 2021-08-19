@@ -4,9 +4,10 @@ const Footer = () => {
       <div>
         <div className="footer-thank">
           <p>
-            This Single Page Application built by the power of React, graphQL
-            and Tailwind css and ect... <br />
-            this takes 50 days from me to built, however I learnt a lot at this
+            This single Page Application built by the power of React, graphQL
+            and Tailwind css and ect... <br /> I didn't use any pre-built components 
+            or ui library and all of these stuff has been built from the scratch. <br/>
+            It has been taken 60 days time from me to build, however I learnt a lot at this
             time beside working on my application <br />
             anyway thank you to visiting my app and a big thanks to anilist
             graphQL server <br />

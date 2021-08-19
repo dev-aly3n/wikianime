@@ -163,6 +163,7 @@
     .d-recom {
       font-size: 10px;
       grid-area: recom;
+      @apply w-full overflow-x-hidden;
     }
 
     .banner-inside {
