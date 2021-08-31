@@ -71,3 +71,8 @@
 }
 }
 
+@-moz-document url-prefix() {
+  *{
+    color: white !important;
+  }
+}
