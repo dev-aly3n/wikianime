@@ -18,10 +18,6 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
 
   //check to see if we are in small device or large one to decide how many data should load
   const isSmallDevice = document.documentElement.clientWidth <= 768;
-  //this magic numbers manage the scroll in small devices like 320px width
-  const magicNum1 = 250;
-  const magicNum2 = isSmallDevice ? 264 : 264 * 2;
-  const magicNum3 = 275;
 
   //check to see if we are in home page or detail page and bcs this will throwing error for us, so we mock it
   //... to get the data of id 7 if we are in home page but we dont show this data
@@ -98,65 +94,31 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
   //...we also load more data if user click on the right button. the number of new data is depend on size of the device
   const rightScrollHandler = () => {
     let recLeft = rightLeftScroll.current.scrollLeft;
-    let recWidth = rightLeftScroll.current.scrollWidth;
-
-    if ((Math.round(recLeft) - magicNum1) % magicNum2 !== 0) {
-      recLeft = Math.round((Math.round(recLeft) - magicNum1) / magicNum2);
-      recLeft = recLeft * magicNum2 + magicNum1;
-      rightLeftScroll.current.scrollTo({
-        top: 0,
-        left: recWidth === recLeft ? recLeft + magicNum3 : recLeft + magicNum2,
-        behavior: "smooth",
-      });
-      if (
-        isSmallDevice
-          ? showMore.recommend < allRecomData.length + 1
-          : showMore.recommend < allRecomData.length + 3
-      ) {
-        const newRecommend = isSmallDevice
-          ? showMore.recommend + 1
-          : showMore.recommend + 3;
-        setShowMore({ recommend: newRecommend });
-      }
-    } else {
-      rightLeftScroll.current.scrollTo({
-        top: 0,
-        left: recLeft === 0 ? recLeft + magicNum1 : recLeft + magicNum2,
-        behavior: "smooth",
-      });
-
-      if (
-        isSmallDevice
-          ? showMore.recommend < allRecomData.length + 1
-          : showMore.recommend < allRecomData.length + 3
-      ) {
-        const newRecommend = isSmallDevice
-          ? showMore.recommend + 1
-          : showMore.recommend + 3;
-        setShowMore({ recommend: newRecommend });
-      }
+    rightLeftScroll.current.scrollTo({
+      top: 0,
+      left: recLeft + 200,
+      behavior: "smooth",
+    });
+    if (
+      isSmallDevice
+        ? showMore.recommend < allRecomData.length + 1
+        : showMore.recommend < allRecomData.length + 3
+    ) {
+      const newRecommend = isSmallDevice
+        ? showMore.recommend + 1
+        : showMore.recommend + 3;
+      setShowMore({ recommend: newRecommend });
     }
   };
 
   //like the right handler but we dont load new data as it make sense
   const leftScrollHandler = () => {
     let recLeft = rightLeftScroll.current.scrollLeft;
-    let recWidth = rightLeftScroll.current.scrollWidth;
-    if ((Math.round(recLeft) - magicNum1) % magicNum2 !== 0) {
-      recLeft = Math.round((Math.round(recLeft) - magicNum1) / magicNum2);
-      recLeft = recLeft * magicNum2 + magicNum1;
-      rightLeftScroll.current.scrollTo({
-        top: 0,
-        left: recWidth === recLeft ? recLeft - magicNum3 : recLeft - magicNum2,
-        behavior: "smooth",
-      });
-    } else {
-      rightLeftScroll.current.scrollTo({
-        top: 0,
-        left: recWidth === recLeft ? recLeft - magicNum3 : recLeft - magicNum2,
-        behavior: "smooth",
-      });
-    }
+    rightLeftScroll.current.scrollTo({
+      top: 0,
+      left: recLeft - 200,
+      behavior: "smooth",
+    });
   };
 
   //in touch handler we do same thing. maybe we need to clean this mess and make another function to use in all event listeners
@@ -176,17 +138,15 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
         setShowMore({ recommend: allRecomData.length });
       }
     }
-    if ((Math.round(recLeft) - magicNum1) % magicNum2 !== 0 && recLeft !== 0) {
-      recLeft = Math.round((Math.round(recLeft) - magicNum1) / magicNum2);
-      recLeft = recLeft * magicNum2 + magicNum1;
-      rightLeftScroll.current.scrollTo({
-        top: 0,
-        left: recLeft,
-        behavior: "smooth",
-      });
-    }
   };
 
+  const snapStyle = isSmallDevice
+    ? {
+        scrollSnapType: "x mandatory",
+        scrollPaddingInline: "50px",
+      }
+    : {};
+    
   return (
     <React.Fragment>
       {allRecomData.length > 0 && (
@@ -194,6 +154,7 @@ const RecomList = ({ allRecom, animeID, initialQuantity, keyParam }) => {
           <h4 className="recom-list-title">Recommendations</h4>
           <div className="recommendation-parent">
             <div
+              style={snapStyle}
               className="recommendation"
               ref={rightLeftScroll}
               onTouchEnd={recTouchHandler}

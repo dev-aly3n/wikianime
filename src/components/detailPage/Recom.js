@@ -48,12 +48,13 @@ const Recom = ({ recom, widthParam }) => {
   description = description.substring(0, 300);
   return (
     <motion.a
+      style={{ scrollSnapAlign: "start" }}
       draggable={true}
       href={`/anime/${recMedia.id}`}
       onClick={animeCardClickHandler}
       className={` ${
         widthParam ? "w-full ssm:w-8/12 sm:w-11/12 my-3" : "w-60 mx-3"
-      }  recom-container`}
+      }  recom-container `}
     >
       <div className="recom-detail">
         <img
