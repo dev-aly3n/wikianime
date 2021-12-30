@@ -1,7 +1,7 @@
 @layer components {
   .anime-filter-container {
     min-height: 700px;
-    @apply h-full flex flex-col justify-center items-center pt-24 mx-auto bg-indigo-50 w-full;
+    @apply h-full flex flex-col justify-start items-center pt-24 mx-auto bg-indigo-50 w-full;
     .anime-filter-form {
       @apply flex justify-center items-center h-14 w-full;
       > form {
