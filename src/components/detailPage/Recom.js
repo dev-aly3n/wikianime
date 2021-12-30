@@ -44,8 +44,8 @@ const Recom = ({ recom, widthParam }) => {
   };
 
   //to remove extra data from description
-  let description = recMedia.description;
-  description = description.substring(0, 300);
+  let description = recMedia?.description;
+  description = description?.substring(0, 300);
   return (
     <motion.a
       style={{ scrollSnapAlign: "start" }}
@@ -95,7 +95,7 @@ const Recom = ({ recom, widthParam }) => {
       </div>
       {recMedia.description && (
         <div className="recom-desc line-clamp-5">
-          <b>Description:</b> <Markup content={description} />
+          <b>Description:</b> <Markup content={description ?? ""} />
         </div>
       )}
       <div className="recom-rating">
