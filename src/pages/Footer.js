@@ -36,9 +36,7 @@ const Footer = () => {
                 width={20}
                 height={20}
                 alt=""
-                src={
-                  "https://img.pngio.com/github-logo-icon-of-glyph-style-available-in-svg-png-eps-ai-github-icon-png-256_256.png"
-                }
+                src="/media/github.jpg"
               />
               <a
                 href="https://github.com/dev-aly3n"
@@ -55,9 +53,7 @@ const Footer = () => {
                 width={20}
                 height={20}
                 alt=""
-                src={
-                  "https://www.strategy-works.com/wp-content/uploads/2017/12/Icon-LinkedIn.png"
-                }
+                src="/media/linkedin.jpg"
               />
               <a
                 href="https://www.linkedin.com/in/aly-mohamadi-4bb966212/"
@@ -74,7 +70,7 @@ const Footer = () => {
                 width={20}
                 height={20}
                 alt=""
-                src={"https://telegram.org/img/td_icon.png"}
+                src="/media/telegram.jpg"
               />
               <a
                 href="https://telegram.me/aly3n"

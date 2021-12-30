@@ -28,7 +28,7 @@
         > li {
           @apply flex hover:text-yellow-500 my-1;
           > img {
-            @apply w-5 mx-1;
+            @apply w-5 h-5 mx-1 rounded-full;
           }
         }
       }
