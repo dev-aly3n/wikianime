@@ -31,6 +31,7 @@
       }
       .all-main {
         grid-area: main;
+        @apply min-h-screen ;
       }
       .all-footer {
         grid-area: footer;
